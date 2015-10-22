@@ -1,0 +1,17 @@
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\bin\Debug\Client_Prototype.exe.config
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\bin\Debug\Client_Prototype.exe
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\bin\Debug\Client_Prototype.pdb
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\Client_Prototype.csprojResolveAssemblyReference.cache
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\MainWindow.baml
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\MainWindow.g.cs
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\App.g.cs
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\Client_Prototype_MarkupCompile.cache
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\Client_Prototype.g.resources
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\Client_Prototype.Properties.Resources.resources
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\Client_Prototype.csproj.GenerateResource.Cache
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\Client_Prototype.exe
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\Client_Prototype.pdb
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\EditAbteilung.baml
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\EditAbteilung.g.cs
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\AddStandInAbteilung.baml
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\AddStandInAbteilung.g.cs
