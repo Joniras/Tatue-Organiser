@@ -53,18 +53,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddGuideFromSchueler.xaml.cs">
+      <DependentUpon>AddGuideFromSchueler.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddStandInAbteilung.xaml.cs">
       <DependentUpon>AddStandInAbteilung.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Guide.cs" />
     <Compile Include="Classes\GuideRating.cs" />
     <Compile Include="Classes\Stand.cs" />
     <Compile Include="Classes\Schueler.cs" />
+    <Page Include="AddGuideFromSchueler.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddStandInAbteilung.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditAbteilung.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditGuide.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -80,6 +90,9 @@
     <Compile Include="Classes\StandRating.cs" />
     <Compile Include="EditAbteilung.xaml.cs">
       <DependentUpon>EditAbteilung.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditGuide.xaml.cs">
+      <DependentUpon>EditGuide.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

@@ -27,9 +27,10 @@ namespace Client_Prototype
             InitializeComponent();
             abteilung = _ab;
             lblTitle.Content = abteilung.AB_Name + " bearbeiten";
-            drawTestLine();
+            //drawTestLine();
+            //drawAbteilung();
             addTestData();
-            
+
         }
 
         private void btnAddStand_Click(object sender, RoutedEventArgs e)
@@ -52,6 +53,14 @@ namespace Client_Prototype
             myLine.VerticalAlignment = VerticalAlignment.Center;
             myLine.StrokeThickness = 2;
             canvasStandplan.Children.Add(myLine);
+        }
+
+        private void drawAbteilung()
+        {
+            throw new NotImplementedException();
+            //Draw Abteilung from current Abteilung
+            //select all Stands from Abteilung
+            //Draw to canvasStandplan
         }
 
         private void addTestData()

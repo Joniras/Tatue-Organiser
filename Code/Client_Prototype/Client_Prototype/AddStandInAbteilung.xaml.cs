@@ -26,7 +26,16 @@ namespace Client_Prototype
         public AddStandInAbteilung()
         {
             InitializeComponent();
+            //drawAbteilung();
             btnResetCanvas.IsEnabled = false;
+        }
+
+        private void drawAbteilung()
+        {
+            throw new NotImplementedException();
+            //Draw Abteilung from current Abteilung
+            //get all Stands from Abteilung
+            //Draw to canvasStandplan
         }
 
         private void canvasDrawStand_MouseDown(object sender, MouseButtonEventArgs e)
@@ -73,6 +82,7 @@ namespace Client_Prototype
         private void btnAddStand_Click(object sender, RoutedEventArgs e)
         {
             Stand toAdd = new Stand(1, txtName.Text, txtInfo.Text, rect);
+            //post Stand 
         }
 
         private void btnResetCanvas_Click(object sender, RoutedEventArgs e)
@@ -81,6 +91,6 @@ namespace Client_Prototype
             canvasDrawStand.Children.RemoveAt(rect_index);
             btnResetCanvas.IsEnabled = false;
         }
-        
+
     }
 }

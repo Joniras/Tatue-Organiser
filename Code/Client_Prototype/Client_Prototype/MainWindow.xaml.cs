@@ -25,17 +25,19 @@ namespace Client_Prototype
             InitializeComponent();
             addTestDataToAbteilung();
             addTestDataToGuide();
-            
+            gridGuide.IsReadOnly = true;
+            gridAbteilung.IsReadOnly = true;
+
         }
 
         private void addTestDataToGuide()
         {
-            List<Guide> content = new List<Guide>();
-            content.Add(new Guide(1, 1, "Jonas", "Schaltegger", "5BHIFS"));
-            content.Add(new Guide(2, 2, "Simon", "Schwantler", "5BHIFS"));
-            content.Add(new Guide(3, 3, "Henrik", "Csoere", "5BHIFS"));
-            content.Add(new Guide(4, 4, "Richard", "Neumann", "5AHIFS"));
-            content.Add(new Guide(5, 5, "Sandro", "Linder", "4AHIFS"));
+            List<Schueler> content = new List<Schueler>();
+            content.Add(new Schueler(1, "Jonas", "Schaltegger", "5BHIFS", true));
+            content.Add(new Schueler(2, "Simon", "Schwantler", "5BHIFS", true));
+            content.Add(new Schueler(3, "Henrik", "Csoere", "5BHIFS", true));
+            content.Add(new Schueler(4, "Richard", "Neumann", "5AHIFS", true));
+            content.Add(new Schueler(5, "Sandro", "Linder", "4AHIFS", true));
             gridGuide.ItemsSource = content;
         }
 
@@ -57,21 +59,31 @@ namespace Client_Prototype
                 ea.Show();
                 this.Hide();
             }
-            else if ((Guide)gridGuide.SelectedItem != null)
+            else if((Schueler)gridGuide.SelectedItem != null)
             {
-                Guide gi = (Guide)gridGuide.SelectedItem;
-                lblMessage.Content = "Edit Guide";
-                /*
-                EditGuide eg = new EditGuide(gi);
+                Schueler sc = (Schueler)gridGuide.SelectedItem;
+                EditGuide eg = new EditGuide(sc);
+                lblMessage.Content = "Edit Abteilung";
                 eg.Show();
                 this.Hide();
-                */
             }
+
             else
             {
                 lblMessage.Content = "Bitte auswahl treffen";
             }
 
+        }
+
+        private void btnAddGuide_Click(object sender, RoutedEventArgs e)
+        {
+            Schueler gi = (Schueler)gridGuide.SelectedItem;
+            lblMessage.Content = "Edit Guide";
+            AddGuideFromSchueler eg = new AddGuideFromSchueler(gi);
+            eg.Show();
+            this.Hide();
+    
+            
         }
     }
 }

@@ -8,15 +8,22 @@
                 <DataGrid x:Name="gridAbteilung" Margin="0,0,-1,0">
        
                 </DataGrid>
+            
             </TabItem>
             <TabItem Header="Guide">
-                <DataGrid x:Name="gridGuide">
-                </DataGrid>
+                <StackPanel>
+                    <DataGrid x:Name="gridGuide">
+                    </DataGrid>
+                    <Button x:Name="btnAddGuide" Content="Add Guide" Click="btnAddGuide_Click"/>
+
+                </StackPanel>
             </TabItem>
             
 
         </TabControl>
         <Label x:Name="lblMessage" Content="Label" HorizontalAlignment="Left" Margin="10,511,0,0" VerticalAlignment="Top" Height="28" Width="867" Background="#FFF3FF00"/>
         <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" Margin="883,145,0,0" VerticalAlignment="Top" Width="75" Click="btnEdit_Click"/>
+        
+
     </Grid>
 </Window>
