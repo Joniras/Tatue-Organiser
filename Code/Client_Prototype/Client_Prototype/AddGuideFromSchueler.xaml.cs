@@ -20,6 +20,7 @@ namespace Client_Prototype
     public partial class AddGuideFromSchueler : Window
     {
         Schueler schueler;
+        Window myParent;
 
         public AddGuideFromSchueler()
         {
@@ -28,10 +29,11 @@ namespace Client_Prototype
             fillComboSchueler();
         }
 
-        public AddGuideFromSchueler(Schueler _schueler)
+        public AddGuideFromSchueler(Schueler _schueler, Window _parent)
         {
             this.schueler = _schueler;
             InitializeComponent();
+            myParent = _parent;
             fillListGuides();
             fillComboSchueler();
         }
@@ -65,5 +67,10 @@ namespace Client_Prototype
             lblMessage.Content = "Guide Added";
         }
 
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            this.Close();
+            myParent.Show();
+        }
     }
 }

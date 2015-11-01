@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client_Prototype"
         mc:Ignorable="d"
-        Title="EditGuide" Height="406" Width="503">
+        Title="EditGuide" Height="406" Width="503" Closed="Window_Closed">
     <Grid>
         <Label x:Name="lblVorname" Content="Vorname" HorizontalAlignment="Left" Margin="31,35,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblNachname" Content="Nachname" HorizontalAlignment="Left" Margin="31,88,0,0" VerticalAlignment="Top"/>

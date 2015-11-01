@@ -21,11 +21,13 @@ namespace Client_Prototype
     public partial class EditAbteilung : Window
     {
         Abteilung abteilung;
+        Window myParent;
 
-        public EditAbteilung(Abteilung _ab)
+        public EditAbteilung(Abteilung _ab, Window _parent)
         {
             InitializeComponent();
             abteilung = _ab;
+            myParent = _parent;
             lblTitle.Content = abteilung.AB_Name + " bearbeiten";
             //drawTestLine();
             //drawAbteilung();
@@ -36,7 +38,7 @@ namespace Client_Prototype
         private void btnAddStand_Click(object sender, RoutedEventArgs e)
         {
 
-            AddStandInAbteilung asin = new AddStandInAbteilung();
+            AddStandInAbteilung asin = new AddStandInAbteilung(this);
             asin.Show();
             this.Hide();
         }
@@ -72,7 +74,8 @@ namespace Client_Prototype
 
         private void Window_Closed_1(object sender, EventArgs e)
         {
-
+            this.Hide();
+            myParent.Show();
         }
 
 

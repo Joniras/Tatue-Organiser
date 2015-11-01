@@ -20,12 +20,14 @@ namespace Client_Prototype
     public partial class EditGuide : Window
     {
         Schueler schueler;
+        Window myParent;
 
 
-        public EditGuide(Schueler _schueler)
+        public EditGuide(Schueler _schueler, Window _parent)
         {
             InitializeComponent();
             schueler = _schueler;
+            myParent = _parent;
             txtVorname.Text = schueler.S_Vorname;
             txtNachname.Text = schueler.S_Nachname;
             txtKlasse.Text = schueler.S_Klasse;
@@ -35,6 +37,12 @@ namespace Client_Prototype
         {
             Schueler toAdd = new Schueler(1, txtVorname.Text, txtNachname.Text, txtKlasse.Text, schueler.S_isGuide);
             lblMessage.Content = "SChueler changed";
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            this.Close();
+            myParent.Show();
         }
     }
 }

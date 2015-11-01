@@ -22,11 +22,13 @@ namespace Client_Prototype
         private Point startPoint;
         private Rectangle rect;
         private int rect_index = -1;
+        Window myParent;
 
-        public AddStandInAbteilung()
+        public AddStandInAbteilung(Window _parent)
         {
             InitializeComponent();
             //drawAbteilung();
+            myParent = _parent;
             btnResetCanvas.IsEnabled = false;
         }
 
@@ -92,5 +94,10 @@ namespace Client_Prototype
             btnResetCanvas.IsEnabled = false;
         }
 
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            this.Close();
+            myParent.Show();
+        }
     }
 }

@@ -54,17 +54,19 @@ namespace Client_Prototype
             if ((Abteilung)gridAbteilung.SelectedItem != null)
             {
                 Abteilung ab = (Abteilung)gridAbteilung.SelectedItem;
-                EditAbteilung ea = new EditAbteilung(ab);
+                EditAbteilung ea = new EditAbteilung(ab, this);
                 lblMessage.Content = "Edit Abteilung";
                 ea.Show();
+                gridAbteilung.SelectedItem = null;
                 this.Hide();
             }
             else if((Schueler)gridGuide.SelectedItem != null)
             {
                 Schueler sc = (Schueler)gridGuide.SelectedItem;
-                EditGuide eg = new EditGuide(sc);
+                EditGuide eg = new EditGuide(sc, this);
                 lblMessage.Content = "Edit Abteilung";
                 eg.Show();
+                gridGuide.SelectedItem = null;
                 this.Hide();
             }
 
@@ -79,7 +81,7 @@ namespace Client_Prototype
         {
             Schueler gi = (Schueler)gridGuide.SelectedItem;
             lblMessage.Content = "Edit Guide";
-            AddGuideFromSchueler eg = new AddGuideFromSchueler(gi);
+            AddGuideFromSchueler eg = new AddGuideFromSchueler(gi, this);
             eg.Show();
             this.Hide();
     

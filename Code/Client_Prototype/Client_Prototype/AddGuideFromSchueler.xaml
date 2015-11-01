@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client_Prototype"
         mc:Ignorable="d"
-        Title="AddGuideFromSchueler" Height="460.504" Width="555.462">
+        Title="AddGuideFromSchueler" Height="460.504" Width="555.462" Closed="Window_Closed">
 
     <Grid>
         <ComboBox x:Name="cmbSchueler" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top" Width="528"/>
