@@ -62,6 +62,9 @@
     <Compile Include="Classes\GuideRating.cs" />
     <Compile Include="Classes\Stand.cs" />
     <Compile Include="Classes\Schueler.cs" />
+    <Compile Include="StandRatingAdmin.xaml.cs">
+      <DependentUpon>StandRatingAdmin.xaml</DependentUpon>
+    </Compile>
     <Page Include="AddGuideFromSchueler.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -75,6 +78,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditGuide.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GuideRatingAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -94,10 +101,17 @@
     <Compile Include="EditGuide.xaml.cs">
       <DependentUpon>EditGuide.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GuideRatingAdmin.xaml.cs">
+      <DependentUpon>GuideRatingAdmin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="StandRatingAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

@@ -15,6 +15,7 @@
         <TextBox x:Name="txtNachname" HorizontalAlignment="Left" Height="23" Margin="136,88,0,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" Width="255"/>
         <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="110,247,0,0" VerticalAlignment="Top" Width="75" Click="btnSave_Click"/>
         <Label x:Name="lblMessage" Content="..." HorizontalAlignment="Left" Margin="31,303,0,0" VerticalAlignment="Top" Width="395" Background="#FFFFF300"/>
+        <Button x:Name="btnRatings" Content="Ratings" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="247,247,0,0" Click="btnRatings_Click"/>
 
     </Grid>
 </Window>

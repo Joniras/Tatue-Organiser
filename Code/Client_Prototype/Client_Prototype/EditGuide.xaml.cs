@@ -44,5 +44,13 @@ namespace Client_Prototype
             this.Close();
             myParent.Show();
         }
+
+        private void btnRatings_Click(object sender, RoutedEventArgs e)
+        {
+            //new Gui for Ratings
+            GuideRatingAdmin gra = new GuideRatingAdmin(schueler, this);
+            gra.Show();
+            this.Hide();
+        }
     }
 }

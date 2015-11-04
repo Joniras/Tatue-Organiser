@@ -70,6 +70,9 @@ namespace Client_Prototype
             listViewStaende.Items.Add(new Stand(1, "SAP", "Funny SAP Things", null));
             listViewStaende.Items.Add(new Stand(2, "ABAP", "Funny ABAP Things", null));
             listViewStaende.Items.Add(new Stand(3, "POS", "Funny POS Things", null));
+            Stand ratingS = new Stand(3, "Test", "Funny Test Things", null);
+            ratingS.addRatingToStand(new StandRating(1, 1, 1, 1));
+            listViewStaende.Items.Add(ratingS);
         }
 
         private void Window_Closed_1(object sender, EventArgs e)
@@ -78,6 +81,19 @@ namespace Client_Prototype
             myParent.Show();
         }
 
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            if(listViewStaende.SelectedItem != null)
+            {
+                StandRatingAdmin gra = new StandRatingAdmin(((Stand)listViewStaende.SelectedItem), this);
+                gra.Show();
+                this.Hide();
+            }
+            else
+            {
+                lblMessage.Content = "Stand auswählen";
+            }
 
+        }
     }
 }

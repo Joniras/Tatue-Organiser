@@ -38,6 +38,9 @@ namespace Client_Prototype
             content.Add(new Schueler(3, "Henrik", "Csoere", "5BHIFS", true));
             content.Add(new Schueler(4, "Richard", "Neumann", "5AHIFS", true));
             content.Add(new Schueler(5, "Sandro", "Linder", "4AHIFS", true));
+            Schueler mitR = new Schueler(5, "TestR", "TestR", "1A", true);
+            mitR.addRatingToSchueler(new GuideRating(1, 1, 1));
+            content.Add(mitR);
             gridGuide.ItemsSource = content;
         }
 
@@ -87,5 +90,6 @@ namespace Client_Prototype
     
             
         }
+
     }
 }

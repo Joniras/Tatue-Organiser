@@ -32,5 +32,83 @@ namespace Client_Prototype
             return this.ST_Name; 
         }
 
+        public void resetRatings()
+        {
+            ST_allRatings = null;
+        }
+
+        public List<StandRating> getAllRatings()
+        {
+            return ST_allRatings;
+        }
+
+        public float getFreundlichkeit()
+        {
+            float avg_freundlichkeit = 0;
+            int count = 0;
+
+            if (ST_allRatings != null)
+            {
+                foreach (StandRating st in ST_allRatings)
+                {
+                    avg_freundlichkeit += st.SR_Freundlichkeit;
+                    count++;
+                }
+                avg_freundlichkeit = avg_freundlichkeit / count;
+            }
+            else
+            {
+                avg_freundlichkeit = -1;
+            }
+
+            return avg_freundlichkeit;
+        }
+
+        public float getKompetenz()
+        {
+            float avg_kompetenz = 0;
+            int count = 0;
+
+            if (ST_allRatings != null)
+            {
+                foreach (StandRating st in ST_allRatings)
+                {
+                    avg_kompetenz += st.SR_Kompetenz;
+                    count++;
+                }
+                avg_kompetenz = avg_kompetenz / count;
+            }
+            else
+            {
+                avg_kompetenz = -1;
+            }
+
+
+            return avg_kompetenz;
+        }
+
+        public float getAufbau()
+        {
+            float avg_Aufbau = 0;
+            int count = 0;
+
+            if (ST_allRatings != null)
+            {
+                foreach (StandRating st in ST_allRatings)
+                {
+                    avg_Aufbau += st.SR_Aufbau;
+                    count++;
+                }
+                avg_Aufbau = avg_Aufbau / count;
+            }
+            else
+            {
+                avg_Aufbau = -1;
+            }
+
+
+            return avg_Aufbau;
+        }
+
     }
 }

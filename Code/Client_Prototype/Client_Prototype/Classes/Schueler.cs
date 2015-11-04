@@ -26,10 +26,64 @@ namespace Client_Prototype
             S_allRatings.Add(_Rating);
         }
 
+        public List<GuideRating> getAllRatings()
+        {
+            return S_allRatings;
+        }
+
         public override String ToString()
         {
             return this.S_Nachname + " " + S_Vorname + ", " + S_Klasse;
         }
 
+        public void resetRatings()
+        {
+            S_allRatings = null;
+        }
+
+        public float getFreundlichkeit()
+        {
+            float avg_freundlichkeit = 0;
+            int count = 0;
+
+            if(S_allRatings != null)
+            {
+                foreach (GuideRating gr in S_allRatings)
+                {
+                    avg_freundlichkeit += gr.GR_Freundlichkeit;
+                    count++;
+                }
+                avg_freundlichkeit = avg_freundlichkeit / count;
+            }
+            else
+            {
+                avg_freundlichkeit = -1;
+            }
+
+            return avg_freundlichkeit;
+        }
+
+        public float getKompetenz()
+        {
+            float avg_kompetenz = 0;
+            int count = 0;
+
+            if (S_allRatings != null)
+            {
+                foreach (GuideRating gr in S_allRatings)
+                {
+                    avg_kompetenz += gr.GR_Kompetenz;
+                    count++;
+                }
+                avg_kompetenz = avg_kompetenz / count;
+            }
+            else
+            {
+                avg_kompetenz = -1;
+            }
+
+
+            return avg_kompetenz;
+        }
     }
 }
