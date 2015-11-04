@@ -9,13 +9,15 @@
     <Grid>
         <Label x:Name="lblVorname" Content="Vorname" HorizontalAlignment="Left" Margin="31,35,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblNachname" Content="Nachname" HorizontalAlignment="Left" Margin="31,88,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblKlasse" Content="Klasse" HorizontalAlignment="Left" Margin="31,129,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblKlasse" Content="Klasse" HorizontalAlignment="Left" Margin="27,125,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.791,-0.839"/>
         <TextBox x:Name="txtVorname" HorizontalAlignment="Left" Height="23" Margin="136,35,0,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" Width="255"/>
         <TextBox x:Name="txtKlasse" HorizontalAlignment="Left" Height="23" Margin="136,129,0,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" Width="255"/>
         <TextBox x:Name="txtNachname" HorizontalAlignment="Left" Height="23" Margin="136,88,0,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" Width="255"/>
         <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="110,247,0,0" VerticalAlignment="Top" Width="75" Click="btnSave_Click"/>
         <Label x:Name="lblMessage" Content="..." HorizontalAlignment="Left" Margin="31,303,0,0" VerticalAlignment="Top" Width="395" Background="#FFFFF300"/>
         <Button x:Name="btnRatings" Content="Ratings" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="247,247,0,0" Click="btnRatings_Click"/>
+        <Label x:Name="lblIsGuide" Content="Guide" HorizontalAlignment="Left" Margin="31,168,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBoxIsGuide" Content="" HorizontalAlignment="Left" Margin="136,174,0,0" VerticalAlignment="Top" Width="269" IsChecked="True" Height="20"/>
 
     </Grid>
 </Window>

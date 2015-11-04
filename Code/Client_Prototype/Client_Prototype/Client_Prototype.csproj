@@ -62,6 +62,9 @@
     <Compile Include="Classes\GuideRating.cs" />
     <Compile Include="Classes\Stand.cs" />
     <Compile Include="Classes\Schueler.cs" />
+    <Compile Include="EditStand.xaml.cs">
+      <DependentUpon>EditStand.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StandRatingAdmin.xaml.cs">
       <DependentUpon>StandRatingAdmin.xaml</DependentUpon>
     </Compile>
@@ -78,6 +81,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditGuide.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditStand.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

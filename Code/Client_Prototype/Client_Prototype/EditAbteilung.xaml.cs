@@ -85,8 +85,8 @@ namespace Client_Prototype
         {
             if(listViewStaende.SelectedItem != null)
             {
-                StandRatingAdmin gra = new StandRatingAdmin(((Stand)listViewStaende.SelectedItem), this);
-                gra.Show();
+                EditStand es = new EditStand(((Stand)listViewStaende.SelectedItem), this);
+                es.Show();
                 this.Hide();
             }
             else

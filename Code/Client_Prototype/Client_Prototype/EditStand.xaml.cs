@@ -15,29 +15,26 @@ using System.Windows.Shapes;
 namespace Client_Prototype
 {
     /// <summary>
-    /// Interaction logic for EditGuide.xaml
+    /// Interaction logic for EditStand.xaml
     /// </summary>
-    public partial class EditGuide : Window
+    public partial class EditStand : Window
     {
-        Schueler schueler;
+        Stand stand;
         Window myParent;
 
-
-        public EditGuide(Schueler _schueler, Window _parent)
+        public EditStand(Stand _stand, Window _parent)
         {
             InitializeComponent();
-            schueler = _schueler;
+            stand = _stand;
             myParent = _parent;
-            txtVorname.Text = schueler.S_Vorname;
-            txtNachname.Text = schueler.S_Nachname;
-            txtKlasse.Text = schueler.S_Klasse;
-            checkBoxIsGuide.IsChecked = schueler.S_isGuide;
+            txtName.Text = stand.ST_Name;
+            txtInfo.Text = stand.ST_Info;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            Schueler toAdd = new Schueler(1, txtVorname.Text, txtNachname.Text, txtKlasse.Text, schueler.S_isGuide);
-            lblMessage.Content = "SChueler changed";
+            Stand toAdd = new Stand(1, txtName.Text, txtInfo.Text, null);
+            lblMessage.Content = "Stand changed";
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -49,7 +46,7 @@ namespace Client_Prototype
         private void btnRatings_Click(object sender, RoutedEventArgs e)
         {
             //new Gui for Ratings
-            GuideRatingAdmin gra = new GuideRatingAdmin(schueler, this);
+            StandRatingAdmin gra = new StandRatingAdmin(stand, this);
             gra.Show();
             this.Hide();
         }

@@ -28,7 +28,8 @@ namespace Client_Prototype
             myParent = _parent;
             fillGridRatings();
             calcAvgRatings();
-            
+            gridRatings.IsReadOnly = true;
+
         }
 
         private void calcAvgRatings()
