@@ -62,23 +62,19 @@ namespace Client_Prototype
             throw new NotImplementedException();
             //Draw Abteilung from current Abteilung
             //select all Stands from Abteilung
-            //Draw to canvasStandplan
+            //Draw to canvasPlan
         }
 
         private void addTestData()
         {
+            //TODO
+            //Get all Stands from Abteilung
             listViewStaende.Items.Add(new Stand(1, "SAP", "Funny SAP Things", null));
             listViewStaende.Items.Add(new Stand(2, "ABAP", "Funny ABAP Things", null));
             listViewStaende.Items.Add(new Stand(3, "POS", "Funny POS Things", null));
             Stand ratingS = new Stand(3, "Test", "Funny Test Things", null);
             ratingS.addRatingToStand(new StandRating(1, 1, 1, 1));
             listViewStaende.Items.Add(ratingS);
-        }
-
-        private void Window_Closed_1(object sender, EventArgs e)
-        {
-            this.Hide();
-            myParent.Show();
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
@@ -94,6 +90,12 @@ namespace Client_Prototype
                 lblMessage.Content = "Stand auswählen";
             }
 
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            this.Hide();
+            myParent.Show();
         }
     }
 }

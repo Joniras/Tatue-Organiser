@@ -37,6 +37,8 @@ namespace Client_Prototype
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             Schueler toAdd = new Schueler(1, txtVorname.Text, txtNachname.Text, txtKlasse.Text, schueler.S_isGuide);
+            //TODO
+            //Post Schueler to database
             lblMessage.Content = "SChueler changed";
         }
 

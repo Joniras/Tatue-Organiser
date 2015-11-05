@@ -34,6 +34,8 @@ namespace Client_Prototype
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             Stand toAdd = new Stand(1, txtName.Text, txtInfo.Text, null);
+            //TODO
+            //Post Stand
             lblMessage.Content = "Stand changed";
         }
 

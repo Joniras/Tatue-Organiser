@@ -59,6 +59,9 @@
     <Compile Include="AddStandInAbteilung.xaml.cs">
       <DependentUpon>AddStandInAbteilung.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AlertAskWindow.xaml.cs">
+      <DependentUpon>AlertAskWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Classes\GuideRating.cs" />
     <Compile Include="Classes\Stand.cs" />
     <Compile Include="Classes\Schueler.cs" />
@@ -73,6 +76,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddStandInAbteilung.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AlertAskWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -27,7 +27,8 @@ namespace Client_Prototype
         public AddStandInAbteilung(Window _parent)
         {
             InitializeComponent();
-            //drawAbteilung();
+            //TODO
+            //Call draw Abteilung
             myParent = _parent;
             btnResetCanvas.IsEnabled = false;
         }
@@ -35,9 +36,10 @@ namespace Client_Prototype
         private void drawAbteilung()
         {
             throw new NotImplementedException();
-            //Draw Abteilung from current Abteilung
-            //get all Stands from Abteilung
-            //Draw to canvasStandplan
+            //TODO
+            //GET Abteilung where AB_Name = abteilung.AB_Name
+            //GET Stands from Abteilung 
+            //Draw to canvasPlan
         }
 
         private void canvasDrawStand_MouseDown(object sender, MouseButtonEventArgs e)

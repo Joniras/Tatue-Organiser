@@ -23,15 +23,17 @@ namespace Client_Prototype
         public MainWindow()
         {
             InitializeComponent();
-            addTestDataToAbteilung();
-            addTestDataToGuide();
+            addDataToAbteilung();
+            addDataToGuide();
             gridGuide.IsReadOnly = true;
             gridAbteilung.IsReadOnly = true;
 
         }
 
-        private void addTestDataToGuide()
+        private void addDataToGuide()
         {
+            //TODO
+            //GET all Schueler where isGuide = true
             List<Schueler> content = new List<Schueler>();
             content.Add(new Schueler(1, "Jonas", "Schaltegger", "5BHIFS", true));
             content.Add(new Schueler(2, "Simon", "Schwantler", "5BHIFS", true));
@@ -44,8 +46,10 @@ namespace Client_Prototype
             gridGuide.ItemsSource = content;
         }
 
-        private void addTestDataToAbteilung()
+        private void addDataToAbteilung()
         {
+            //TODO
+            //Get all Abteilung
             List<Abteilung> content = new List<Abteilung>();
             content.Add(new Abteilung(1, "EDVO", 1));
             content.Add(new Abteilung(2, "Bautechnik", 2));
@@ -82,9 +86,8 @@ namespace Client_Prototype
 
         private void btnAddGuide_Click(object sender, RoutedEventArgs e)
         {
-            Schueler gi = (Schueler)gridGuide.SelectedItem;
-            lblMessage.Content = "Edit Guide";
-            AddGuideFromSchueler eg = new AddGuideFromSchueler(gi, this);
+            lblMessage.Content = "Add Guide";
+            AddGuideFromSchueler eg = new AddGuideFromSchueler(this);
             eg.Show();
             this.Hide();
     

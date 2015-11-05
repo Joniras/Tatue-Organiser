@@ -5,10 +5,12 @@
     <Grid>
         <TabControl HorizontalAlignment="Left" Height="506" VerticalAlignment="Top" Width="877">
             <TabItem Header="Abteilung">
-                <DataGrid x:Name="gridAbteilung" Margin="0,0,-1,0">
-       
-                </DataGrid>
-            
+               <StackPanel>
+                    <DataGrid x:Name="gridAbteilung" Margin="0,0,-1,0">
+
+                    </DataGrid>
+
+                </StackPanel>
             </TabItem>
             <TabItem Header="Guide">
                 <StackPanel>

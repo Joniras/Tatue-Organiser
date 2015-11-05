@@ -41,16 +41,24 @@ namespace Client_Prototype
 
         private void fillGridRatings()
         {
+            //Get Ratings from Stand
             gridRatings.ItemsSource = currentStand.getAllRatings();
             lblMessage.Content = "List Filled";
         }
 
         private void btnResetRatings_Click(object sender, RoutedEventArgs e)
         {
-            currentStand.resetRatings();
-            fillGridRatings();
-            calcAvgRatings();
-            lblMessage.Content = "Ratings Deleted";
+            AlertAskWindow aaw = new AlertAskWindow(this);
+
+            if (aaw.ShowDialog() == true)
+            {
+                //Delete Ratings from Stand
+                currentStand.resetRatings();
+                fillGridRatings();
+                calcAvgRatings();
+                lblMessage.Content = "Ratings Deleted";
+            }
+
         }
 
         private void Window_Closed(object sender, EventArgs e)

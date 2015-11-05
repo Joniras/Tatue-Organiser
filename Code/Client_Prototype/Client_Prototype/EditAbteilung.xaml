@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Client_Prototype.EditAbteilung"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="EditAbteilung" Height="505.311" Width="670.818" Closed="Window_Closed_1">
+        Title="EditAbteilung" Height="505.311" Width="670.818" Closed="Window_Closed">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

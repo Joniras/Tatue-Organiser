@@ -19,7 +19,6 @@ namespace Client_Prototype
     /// </summary>
     public partial class AddGuideFromSchueler : Window
     {
-        Schueler schueler;
         Window myParent;
 
         public AddGuideFromSchueler()
@@ -29,9 +28,8 @@ namespace Client_Prototype
             fillComboSchueler();
         }
 
-        public AddGuideFromSchueler(Schueler _schueler, Window _parent)
+        public AddGuideFromSchueler(Window _parent)
         {
-            this.schueler = _schueler;
             InitializeComponent();
             myParent = _parent;
             fillListGuides();
@@ -40,6 +38,8 @@ namespace Client_Prototype
 
         private void fillComboSchueler()
         {
+            //TODO
+            //Get Schueler where isGuide = false
             List<Schueler> content = new List<Schueler>();
             content.Add(new Schueler(1, "Hansi", "Jaeger", "5BHIFS", false));
             content.Add(new Schueler(1, "Markus", "Weber", "5BHIFS", false));
@@ -49,6 +49,8 @@ namespace Client_Prototype
 
         private void fillListGuides()
         {
+            //TODO
+            //Get Schueler where isGuide = true
             List<Schueler> content = new List<Schueler>();
             content.Add(new Schueler(1, "Jonas", "Schaltegger", "5BHIFS", true));
             content.Add(new Schueler(2, "Simon", "Schwantler", "5BHIFS", true));
@@ -62,8 +64,10 @@ namespace Client_Prototype
         {
             Schueler toAdd = ((Schueler)cmbSchueler.SelectedItem);
             toAdd.S_isGuide = true;
-            //post
-            //reload Gides For Grid
+            //TODO
+            //post new Schueler to Database
+            //call fillComboSchueler
+            //call fillListGuides
             lblMessage.Content = "Guide Added";
         }
 

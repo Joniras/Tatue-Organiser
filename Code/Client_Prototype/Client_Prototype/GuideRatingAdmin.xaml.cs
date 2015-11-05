@@ -40,12 +40,14 @@ namespace Client_Prototype
 
         private void fillGridRatings()
         {
+            //Get Ratings form currentSchueler
             gridRatings.ItemsSource = currentSchueler.getAllRatings();
             lblMessage.Content = "List Filled";
         }
 
         private void btnResetRatings_Click(object sender, RoutedEventArgs e)
         {
+            //delete Ratings from Schueler
             currentSchueler.resetRatings();
             fillGridRatings();
             calcAvgRatings();

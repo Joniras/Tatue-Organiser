@@ -43,3 +43,5 @@ C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\De
 C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\StandRatingAdmin.baml
 C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\EditStand.g.cs
 C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\EditStand.baml
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\AlertAskWindow.g.cs
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\AlertAskWindow.baml
