@@ -5,7 +5,7 @@
     <Grid>
         <TabControl HorizontalAlignment="Left" Height="506" VerticalAlignment="Top" Width="877">
             <TabItem Header="Abteilung">
-               <StackPanel>
+                <StackPanel>
                     <DataGrid x:Name="gridAbteilung" Margin="0,0,-1,0">
 
                     </DataGrid>
@@ -20,11 +20,12 @@
 
                 </StackPanel>
             </TabItem>
-            
+
 
         </TabControl>
         <Label x:Name="lblMessage" Content="Label" HorizontalAlignment="Left" Margin="10,511,0,0" VerticalAlignment="Top" Height="28" Width="867" Background="#FFF3FF00"/>
         <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" Margin="883,145,0,0" VerticalAlignment="Top" Width="75" Click="btnEdit_Click"/>
+        <Button x:Name="btnTemp" Content="Test Loading Screen" HorizontalAlignment="Left" Margin="883,206,0,0" VerticalAlignment="Top" Width="75" Height="48" Click="btnTemp_Click"/>
 
 
     </Grid>

@@ -94,5 +94,11 @@ namespace Client_Prototype
             
         }
 
+        private void btnTemp_Click(object sender, RoutedEventArgs e)
+        {
+            LoadingWindow lw = new LoadingWindow();
+            lw.Show();
+        }
+
     }
 }
