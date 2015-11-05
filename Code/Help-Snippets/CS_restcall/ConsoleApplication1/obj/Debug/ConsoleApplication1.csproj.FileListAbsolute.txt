@@ -1,0 +1,6 @@
+D:\allmystuff\Schule\BSD\DiploManager\CS_restcall\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+D:\allmystuff\Schule\BSD\DiploManager\CS_restcall\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+D:\allmystuff\Schule\BSD\DiploManager\CS_restcall\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+D:\allmystuff\Schule\BSD\DiploManager\CS_restcall\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+D:\allmystuff\Schule\BSD\DiploManager\CS_restcall\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+D:\allmystuff\Schule\BSD\DiploManager\CS_restcall\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
