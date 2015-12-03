@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -20,6 +25,9 @@ namespace Client_Prototype
     /// </summary>
     public partial class MainWindow : Window
     {
+        public enum HTTPMETHODS { GET, PUT, POST, DELETE };
+
+        private BackgroundWorker bw = new BackgroundWorker();
         public MainWindow()
         {
             InitializeComponent();
@@ -54,6 +62,17 @@ namespace Client_Prototype
             content.Add(new Abteilung(1, "EDVO", 1));
             content.Add(new Abteilung(2, "Bautechnik", 2));
             gridAbteilung.ItemsSource = content;
+
+            string url = "http://192.168.196.0:8080/TatueOrganiser/api/abteilungen";
+
+            //HttpGet(url, HTTPMETHODS.GET, null, new Del(useInformation));
+
+            bw.WorkerReportsProgress = false;
+            bw.WorkerSupportsCancellation = false;
+            bw.DoWork += new DoWorkEventHandler(bw_DoWork);
+            bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
+            bw.RunWorkerAsync();
+
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
@@ -100,5 +119,34 @@ namespace Client_Prototype
             lw.Show();
         }
 
+
+
+        private void bw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+
+            HttpWebRequest req = WebRequest.Create(new Uri("http://192.168.196.0:8080/TatueOrganiser/api/abteilungen")) as HttpWebRequest;
+            req.Method = "GET";
+            
+            req.ContentType = "application/json";
+            req.Accept = "application/json";
+            using (HttpWebResponse resp = req.GetResponse() as HttpWebResponse)
+            {
+                StreamReader reader =  new StreamReader(resp.GetResponseStream());
+                e.Result = reader.ReadToEnd();
+            }
+        }
+
+        private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            JavaScriptSerializer json_serializer = new JavaScriptSerializer();
+            Abteilung[] abteilungen = (Abteilung[])json_serializer.Deserialize<Abteilung[]>((String)e.Result);
+            List<Abteilung> content = new List<Abteilung>(abteilungen);
+            Console.WriteLine((String)e.Result);
+            Console.WriteLine(content[0].ToString());
+            gridAbteilung.ItemsSource = abteilungen;
+        }
+            
+        
     }
 }

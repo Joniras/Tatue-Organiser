@@ -12,6 +12,10 @@ namespace Client_Prototype
         public int AB_Etage { get; set; }
         public List<Stand> AB_Stands = new List<Stand>();
 
+        public Abteilung()
+        {
+            
+        }
 
         public Abteilung(int _ID, String _Name, int _Etage)
         {
@@ -27,7 +31,7 @@ namespace Client_Prototype
 
         public override String ToString()
         {
-            return this.AB_Name;
+            return "Name: "+this.AB_Name+"; ID:"+this.AB_ID+"; Etage: "+this.AB_Etage+"; Stands:"+this.AB_Stands;
         }
 
         
