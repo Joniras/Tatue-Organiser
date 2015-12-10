@@ -1,5 +1,4 @@
 drop table Schueler cascade constraints;
-drop table Guide cascade constraints;
 drop table GuideRating cascade constraints;
 drop table Stand cascade constraints;
 drop table StandRating cascade constraints;
@@ -28,19 +27,15 @@ create table Schueler (
 	Vorname varchar(50),
 	Nachname varchar(50),
 	Klasse varchar(10),
+	isGuide Number,
 	St_ID Number references Stand(St_ID)
-);
-
-create table Guide (
-	G_ID Number primary key,
-	S_ID Number references Schueler(S_ID) not null
 );
 
 create table GuideRating (
 	GR_ID Number primary key,
 	Freundlichkeit Number(*,2),
 	Kompetenz Number(*,2),
-	G_ID Number references Guide(G_ID) not null
+	S_ID Number references Schueler(S_ID) not null
 );
 
 create table StandRating (
