@@ -27,51 +27,44 @@ namespace Client_Prototype
     {
         public enum HTTPMETHODS { GET, PUT, POST, DELETE };
 
-        private BackgroundWorker bw = new BackgroundWorker();
+        private BackgroundWorker bw_Abteilungen = new BackgroundWorker();
+        private BackgroundWorker bw_Guides = new BackgroundWorker();
         public MainWindow()
         {
             InitializeComponent();
-            addDataToAbteilung();
-            addDataToGuide();
+            addData();
             gridGuide.IsReadOnly = true;
             gridAbteilung.IsReadOnly = true;
 
         }
 
-        private void addDataToGuide()
+        private void addData()
         {
-            //TODO
-            //GET all Schueler where isGuide = true
-            List<Schueler> content = new List<Schueler>();
-            content.Add(new Schueler(1, "Jonas", "Schaltegger", "5BHIFS", true));
-            content.Add(new Schueler(2, "Simon", "Schwantler", "5BHIFS", true));
-            content.Add(new Schueler(3, "Henrik", "Csoere", "5BHIFS", true));
-            content.Add(new Schueler(4, "Richard", "Neumann", "5AHIFS", true));
-            content.Add(new Schueler(5, "Sandro", "Linder", "4AHIFS", true));
-            Schueler mitR = new Schueler(5, "TestR", "TestR", "1A", true);
-            mitR.addRatingToSchueler(new GuideRating(1, 1, 1));
-            content.Add(mitR);
-            gridGuide.ItemsSource = content;
-        }
-
-        private void addDataToAbteilung()
-        {
-            //TODO
-            //Get all Abteilung
+            /*
             List<Abteilung> content = new List<Abteilung>();
             content.Add(new Abteilung(1, "EDVO", 1));
             content.Add(new Abteilung(2, "Bautechnik", 2));
             gridAbteilung.ItemsSource = content;
 
             string url = "http://192.168.196.0:8080/TatueOrganiser/api/abteilungen";
-
+            */
             //HttpGet(url, HTTPMETHODS.GET, null, new Del(useInformation));
 
-            bw.WorkerReportsProgress = false;
-            bw.WorkerSupportsCancellation = false;
-            bw.DoWork += new DoWorkEventHandler(bw_DoWork);
-            bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
-            bw.RunWorkerAsync();
+            bw_Abteilungen.WorkerReportsProgress = false;
+            bw_Abteilungen.WorkerSupportsCancellation = false;
+            bw_Abteilungen.DoWork += new DoWorkEventHandler(bw_DoWorkAbteilung);
+            bw_Abteilungen.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompletedAbteilung);
+            bw_Abteilungen.RunWorkerAsync();
+
+            
+            bw_Guides.WorkerReportsProgress = false;
+            bw_Guides.WorkerSupportsCancellation = false;
+            bw_Guides.DoWork += new DoWorkEventHandler(bw_DoWorkGuide);
+            bw_Guides.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompletedGuide);
+            bw_Guides.RunWorkerAsync();
+            
+
+
 
         }
 
@@ -121,7 +114,7 @@ namespace Client_Prototype
 
 
 
-        private void bw_DoWork(object sender, DoWorkEventArgs e)
+        private void bw_DoWorkAbteilung(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
 
@@ -137,7 +130,7 @@ namespace Client_Prototype
             }
         }
 
-        private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void bw_RunWorkerCompletedAbteilung(object sender, RunWorkerCompletedEventArgs e)
         {
             JavaScriptSerializer json_serializer = new JavaScriptSerializer();
             Abteilung[] abteilungen = (Abteilung[])json_serializer.Deserialize<Abteilung[]>((String)e.Result);
@@ -146,7 +139,33 @@ namespace Client_Prototype
             Console.WriteLine(content[0].ToString());
             gridAbteilung.ItemsSource = abteilungen;
         }
-            
-        
+
+        private void bw_DoWorkGuide(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+
+            HttpWebRequest req = WebRequest.Create(new Uri("http://192.168.196.0:8080/TatueOrganiser/api/guides")) as HttpWebRequest;
+            req.Method = "GET";
+
+            req.ContentType = "application/json";
+            req.Accept = "application/json";
+            using (HttpWebResponse resp = req.GetResponse() as HttpWebResponse)
+            {
+                StreamReader reader = new StreamReader(resp.GetResponseStream());
+                e.Result = reader.ReadToEnd();
+            }
+        }
+
+        private void bw_RunWorkerCompletedGuide(object sender, RunWorkerCompletedEventArgs e)
+        {
+            JavaScriptSerializer json_serializer = new JavaScriptSerializer();
+            Schueler[] schueler = (Schueler[])json_serializer.Deserialize<Schueler[]>((String)e.Result);
+            List<Schueler> content = new List<Schueler>(schueler);
+            Console.WriteLine((String)e.Result);
+            Console.WriteLine(content[0].ToString());
+            gridGuide.ItemsSource = schueler;
+        }
+
+
     }
 }

@@ -28,15 +28,15 @@ namespace Client_Prototype
             InitializeComponent();
             schueler = _schueler;
             myParent = _parent;
-            txtVorname.Text = schueler.S_Vorname;
-            txtNachname.Text = schueler.S_Nachname;
-            txtKlasse.Text = schueler.S_Klasse;
-            checkBoxIsGuide.IsChecked = schueler.S_isGuide;
+            txtVorname.Text = schueler.Vorname;
+            txtNachname.Text = schueler.Nachname;
+            txtKlasse.Text = schueler.Klasse;
+           // checkBoxIsGuide.IsChecked = schueler.S_isGuide;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            Schueler toAdd = new Schueler(1, txtVorname.Text, txtNachname.Text, txtKlasse.Text, schueler.S_isGuide);
+            Schueler toAdd = new Schueler(1, txtVorname.Text, txtNachname.Text, txtKlasse.Text, schueler.isGuide);
             //TODO
             //Post Schueler to database
             lblMessage.Content = "SChueler changed";
