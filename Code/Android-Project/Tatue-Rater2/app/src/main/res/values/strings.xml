@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Tatue-Rater</string>
+
+    <string name="navigation_drawer_open">Navigation öffnen</string>
+    <string name="navigation_drawer_close">Navigation schliessen</string>
+
+    <string name="action_settings">Einstellungen</string>
+    <string name="Map">Plan</string>
+    <string name="nav_drawer_Ratings">Ratings</string>
+    <string name="nav_drawer_Map">Plan</string>
+    <string name="nav_drawer_game">Quiz-Spiel</string>
+    <string name="logo_htl_description">logo of thl-villach</string>
+</resources>
