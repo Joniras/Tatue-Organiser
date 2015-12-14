@@ -27,11 +27,7 @@ create table Schueler (
 	Vorname varchar(50),
 	Nachname varchar(50),
 	Klasse varchar(10),
-<<<<<<< HEAD
-	isGuide Number,
-=======
 	isGuide Number(1),
->>>>>>> origin/master
 	St_ID Number references Stand(St_ID)
 );
 
@@ -104,6 +100,42 @@ NULL -- SRID
 );
 
 CREATE INDEX index_stand ON Stand(shape) INDEXTYPE IS MDSYS.SPATIAL_INDEX;
+--------------------------------------------------------------------------------------------------------------------
+CREATE SEQUENCE seq_schueler_id
+  START WITH 10
+  INCREMENT BY 1;
+  
+  CREATE SEQUENCE seq_abteilung_id
+  START WITH 10
+  INCREMENT BY 1;
+  
+  CREATE SEQUENCE seq_quiz_id
+  START WITH 10
+  INCREMENT BY 1;
+  
+  CREATE SEQUENCE seq_frage_id
+  START WITH 10
+  INCREMENT BY 1;
+  
+  CREATE SEQUENCE seq_antwort_id
+  START WITH 10
+  INCREMENT BY 1;
+  
+  CREATE SEQUENCE seq_gewinnspieldaten_id
+  START WITH 10
+  INCREMENT BY 1;
+  
+  CREATE SEQUENCE seq_standrating_id
+  START WITH 10
+  INCREMENT BY 1;
+  
+  CREATE SEQUENCE seq_guiderating_id
+  START WITH 10
+  INCREMENT BY 1;
+  
+  CREATE SEQUENCE seq_stand_id
+  START WITH 10
+  INCREMENT BY 1;
 --------------------------------------------------------------------------------------------------------------------
 
 INSERT INTO Abteilung VALUES(1, 'Informatik', 2);
