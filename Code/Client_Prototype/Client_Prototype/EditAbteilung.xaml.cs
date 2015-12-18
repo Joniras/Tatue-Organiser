@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Client_Prototype.Properties;
+using System.ComponentModel;
+using System.Net;
+using System.IO;
+using System.Web.Script.Serialization;
 
 namespace Client_Prototype
 {
@@ -22,13 +26,16 @@ namespace Client_Prototype
     {
         Abteilung abteilung;
         Window myParent;
+        public enum HTTPMETHODS { GET, PUT, POST, DELETE };
+
+        private BackgroundWorker bw_Staende = new BackgroundWorker();
 
         public EditAbteilung(Abteilung _ab, Window _parent)
         {
             InitializeComponent();
             abteilung = _ab;
             myParent = _parent;
-            lblTitle.Content = abteilung.AB_Name + " bearbeiten";
+            lblTitle.Content = abteilung.ab_name + " bearbeiten";
             //drawTestLine();
             //drawAbteilung();
             addTestData();
@@ -38,7 +45,7 @@ namespace Client_Prototype
         private void btnAddStand_Click(object sender, RoutedEventArgs e)
         {
 
-            AddStandInAbteilung asin = new AddStandInAbteilung(this);
+            AddStandInAbteilung asin = new AddStandInAbteilung(this, abteilung);
             asin.Show();
             this.Hide();
         }
@@ -69,12 +76,44 @@ namespace Client_Prototype
         {
             //TODO
             //Get all Stands from Abteilung
-            listViewStaende.Items.Add(new Stand(1, "SAP", "Funny SAP Things", null));
-            listViewStaende.Items.Add(new Stand(2, "ABAP", "Funny ABAP Things", null));
-            listViewStaende.Items.Add(new Stand(3, "POS", "Funny POS Things", null));
-            Stand ratingS = new Stand(3, "Test", "Funny Test Things", null);
-            ratingS.addRatingToStand(new StandRating(1, 1, 1, 1));
-            listViewStaende.Items.Add(ratingS);
+            bw_Staende.WorkerReportsProgress = false;
+            bw_Staende.WorkerSupportsCancellation = false;
+            bw_Staende.DoWork += new DoWorkEventHandler(bw_DoWorkStaende);
+            bw_Staende.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompletedStaende);
+            bw_Staende.RunWorkerAsync();
+        }
+
+        private void bw_DoWorkStaende(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+
+            HttpWebRequest req = WebRequest.Create(new Uri("http://192.168.196.0:8080/TatueOrganiser/api/abteilungen/" + abteilung.ab_id + "/staende")) as HttpWebRequest;
+            req.Method = "GET";
+
+            req.ContentType = "application/json";
+            req.Accept = "application/json";
+            using (HttpWebResponse resp = req.GetResponse() as HttpWebResponse)
+            {
+                StreamReader reader = new StreamReader(resp.GetResponseStream());
+                e.Result = reader.ReadToEnd();
+            }
+        }
+
+        private void bw_RunWorkerCompletedStaende(object sender, RunWorkerCompletedEventArgs e)
+        {
+            JavaScriptSerializer json_serializer = new JavaScriptSerializer();
+            Stand[] staende = (Stand[])json_serializer.Deserialize<Stand[]>((String)e.Result);
+            
+            List<Stand> content = new List<Stand>(staende);
+
+            Console.WriteLine(content.ToString());
+
+            foreach (Stand s in staende)
+            {
+                Console.WriteLine(s.ToString());
+                listViewStaende.Items.Add(s);
+            }
+            
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
@@ -96,6 +135,13 @@ namespace Client_Prototype
         {
             this.Hide();
             myParent.Show();
+        }
+
+        private void btnAddQuiz_Click(object sender, RoutedEventArgs e)
+        {
+            AddQuiz aq = new AddQuiz(this, abteilung);
+            aq.Show();
+            this.Hide();
         }
     }
 }

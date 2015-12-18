@@ -7,10 +7,10 @@ namespace Client_Prototype
 {
     public class Abteilung
     {
-        public int AB_ID { get; set; }
-        public string AB_Name { get; set; }
-        public int AB_Etage { get; set; }
-        public List<Stand> AB_Stands = new List<Stand>();
+        public int ab_id { get; set; }
+        public string ab_name { get; set; }
+        public int ab_etage { get; set; }
+        public List<Stand> ab_stands = new List<Stand>();
 
         public Abteilung()
         {
@@ -19,19 +19,19 @@ namespace Client_Prototype
 
         public Abteilung(int _ID, String _Name, int _Etage)
         {
-            AB_ID = _ID;
-            AB_Name = _Name;
-            AB_Etage = _Etage;
+            ab_id = _ID;
+            ab_name = _Name;
+            ab_etage = _Etage;
         }
 
         public void addStandToAbteilung(Stand _Stand)
         {
-            AB_Stands.Add(_Stand);
+            ab_stands.Add(_Stand);
         }
 
         public override String ToString()
         {
-            return "Name: "+this.AB_Name+"; ID:"+this.AB_ID+"; Etage: "+this.AB_Etage+"; Stands:"+this.AB_Stands;
+            return "Name: "+this.ab_name+"; ID:"+this.ab_id+"; Etage: "+this.ab_etage+"; Stands:"+this.ab_stands;
         }
 
         

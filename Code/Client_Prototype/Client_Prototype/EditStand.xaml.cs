@@ -27,8 +27,8 @@ namespace Client_Prototype
             InitializeComponent();
             stand = _stand;
             myParent = _parent;
-            txtName.Text = stand.ST_Name;
-            txtInfo.Text = stand.ST_Info;
+            txtName.Text = stand.STName;
+            txtInfo.Text = stand.Info;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)

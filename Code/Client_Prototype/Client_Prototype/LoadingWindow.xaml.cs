@@ -19,9 +19,11 @@ namespace Client_Prototype
     /// </summary>
     public partial class LoadingWindow : Window
     {
+        Window myParent;
         public LoadingWindow()
         {
             InitializeComponent();
+
             lblLoading.Foreground = new SolidColorBrush(Colors.White);
         }
 

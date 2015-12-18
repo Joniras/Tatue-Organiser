@@ -9,37 +9,42 @@ namespace Client_Prototype
     public class Stand
     {
         public int ST_ID { get; set; }
-        public String ST_Name { get; set; }
-        public String ST_Info { get; set; }
-        public Shape ST_Shape { get; set; }
-        public List<StandRating> ST_allRatings = new List<StandRating>();
+        public String STName { get; set; }
+        public String Info { get; set; }
+        public Shape Shape { get; set; }
+        public List<StandRating> standratings = new List<StandRating>();
 
         public Stand(int _ID, String _Name, String _Info, Shape _Shape)
         {
             ST_ID = _ID;
-            ST_Name = _Name;
-            ST_Info = _Info;
-            ST_Shape = _Shape;
+            STName = _Name;
+            Info = _Info;
+            Shape = _Shape;
+        }
+
+        public Stand()
+        {
+
         }
 
         public void addRatingToStand(StandRating _Rating)
         {
-            ST_allRatings.Add(_Rating);
+            standratings.Add(_Rating);
         }
 
         public override String ToString()
         {
-            return this.ST_Name; 
+            return  this.STName; 
         }
 
         public void resetRatings()
         {
-            ST_allRatings = null;
+            standratings = null;
         }
 
         public List<StandRating> getAllRatings()
         {
-            return ST_allRatings;
+            return standratings;
         }
 
         public float getFreundlichkeit()
@@ -47,9 +52,9 @@ namespace Client_Prototype
             float avg_freundlichkeit = 0;
             int count = 0;
 
-            if (ST_allRatings != null)
+            if (standratings != null)
             {
-                foreach (StandRating st in ST_allRatings)
+                foreach (StandRating st in standratings)
                 {
                     avg_freundlichkeit += st.SR_Freundlichkeit;
                     count++;
@@ -69,9 +74,9 @@ namespace Client_Prototype
             float avg_kompetenz = 0;
             int count = 0;
 
-            if (ST_allRatings != null)
+            if (standratings != null)
             {
-                foreach (StandRating st in ST_allRatings)
+                foreach (StandRating st in standratings)
                 {
                     avg_kompetenz += st.SR_Kompetenz;
                     count++;
@@ -92,9 +97,9 @@ namespace Client_Prototype
             float avg_Aufbau = 0;
             int count = 0;
 
-            if (ST_allRatings != null)
+            if (standratings != null)
             {
-                foreach (StandRating st in ST_allRatings)
+                foreach (StandRating st in standratings)
                 {
                     avg_Aufbau += st.SR_Aufbau;
                     count++;

@@ -5,45 +5,45 @@ namespace Client_Prototype
 {
     public class Schueler
     {
-        public int S_ID { get; set; }
-        public String Vorname { get; set; }
-        public String Nachname { get; set; }
-        public String Klasse { get; set; }
-        public int isGuide { get; set; }
-        public List<GuideRating> S_allRatings = new List<GuideRating>();
+        public int s_id { get; set; }
+        public String vorname { get; set; }
+        public String nachname { get; set; }
+        public String klasse { get; set; }
+        public bool guide { get; set; }
+        public List<GuideRating> guiderating = new List<GuideRating>();
 
         public Schueler()
         {
 
         }
 
-        public Schueler(int _ID, String _Vorname, String _Nachname, String _Klasse, int _isGuide)
+        public Schueler(int _ID, String _Vorname, String _Nachname, String _Klasse, bool _isGuide)
         {
-            S_ID = _ID;
-            Vorname = _Vorname;
-            Nachname = _Nachname;
-            Klasse = _Klasse;
-            isGuide = _isGuide;
+            s_id = _ID;
+            vorname = _Vorname;
+            nachname = _Nachname;
+            klasse = _Klasse;
+            guide = _isGuide;
         }
 
         public void addRatingToSchueler(GuideRating _Rating)
         {
-            S_allRatings.Add(_Rating);
+            guiderating.Add(_Rating);
         }
 
         public List<GuideRating> getAllRatings()
         {
-            return S_allRatings;
+            return guiderating;
         }
 
         public override String ToString()
         {
-            return this.Nachname + " " + this.Vorname + ", " + this.Klasse;
+            return this.nachname + " " + this.vorname + ", " + this.klasse+", isGuide: "+this.guide;
         }
 
         public void resetRatings()
         {
-            S_allRatings = null;
+            guiderating = null;
         }
 
         public float getFreundlichkeit()
@@ -51,9 +51,9 @@ namespace Client_Prototype
             float avg_freundlichkeit = 0;
             int count = 0;
 
-            if(S_allRatings != null)
+            if (guiderating != null)
             {
-                foreach (GuideRating gr in S_allRatings)
+                foreach (GuideRating gr in guiderating)
                 {
                     avg_freundlichkeit += gr.GR_Freundlichkeit;
                     count++;
@@ -73,9 +73,9 @@ namespace Client_Prototype
             float avg_kompetenz = 0;
             int count = 0;
 
-            if (S_allRatings != null)
+            if (guiderating != null)
             {
-                foreach (GuideRating gr in S_allRatings)
+                foreach (GuideRating gr in guiderating)
                 {
                     avg_kompetenz += gr.GR_Kompetenz;
                     count++;
@@ -89,6 +89,11 @@ namespace Client_Prototype
 
 
             return avg_kompetenz;
+        }
+
+        public int getId()
+        {
+            return this.s_id;
         }
     }
 }

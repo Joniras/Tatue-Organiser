@@ -23,10 +23,10 @@
 
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Guide-Editor" Margin="207,-2,-465,0">
+            <TabItem Header="Schueler-Editor" Margin="207,-2,-465,0">
                 <StackPanel>
                     <DataGrid x:Name="gridGuide"/>
-                    <Button x:Name="btnAddGuide" Content="Add Guide" Click="btnAddGuide_Click"/>
+                    <Button x:Name="btnAddGuide" Content="Add Schueler" Click="btnAddSchueler_Click"/>
 
                 </StackPanel>
             </TabItem>
@@ -36,6 +36,7 @@
         <Label x:Name="lblMessage" Content="Label" HorizontalAlignment="Left" Margin="0,537,0,0" VerticalAlignment="Top" Height="28" Width="968" Background="#FFFBFFB4" Grid.ColumnSpan="2"/>
         <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" Margin="807,145,0,0" VerticalAlignment="Top" Width="75" Click="btnEdit_Click" Grid.Column="1"/>
         <Button x:Name="btnTemp" Content="Test Loading Screen" HorizontalAlignment="Left" Margin="807,206,0,0" VerticalAlignment="Top" Width="75" Height="48" Click="btnTemp_Click" Grid.Column="1"/>
+        <Button x:Name="btnDelete" Content="Delete" Grid.Column="1" HorizontalAlignment="Left" Margin="807,170,0,0" VerticalAlignment="Top" Width="75" Click="btnDelete_Click"/>
 
 
     </Grid>

@@ -54,8 +54,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddGuideFromSchueler.xaml.cs">
-      <DependentUpon>AddGuideFromSchueler.xaml</DependentUpon>
+    <Compile Include="AddQuiz.xaml.cs">
+      <DependentUpon>AddQuiz.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddSchueler.xaml.cs">
+      <DependentUpon>AddSchueler.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddStandInAbteilung.xaml.cs">
       <DependentUpon>AddStandInAbteilung.xaml</DependentUpon>
@@ -63,11 +66,17 @@
     <Compile Include="AlertAskWindow.xaml.cs">
       <DependentUpon>AlertAskWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Antwort.cs" />
+    <Compile Include="Classes\Frage.cs" />
     <Compile Include="Classes\GuideRating.cs" />
+    <Compile Include="Classes\Quiz.cs" />
     <Compile Include="Classes\Stand.cs" />
     <Compile Include="Classes\Schueler.cs" />
     <Compile Include="EditStand.xaml.cs">
       <DependentUpon>EditStand.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FailedConnection.xaml.cs">
+      <DependentUpon>FailedConnection.xaml</DependentUpon>
     </Compile>
     <Compile Include="LoadingWindow.xaml.cs">
       <DependentUpon>LoadingWindow.xaml</DependentUpon>
@@ -75,7 +84,11 @@
     <Compile Include="StandRatingAdmin.xaml.cs">
       <DependentUpon>StandRatingAdmin.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddGuideFromSchueler.xaml">
+    <Page Include="AddQuiz.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddSchueler.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -91,11 +104,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="EditGuide.xaml">
+    <Page Include="EditSchueler.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditStand.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FailedConnection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -120,8 +137,8 @@
     <Compile Include="EditAbteilung.xaml.cs">
       <DependentUpon>EditAbteilung.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EditGuide.xaml.cs">
-      <DependentUpon>EditGuide.xaml</DependentUpon>
+    <Compile Include="EditSchueler.xaml.cs">
+      <DependentUpon>EditSchueler.xaml</DependentUpon>
     </Compile>
     <Compile Include="GuideRatingAdmin.xaml.cs">
       <DependentUpon>GuideRatingAdmin.xaml</DependentUpon>

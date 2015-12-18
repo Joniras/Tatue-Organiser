@@ -10,7 +10,7 @@
         <Label x:Name="lblTitle" Content="Label" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" Height="37" Width="610" FontSize="20" FontWeight="Bold" FontStyle="Italic" Grid.ColumnSpan="2"/>
         <Canvas x:Name="canvasStandplan" Grid.Column="1" HorizontalAlignment="Left" Height="304" Margin="10,48,0,0" VerticalAlignment="Top" Width="400" Background="#FFC3C3C3"/>
         <Button x:Name="btnAddStand" Content="Add Stand" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top" Width="75" Click="btnAddStand_Click"/>
-        <ListView x:Name="listViewStaende" HorizontalAlignment="Left" Height="241" Margin="10,111,0,0" VerticalAlignment="Top" Width="144">
+        <ListView x:Name="listViewStaende" HorizontalAlignment="Left" Height="241" Margin="10,233,0,0" VerticalAlignment="Top" Width="144">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
@@ -19,6 +19,7 @@
         </ListView>
         <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" Margin="106,74,0,0" VerticalAlignment="Top" Width="75" Click="btnEdit_Click"/>
         <Label x:Name="lblMessage" Content="Label" HorizontalAlignment="Left" Margin="10,418,0,0" VerticalAlignment="Top" Height="30" Width="623" Background="#FFF3FF00" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnAddQuiz" Content="Add Quiz" HorizontalAlignment="Left" Margin="10,112,0,0" VerticalAlignment="Top" Width="75" Click="btnAddQuiz_Click"/>
 
     </Grid>
 </Window>
