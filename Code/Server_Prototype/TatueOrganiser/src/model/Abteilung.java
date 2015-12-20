@@ -1,33 +1,26 @@
 package model;
 
-import java.util.List;
+import java.util.Vector;
 
 public class Abteilung {
 
+	
 	private int ab_id;
-	private String name;
-	private int abEtage;
-	private Quiz quiz;
-	private List<Stand> staende = null;
+	private String ab_name;
+	private int ab_etage;
+	private Quiz ab_quiz;
+	private Vector<Stand> ab_staende = null;
 	
 	public Abteilung(){
-		name = "default";
+		ab_name = "default";
 	} 
 
 	public Abteilung(int ab_id, String name, int abEtage) {
 		this.ab_id = ab_id;
-		this.name = name;
-		this.abEtage = abEtage;
+		this.ab_name = name;
+		this.ab_etage = abEtage;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
+	
 	public int getAb_id() {
 		return ab_id;
 	}
@@ -36,29 +29,36 @@ public class Abteilung {
 		this.ab_id = ab_id;
 	}
 
-	public int getAbEtage() {
-		return abEtage;
+	public String getAb_name() {
+		return ab_name;
 	}
 
-	public void setAbEtage(int abEtage) {
-		this.abEtage = abEtage;
+	public void setAb_name(String ab_name) {
+		this.ab_name = ab_name;
 	}
 
-	public Quiz getQuiz() {
-		return quiz;
+	public int getAb_etage() {
+		return ab_etage;
 	}
 
-	public void setQuiz(Quiz quiz) {
-		this.quiz = quiz;
+	public void setAb_etage(int ab_etage) {
+		this.ab_etage = ab_etage;
 	}
 
-	public List<Stand> getStaende() {
-		return staende;
+	public Quiz getAb_quiz() {
+		return ab_quiz;
 	}
 
-	public void setStaende(List<Stand> staende) {
-		this.staende = staende;
+	public void setAb_quiz(Quiz ab_quiz) {
+		this.ab_quiz = ab_quiz;
 	}
-	
+
+	public Vector<Stand> getAb_staende() {
+		return ab_staende;
+	}
+
+	public void setAb_staende(Vector<Stand> ab_staende) {
+		this.ab_staende = ab_staende;
+	}
 	
 }

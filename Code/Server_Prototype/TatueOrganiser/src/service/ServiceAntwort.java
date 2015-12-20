@@ -1,46 +1,32 @@
 package service;
 
 import java.sql.SQLException;
-import java.util.Vector;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 import database.Database;
 import model.*;
 
-@Path("/api/schueler")
-public class ServiceSchueler {  
-	@GET
-	  @Produces(MediaType.APPLICATION_JSON)
-	  public Vector<Schueler> getSchuelerJSON() throws SQLException{
-		  try{
-			  Database db = new Database();
-			  return db.getAllSchueler();
-		  }
-		  catch(SQLException ex){
-			  ex.printStackTrace();
-		  }
-		  
-		  return null;
-	  }
+@Path("/api/antworten")
+public class ServiceAntwort {  
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addSchuelerJSON(Schueler s) throws SQLException{
-		try{
-			System.out.println(s.toString());
-			Database db = new Database();
-			db.addSchueler(s);
-			return Response.ok().build();
+	public Response addAntwort(@QueryParam("f_id") int f_id, @Context UriInfo uriInfo, Antwort a) {
+	    try{
+	    	Database db = new Database();
+	    	db.addAntwortZuFrage(f_id, a);
+		 	return Response.ok().build();
 		}
 			catch(SQLException ex){
 			ex.printStackTrace();
@@ -49,11 +35,11 @@ public class ServiceSchueler {
 	}
 	
 	@DELETE
-	@Path("/{s_id}")
-	public Response deleteSchuelerJSON(@PathParam("s_id") int s_id) throws SQLException{
+	@Path("/{q_id}")
+	public Response deleteFrageJSON(@PathParam("f_id") int f_id) throws SQLException{
 		try{
 			Database db = new Database();
-			db.deleteSchueler(s_id);
+			db.deleteFrage(f_id);
 			return Response.ok().build();
 		}
 			catch(SQLException ex){
@@ -64,10 +50,10 @@ public class ServiceSchueler {
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateSchuelerJSON(Schueler s) throws SQLException{
+	public Response updateFrageJSON(Frage f) throws SQLException{
 		try{
 			Database db = new Database();
-			db.updateSchueler(s);
+			db.updateFrage(f);
 			return Response.ok().build();
 		}
 			catch(SQLException ex){

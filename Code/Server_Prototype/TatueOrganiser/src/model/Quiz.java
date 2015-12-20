@@ -1,12 +1,15 @@
 package model;
 
-import java.util.List;
+import java.util.Vector;
+
+import javax.xml.bind.annotation.XmlElement;
 
 public class Quiz {
 	private int q_id = 0;
 	private String titel = null;
-	private List<Frage> fragen = null;
-	private List<GewinnspielDaten> gd = null;
+	private Vector<Frage> fragen = null;
+	@XmlElement(name = "gewinnspieldaten")
+	private Vector<GewinnspielDaten> gewinnspieldaten = null;
 
 	public Quiz() {
 		super();
@@ -23,16 +26,16 @@ public class Quiz {
 	public void setTitel(String titel) {
 		this.titel = titel;
 	}
-	public List<Frage> getFragen() {
+	public Vector<Frage> getFragen() {
 		return fragen;
 	}
-	public void setFragen(List<Frage> fragen) {
+	public void setFragen(Vector<Frage> fragen) {
 		this.fragen = fragen;
 	}
-	public List<GewinnspielDaten> getGd() {
-		return gd;
+	public Vector<GewinnspielDaten> getGewinnspieldaten() {
+		return gewinnspieldaten;
 	}
-	public void setGd(List<GewinnspielDaten> gd) {
-		this.gd = gd;
+	public void setGewinnspieldaten(Vector<GewinnspielDaten> gd) {
+		this.gewinnspieldaten = gd;
 	}
 }

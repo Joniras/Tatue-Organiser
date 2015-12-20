@@ -1,12 +1,14 @@
 package model;
 
-import java.util.List;
+import java.util.Vector;
 
 public class Stand {
 	private int st_id = 0;
 	private String stName = null;
 	private String info = null;
-	private List<StandRating> sr = null;
+	private Vector<StandRating> standratings = null;
+	private Vector<Schueler> standschueler = null;
+	
 	public int getSt_id() {
 		return st_id;
 	}
@@ -25,17 +27,26 @@ public class Stand {
 	public void setInfo(String info) {
 		this.info = info;
 	}
-	public List<StandRating> getSr() {
-		return sr;
+	public Vector<StandRating> getSr() {
+		return standratings;
 	}
-	public void setSr(List<StandRating> sr) {
-		this.sr = sr;
+	public void setSr(Vector<StandRating> sr) {
+		this.standratings = sr;
 	}
-	public Stand(int st_id, String stName, String info, List<StandRating> sr) {
+	public Stand(int st_id, String stName, String info, Vector<StandRating> sr) {
 		super();
 		this.st_id = st_id;
 		this.stName = stName;
 		this.info = info;
-		this.sr = sr;
+		this.standratings = sr;
+	}
+	public Stand(){
+		super();
+	}
+	public Vector<Schueler> getStandSchueler() {
+		return standschueler;
+	}
+	public void setStandSchueler(Vector<Schueler> standSchueler) {
+		this.standschueler = standSchueler;
 	}
 }
