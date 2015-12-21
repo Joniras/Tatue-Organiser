@@ -3,23 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Shapes;
+using BSD_Client.Classes;
 
-namespace Client_Prototype
+namespace BSD_Client
 {
     public class Stand
     {
-        public int ST_ID { get; set; }
-        public String STName { get; set; }
-        public String Info { get; set; }
-        public Shape Shape { get; set; }
+        public int st_id { get; set; }
+        public String stname { get; set; }
+        public String info { get; set; }
         public List<StandRating> standratings = new List<StandRating>();
+        public Rechteck shape { get; set; }
+        public List<Schueler> standschueler = new List<Schueler>();
 
-        public Stand(int _ID, String _Name, String _Info, Shape _Shape)
+
+        public Stand(int _ID, String _Name, String _Info, Rechteck _Shape)
         {
-            ST_ID = _ID;
-            STName = _Name;
-            Info = _Info;
-            Shape = _Shape;
+            st_id = _ID;
+            stname = _Name;
+            info = _Info;
+            shape = _Shape;
         }
 
         public Stand()
@@ -34,12 +37,12 @@ namespace Client_Prototype
 
         public override String ToString()
         {
-            return  this.STName; 
+            return  this.stname; 
         }
 
         public void resetRatings()
         {
-            standratings = null;
+            standratings.Clear();
         }
 
         public List<StandRating> getAllRatings()

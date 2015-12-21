@@ -19,7 +19,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Client_Prototype
+namespace BSD_Client
 {
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
@@ -27,41 +27,20 @@ namespace Client_Prototype
     public partial class MainWindow : Window
     {
         public enum HTTPMETHODS { GET, PUT, POST, DELETE };
-
+        public static string URL = "http://10.0.0.12:8080/TatueOrganiser";
         private BackgroundWorker bw_Abteilungen = new BackgroundWorker();
         private BackgroundWorker bw_Schueler = new BackgroundWorker();
         private BackgroundWorker bw_deleteSchueler = new BackgroundWorker();
+
         public MainWindow()
         {
             
             InitializeComponent();
-            if (checkConnection())
-            {
-                addData();
-                gridGuide.IsReadOnly = true;
-                gridAbteilung.IsReadOnly = true;
-            }
-            else
-            {
-                FailedConnection fc = new FailedConnection();
-                fc.Show();
-                this.Close();
-                
-            }
+
         }
 
         private void addData()
         {
-            /*
-            List<Abteilung> content = new List<Abteilung>();
-            content.Add(new Abteilung(1, "EDVO", 1));
-            content.Add(new Abteilung(2, "Bautechnik", 2));
-            gridAbteilung.ItemsSource = content;
-
-            string url = "http://192.168.196.0:8080/TatueOrganiser/api/abteilungen";
-            */
-            //HttpGet(url, HTTPMETHODS.GET, null, new Del(useInformation));
-            
             bw_Abteilungen.WorkerReportsProgress = false;
             bw_Abteilungen.WorkerSupportsCancellation = false;
             bw_Abteilungen.DoWork += new DoWorkEventHandler(bw_DoWorkAbteilung);
@@ -74,8 +53,6 @@ namespace Client_Prototype
             bw_Schueler.DoWork += new DoWorkEventHandler(bw_DoWorkSchueler);
             bw_Schueler.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompletedSchueler);
             bw_Schueler.RunWorkerAsync();
-
-            
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
@@ -87,7 +64,7 @@ namespace Client_Prototype
                 lblMessage.Content = "Edit Abteilung";
                 ea.Show();
                 gridAbteilung.SelectedItem = null;
-                this.Hide();
+                //this.Hide();
             }
             else if((Schueler)gridGuide.SelectedItem != null)
             {
@@ -126,7 +103,7 @@ namespace Client_Prototype
         {
             BackgroundWorker worker = sender as BackgroundWorker;
 
-            HttpWebRequest req = WebRequest.Create(new Uri("http://192.168.196.0:8080/TatueOrganiser/api/abteilungen")) as HttpWebRequest;
+            HttpWebRequest req = WebRequest.Create(new Uri(MainWindow.URL+"/api/abteilungen")) as HttpWebRequest;
             req.Method = "GET";
             
             req.ContentType = "application/json";
@@ -153,7 +130,7 @@ namespace Client_Prototype
         {
             BackgroundWorker worker = sender as BackgroundWorker;
 
-            HttpWebRequest req = WebRequest.Create(new Uri("http://192.168.196.0:8080/TatueOrganiser/api/schueler")) as HttpWebRequest;
+            HttpWebRequest req = WebRequest.Create(new Uri(MainWindow.URL + "/api/schueler")) as HttpWebRequest;
             req.Method = "GET";
 
             req.ContentType = "application/json";
@@ -162,8 +139,6 @@ namespace Client_Prototype
             {
                 StreamReader reader = new StreamReader(resp.GetResponseStream());
                 e.Result = reader.ReadToEnd();
-                Console.WriteLine("###################"+e.Result);
-
             }
         }
 
@@ -173,6 +148,9 @@ namespace Client_Prototype
             Schueler[] schueler = (Schueler[])json_serializer.Deserialize<Schueler[]>((String)e.Result);
             List<Schueler> content = new List<Schueler>(schueler);
             gridGuide.ItemsSource = schueler;
+
+            this.Cursor = Cursors.AppStarting;
+            this.lblMessage.Content = "Datensätze geladen";
 
         }
 
@@ -191,7 +169,7 @@ namespace Client_Prototype
         {
             BackgroundWorker worker = sender as BackgroundWorker;
 
-            HttpWebRequest req = WebRequest.Create(new Uri("http://192.168.196.0:8080/TatueOrganiser/api/schueler/"+(int)e.Argument)) as HttpWebRequest;
+            HttpWebRequest req = WebRequest.Create(new Uri(MainWindow.URL + "/api/schueler/" + (int)e.Argument)) as HttpWebRequest;
             req.Method = "DELETE";
             
             req.ContentType = "application/json";
@@ -205,7 +183,7 @@ namespace Client_Prototype
 
         private bool checkConnection()
         {
-            var url = "http://192.168.196.0:8080/TatueOrganiser/ping";
+            var url = MainWindow.URL + "/ping";
             bool retVal = false;
             try
             {
@@ -224,6 +202,24 @@ namespace Client_Prototype
                 return retVal;
             }
             return retVal;
+        }
+
+        private void Tatue_Mainwindow_onReady(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.Wait;
+            if (checkConnection())
+            {
+                addData();
+                gridGuide.IsReadOnly = true;
+                gridAbteilung.IsReadOnly = true;
+            }
+            else
+            {
+                FailedConnection fc = new FailedConnection();
+                fc.Show();
+                this.Close();
+
+            }
         }
         
 

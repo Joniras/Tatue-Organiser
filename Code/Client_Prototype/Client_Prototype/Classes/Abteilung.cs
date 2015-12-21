@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BSD_Client.Classes;
 
-namespace Client_Prototype
+namespace BSD_Client
 {
     public class Abteilung
     {
         public int ab_id { get; set; }
         public string ab_name { get; set; }
         public int ab_etage { get; set; }
-        public List<Stand> ab_stands = new List<Stand>();
+        public List<Stand> ab_stande = new List<Stand>();
+        public Polygon shape { get; set; }
+        public Quiz ab_quiz { get; set; }
 
         public Abteilung()
         {
@@ -26,12 +29,12 @@ namespace Client_Prototype
 
         public void addStandToAbteilung(Stand _Stand)
         {
-            ab_stands.Add(_Stand);
+            ab_stande.Add(_Stand);
         }
 
         public override String ToString()
         {
-            return "Name: "+this.ab_name+"; ID:"+this.ab_id+"; Etage: "+this.ab_etage+"; Stands:"+this.ab_stands;
+            return "Name: "+this.ab_name+"; ID:"+this.ab_id+"; Etage: "+this.ab_etage+"; Stands:"+this.ab_stande;
         }
 
         

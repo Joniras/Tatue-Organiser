@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Client_Prototype.Classes
+namespace BSD_Client.Classes
 {
-    class Quiz
+    public class Quiz
     {
         public int q_id { get; set; }
         public string titel { get; set; }

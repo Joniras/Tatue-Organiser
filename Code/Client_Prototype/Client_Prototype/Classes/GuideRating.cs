@@ -1,4 +1,4 @@
-﻿namespace Client_Prototype
+﻿namespace BSD_Client
 {
     public class GuideRating
     {

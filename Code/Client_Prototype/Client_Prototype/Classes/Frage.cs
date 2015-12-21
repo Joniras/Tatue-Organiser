@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Client_Prototype.Classes
+namespace BSD_Client.Classes
 {
-    class Frage
+    public class Frage
     {
         public int f_id { get; set; }
         public string text { get; set; }
@@ -21,6 +21,17 @@ namespace Client_Prototype.Classes
         {
             f_id = _id;
             text = _Text;
+        }
+
+        public void addAntwort(Antwort ant)
+        {
+            this.antworten.Add(ant);
+        }
+
+        
+        public override String ToString()
+        {
+            return this.text;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Client_Prototype
+namespace BSD_Client
 {
     public class Schueler
     {

@@ -1,0 +1,33 @@
+﻿<Window x:Class="BSD_Client.EditAbteilung"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Abteilung bearbeiten" Height="515.311" Width="679.818" Closed="Window_Closed">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="lblTitle" Content="[Name der Abteilung]" Margin="10,3,12,0" VerticalAlignment="Top" Height="37" FontSize="20" FontWeight="Bold" FontStyle="Italic" Grid.ColumnSpan="2"/>
+        <Canvas x:Name="canvasStandplan" Grid.Column="1" Margin="10,81,12,118" Background="#FFC3C3C3"/>
+        <Button x:Name="btnAddStand" Content="Add Stand" HorizontalAlignment="Right" Margin="0,83,18,0" VerticalAlignment="Top" Width="75" Click="btnAddStand_Click" Height="20"/>
+        <ListView x:Name="listViewStaende" Margin="10,81,98,118">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="btnEditStand" Content="Edit" HorizontalAlignment="Right" Margin="0,108,18,0" VerticalAlignment="Top" Width="75" Click="btnEditStand_Click" Height="20"/>
+        <Label x:Name="lblMessage" Content="..." Margin="10,0,10,10" Background="#FFF3FF00" Grid.ColumnSpan="2" Height="28" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnAddQuiz" Content="Set Quiz" HorizontalAlignment="Left" Margin="10,0,0,43" Width="75" Click="btnAddQuiz_Click" Height="20" VerticalAlignment="Bottom"/>
+        <Label Content="Stände" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF575757" Height="30"/>
+        <Label Content="Abbild der Abteilung" Grid.Column="1" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="144" Foreground="#FF646464" Height="26"/>
+        <Button x:Name="btnDeleteStand" Content="Delete" HorizontalAlignment="Right" Margin="0,133,18,0" VerticalAlignment="Top" Width="75" Click="btnDeleteStand_Click" Height="20"/>
+        <Border BorderBrush="Black" BorderThickness="1" Margin="10,0,10,94" Grid.ColumnSpan="2" Height="1" VerticalAlignment="Bottom"/>
+        <Label Content="Quiz:" HorizontalAlignment="Left" Margin="10,0,0,62" Width="75" Foreground="#FF575757" Height="30" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnRemoveQuiz" Content="Remove" HorizontalAlignment="Left" Margin="92,0,0,43" Width="75" Height="20" VerticalAlignment="Bottom" Click="btnRemoveQuiz_Click"/>
+        <Button x:Name="btnEditQuiz" Content="Edit" HorizontalAlignment="Left" Margin="172,0,0,43" Width="75" Height="20" VerticalAlignment="Bottom" Click="btnEditQuiz_Click"/>
+        <Label x:Name="lblQuiz" Content="kein Quiz zugeteilt" Margin="90,0,12,66" Grid.ColumnSpan="2" Height="26" VerticalAlignment="Bottom"/>
+
+    </Grid>
+</Window>
