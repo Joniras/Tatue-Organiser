@@ -27,7 +27,7 @@ namespace BSD_Client
     public partial class MainWindow : Window
     {
         public enum HTTPMETHODS { GET, PUT, POST, DELETE };
-        public static string URL = "http://10.0.0.12:8080/TatueOrganiser";
+        public static string URL = "http://192.168.196.138:8080/TatueOrganiser";
         private BackgroundWorker bw_Abteilungen = new BackgroundWorker();
         private BackgroundWorker bw_Schueler = new BackgroundWorker();
         private BackgroundWorker bw_deleteSchueler = new BackgroundWorker();
@@ -215,9 +215,9 @@ namespace BSD_Client
             }
             else
             {
-                FailedConnection fc = new FailedConnection();
+                FailedConnection fc = new FailedConnection(this);
                 fc.Show();
-                this.Close();
+                this.Hide();
 
             }
         }

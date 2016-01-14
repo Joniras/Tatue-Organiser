@@ -37,11 +37,14 @@ namespace BSD_Client
             txtKlasse.Text = schueler.klasse;
             checkBoxIsGuide.IsChecked = schueler.guide;
 
+
             if (!schueler.guide)
             {
                 btnRatings.IsEnabled = false;
             }
         }
+
+    
 
         private void btnSave_Click(object sender, RoutedEventArgs e){
         

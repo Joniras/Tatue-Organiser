@@ -26,7 +26,7 @@ namespace BSD_Client
         Stand stand;
         Window myParent;
         private BackgroundWorker bw_editStand = new BackgroundWorker();
-
+        private BackgroundWorker bw_getSchueler = new BackgroundWorker();
 
         public EditStand(Stand _stand, Window _parent)
         {
@@ -35,6 +35,7 @@ namespace BSD_Client
             myParent = _parent;
             txtName.Text = stand.stname;
             txtInfo.Text = stand.info;
+            getSchuler();
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -100,6 +101,50 @@ namespace BSD_Client
             {
                 lblMessage.Content = "Stand not changed";
             }
+        }
+
+        private void getSchuler()
+        {
+            //TODO
+            //Get all Stands from Abteilung
+            bw_getSchueler.WorkerReportsProgress = false;
+            bw_getSchueler.WorkerSupportsCancellation = false;
+            bw_getSchueler.DoWork += new DoWorkEventHandler(bw_DoWorkSchueler);
+            bw_getSchueler.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompletedSchueler);
+            bw_getSchueler.RunWorkerAsync();
+        }
+
+        private void bw_DoWorkSchueler(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+
+            HttpWebRequest req = WebRequest.Create(new Uri(MainWindow.URL + "/api/schueler/")) as HttpWebRequest;
+            req.Method = "GET";
+
+            req.ContentType = "application/json";
+            req.Accept = "application/json";
+            using (HttpWebResponse resp = req.GetResponse() as HttpWebResponse)
+            {
+                StreamReader reader = new StreamReader(resp.GetResponseStream());
+                e.Result = reader.ReadToEnd();
+            }
+        }
+
+        private void bw_RunWorkerCompletedSchueler(object sender, RunWorkerCompletedEventArgs e)
+        {
+            JavaScriptSerializer json_serializer = new JavaScriptSerializer();
+            Schueler[] schueler = (Schueler[])json_serializer.Deserialize<Schueler[]>((String)e.Result);
+
+            List<Schueler> content = new List<Schueler>(schueler);
+
+            Console.WriteLine(content.ToString());
+
+            foreach (Schueler s in schueler)
+            {
+                Console.WriteLine(s.ToString());
+                cmbSchueler.Items.Add(s);
+            }
+
         }
 
     }

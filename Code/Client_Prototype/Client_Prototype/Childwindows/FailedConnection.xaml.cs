@@ -21,17 +21,18 @@ namespace BSD_Client
     public partial class FailedConnection : Window
     {
         int count = 0;
-        public FailedConnection()
+        Window myParent;
+        public FailedConnection(Window _parent)
         {
             InitializeComponent();
+            myParent = _parent;
         }
 
         private void btn_Reconnect_Click(object sender, RoutedEventArgs e)
         {
             if(checkConnection())
             {
-                MainWindow mw = new MainWindow();
-                mw.Show();
+                myParent.Show();
                 this.Close();
             }
             else
