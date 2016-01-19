@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client_Prototype"
         mc:Ignorable="d"
-        Title="EditStand" Height="406" Width="503" Closed="Window_Closed">
+        Title="EditStand" Height="242" Width="356" Closed="Window_Closed">
     <Grid>
-        <Label x:Name="lblName" Content="Name" HorizontalAlignment="Left" Margin="31,35,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblInfo" Content="Info" HorizontalAlignment="Left" Margin="31,88,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="136,35,0,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" Width="255"/>
-        <TextBox x:Name="txtInfo" HorizontalAlignment="Left" Height="110" Margin="136,88,0,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" Width="255"/>
-        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="110,247,0,0" VerticalAlignment="Top" Width="75" Click="btnSave_Click"/>
-        <Label x:Name="lblMessage" Content="..." HorizontalAlignment="Left" Margin="31,303,0,0" VerticalAlignment="Top" Width="395" Background="#FFFFF300"/>
-        <Button x:Name="btnRatings" Content="Ratings" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="247,247,0,0" Click="btnRatings_Click"/>
+        <Label x:Name="lblName" Content="Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblInfo" Content="Info" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="70,11,0,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" Width="268"/>
+        <TextBox x:Name="txtInfo" HorizontalAlignment="Left" Height="94" Margin="70,39,0,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" Width="268"/>
+        <Button x:Name="btnSave" Content="Speichern" HorizontalAlignment="Left" Margin="10,138,0,0" VerticalAlignment="Top" Width="162" Click="btnSave_Click"/>
+        <Label x:Name="lblMessage" Content="..." HorizontalAlignment="Left" Margin="10,175,0,0" VerticalAlignment="Top" Width="328" Background="#fff176"/>
+        <Button x:Name="btnRatings" Content="Ratings" HorizontalAlignment="Left" VerticalAlignment="Top" Width="161" Margin="177,138,0,0" Click="btnRatings_Click"/>
 
     </Grid>
 </Window>

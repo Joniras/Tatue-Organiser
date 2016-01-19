@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client_Prototype"
         mc:Ignorable="d"
-        Title="StandRatingAdmin" Height="420.168" Width="368.067" Closed="Window_Closed">
+        Title="StandRatingAdmin" Height="367.168" Width="368.067" Closed="Window_Closed">
     <Grid>
-        <DataGrid x:Name="gridRatings" HorizontalAlignment="Left" Margin="10,23,0,0" VerticalAlignment="Top" Height="133" Width="272"/>
-        <Label x:Name="lblFreundlichkeit" Content="Freundlichkeit" HorizontalAlignment="Left" Margin="10,161,0,0" VerticalAlignment="Top" Width="186"/>
-        <Label x:Name="lblKompetenz" Content="Kompetenz" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top" Width="186"/>
-        <Button x:Name="btnResetRatings" Content="Reset" HorizontalAlignment="Left" Margin="10,299,0,0" VerticalAlignment="Top" Width="75" Background="Red" Click="btnResetRatings_Click"/>
-        <Label x:Name="lblMessage" Content="Label" HorizontalAlignment="Left" Margin="10,344,0,0" VerticalAlignment="Top" Height="28" Width="312" Background="#FFF3FF00"/>
-        <Label x:Name="lblAufbau" Content="Aufbau" HorizontalAlignment="Left" Margin="10,223,0,0" VerticalAlignment="Top" Width="186"/>
+        <DataGrid x:Name="gridRatings" Margin="10,10,10,193"/>
+        <Label x:Name="lblFreundlichkeit" Content="Freundlichkeit" Margin="10,0,10,149" VerticalAlignment="Bottom"/>
+        <Label x:Name="lblKompetenz" Content="Kompetenz" Margin="10,0,10,118" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnResetRatings" Content="Zurücksetzen" Margin="10,0,10,50" Background="Red" Click="btnResetRatings_Click" Height="32" VerticalAlignment="Bottom"/>
+        <Label x:Name="lblMessage" Content="..." Margin="10,0,10,10" Background="#fff176" Height="28" VerticalAlignment="Bottom"/>
+        <Label x:Name="lblAufbau" Content="Aufbau" Margin="10,0,10,87" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>
