@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BSD_Client"
         mc:Ignorable="d"
-        Title="GuideRatingAdmin" Height="341.176" Width="340.336" Closed="Window_Closed">
+        Title="Guide Ratings" Height="317.176" Width="340.336" Closed="Window_Closed">
     <Grid>
-        <DataGrid x:Name="gridRatings" HorizontalAlignment="Left" Margin="10,23,0,0" VerticalAlignment="Top" Height="133" Width="272"/>
-        <Label x:Name="lblFreundlichkeit" Content="Freundlichkeit" HorizontalAlignment="Left" Margin="10,161,0,0" VerticalAlignment="Top" Width="186"/>
-        <Label x:Name="lblKompetenz" Content="Kompetenz" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top" Width="186"/>
-        <Button x:Name="btnResetRatings" Content="Reset" HorizontalAlignment="Left" Margin="10,223,0,0" VerticalAlignment="Top" Width="75" Background="Red" Click="btnResetRatings_Click"/>
-        <Label x:Name="lblMessage" Content="Label" HorizontalAlignment="Left" Margin="10,272,0,0" VerticalAlignment="Top" Height="28" Width="312" Background="#FFF3FF00"/>
+        <DataGrid x:Name="gridRatings" Margin="10,10,10,143"/>
+        <Label x:Name="lblFreundlichkeit" Content="Freundlichkeit" Margin="10,0,10,112" VerticalAlignment="Bottom"/>
+        <Label x:Name="lblKompetenz" Content="Kompetenz" Margin="10,0,10,81" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnResetRatings" Content="Zurücksetzen" Margin="10,0,10,44" VerticalAlignment="Bottom" Background="Red" Click="btnResetRatings_Click"/>
+        <Label x:Name="lblMessage" Content="..." Margin="10,0,10,11" Background="#fff176" Height="28" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>

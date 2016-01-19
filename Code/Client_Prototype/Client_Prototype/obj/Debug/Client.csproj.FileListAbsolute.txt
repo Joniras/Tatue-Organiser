@@ -68,3 +68,6 @@ C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\De
 C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\BSD_Client.g.resources
 C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\BSD_Client.Properties.Resources.resources
 C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\Client.csproj.GenerateResource.Cache
+C:\Users\Henrik\Documents\GitHub\Tatue-Organiser\Code\Client_Prototype\Client_Prototype\bin\Debug\BSD_Client.exe.config
+C:\Users\Henrik\Documents\GitHub\Tatue-Organiser\Code\Client_Prototype\Client_Prototype\obj\Debug\BSD_Client.exe
+C:\Users\Henrik\Documents\GitHub\Tatue-Organiser\Code\Client_Prototype\Client_Prototype\obj\Debug\BSD_Client.pdb

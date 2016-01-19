@@ -5,16 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BSD_Client"
         mc:Ignorable="d"
-        Title="StandRatingAdmin" Height="402.168" Width="383.067" Closed="Window_Closed">
+        Title="Stand Ratings" Height="382.668" Width="383.067" Closed="Window_Closed">
     <Grid>
-        <DataGrid x:Name="gridRatings" Margin="10,23,10,166"/>
-        <Label x:Name="lblFreundlichkeit" Content="Freundlichkeit" Margin="27,0,209,109" Height="26" VerticalAlignment="Bottom"/>
-        <Label x:Name="lblKompetenz" Content="Kompetenz" Margin="27,0,209,78" VerticalAlignment="Bottom"/>
-        <Button x:Name="btnResetRatings" Content="Reset" Margin="10,0,10,12" VerticalAlignment="Bottom" Background="Red" Click="btnResetRatings_Click"/>
-        <Label x:Name="lblAufbau" Content="Aufbau" Margin="27,0,209,47" VerticalAlignment="Bottom"/>
-        <Label Content="Durchschnittswerte:" Margin="10,0,0,135" Height="26" VerticalAlignment="Bottom" Foreground="#FF9E9E9E" HorizontalAlignment="Left" Width="139"/>
-        <Label x:Name="lblavgFreundlichkeit" Content="N/A" Margin="171,0,86,107" VerticalAlignment="Bottom" BorderThickness="1" BorderBrush="#FFD6D6D6"/>
-        <Label x:Name="lblavgKompetenz" Content="N/A" Margin="171,0,86,76" VerticalAlignment="Bottom" BorderBrush="#FFC9C9C9" BorderThickness="1"/>
-        <Label x:Name="lblavgAufbau" Content="N/A" Margin="171,0,86,45" VerticalAlignment="Bottom" BorderThickness="1" BorderBrush="#FFCDCDCD"/>
+        <DataGrid x:Name="gridRatings" Margin="10,23,10,214"/>
+        <Label x:Name="lblFreundlichkeit" Content="Freundlichkeit" Margin="10,0,226,152" Height="26" VerticalAlignment="Bottom"/>
+        <Label x:Name="lblKompetenz" Content="Kompetenz" Margin="10,0,226,119" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnResetRatings" Content="Zurücksetzen" Margin="10,0,10,49" VerticalAlignment="Bottom" Background="Red" Click="btnResetRatings_Click"/>
+        <Label x:Name="lblAufbau" Content="Aufbau" Margin="10,0,226,87" VerticalAlignment="Bottom"/>
+        <Label Content="Durchschnittswerte:" Margin="10,0,0,183" Height="26" VerticalAlignment="Bottom" Foreground="#FF9E9E9E" HorizontalAlignment="Left" Width="139"/>
+        <Label x:Name="lblavgFreundlichkeit" Content="0" Margin="171,0,10,152" VerticalAlignment="Bottom" BorderThickness="1" BorderBrush="#FFD6D6D6"/>
+        <Label x:Name="lblavgKompetenz" Content="0" Margin="171,0,10,119" VerticalAlignment="Bottom" BorderBrush="#FFC9C9C9" BorderThickness="1"/>
+        <Label x:Name="lblavgAufbau" Content="0" Margin="171,0,10,86" VerticalAlignment="Bottom" BorderThickness="1" BorderBrush="#FFCDCDCD"/>
+        <Label x:Name="lblMessage" Content="..." Margin="10,0,10,10" Background="#fff176" Height="28" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>

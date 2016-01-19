@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BSD_Client"
         mc:Ignorable="d"
-        Title="AddGuideFromSchueler" Height="270.504" Width="416.462" Closed="Window_Closed">
+        Title="Neuer Schüler" Height="193.624" Width="402.225" Closed="Window_Closed">
 
     <Grid>
-        <Label x:Name="lblVorname" Content="Vorname" HorizontalAlignment="Left" Margin="31,35,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblNachname" Content="Nachname" HorizontalAlignment="Left" Margin="31,88,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblKlasse" Content="Klasse" HorizontalAlignment="Left" Margin="27,125,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.791,-0.839"/>
-        <TextBox x:Name="txtVorname" Height="23" Margin="136,35,17,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtKlasse" Height="23" Margin="136,129,17,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtNachname" Height="23" Margin="136,88,17,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <Button x:Name="btnSave" Content="Save" Margin="0,0,17,21" Click="btnSave_Click" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
-        <CheckBox x:Name="checkBoxIsGuide" Content="Guide" HorizontalAlignment="Left" Margin="136,174,0,0" VerticalAlignment="Top" Width="255" IsChecked="True" Height="20"/>
+        <Label x:Name="lblVorname" Content="Vorname" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblNachname" Content="Nachname" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblKlasse" Content="Klasse" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.791,-0.839"/>
+        <TextBox x:Name="txtVorname" Height="23" Margin="143,13,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtKlasse" Height="23" Margin="143,69,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtNachname" Height="23" Margin="143,41,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button x:Name="btnSave" Content="Speichern" Background="Green" Margin="0,122,10,0" Click="btnSave_Click" Height="29" VerticalAlignment="Top" HorizontalAlignment="Right" Width="96"/>
+        <CheckBox x:Name="checkBoxIsGuide" Content="Guide" HorizontalAlignment="Left" Margin="143,97,0,0" VerticalAlignment="Top" Width="255" IsChecked="True" Height="20"/>
 
     </Grid>
 
