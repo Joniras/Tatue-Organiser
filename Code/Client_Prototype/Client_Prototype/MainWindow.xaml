@@ -7,8 +7,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TabControl Margin="0,0,90,28">
-            <TabItem Header="Abteilung-Editor" Margin="-2,-2,-206,0">
+        <TabControl Margin="0,0,0,69">
+            <TabItem Header="Abteilung-Editor" Margin="-2,-2,-241,0">
                 <TabItem.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                         <GradientStop Color="#FFF0F0F0" Offset="0"/>
@@ -22,10 +22,10 @@
 
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Schueler-Editor" Margin="207,-2,-465,0">
+            <TabItem Header="Schueler-Editor" Margin="241,-2,-485,0">
                 <StackPanel>
                     <DataGrid x:Name="gridGuide"/>
-                    <Button x:Name="btnAddGuide" Content="Add Schueler" Click="btnAddSchueler_Click"/>
+                    <Button x:Name="btnAddGuide" Content="Schueler hinzufügen" Click="btnAddSchueler_Click"/>
 
                 </StackPanel>
             </TabItem>
@@ -33,9 +33,9 @@
 
         </TabControl>
         <Label x:Name="lblMessage" Content="Ladet Datensatz herunter..." Background="#FFFBFFB4" Height="28" VerticalAlignment="Bottom"/>
-        <Button x:Name="btnEdit" Content="Edit" Margin="0,145,10,0" Click="btnEdit_Click" HorizontalAlignment="Right" Width="75" Height="20" VerticalAlignment="Top"/>
-        <Button x:Name="btnTemp" Content="Test Loading Screen" HorizontalAlignment="Right" Margin="0,206,10,0" VerticalAlignment="Top" Width="75" Height="48" Click="btnTemp_Click"/>
-        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Right" Margin="0,170,10,0" VerticalAlignment="Top" Width="75" Click="btnDelete_Click"/>
+        <Button x:Name="btnEdit" Background="Blue" Content="Bearbeiten" Margin="0,0,795,33" Click="btnEdit_Click" HorizontalAlignment="Right" Width="163" Height="30" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnTemp" Content="Ladebildschirm testen" HorizontalAlignment="Right" Margin="0,0,432,33" Width="190" Height="30" Click="btnTemp_Click" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnDelete" Background="Red" Content="Löschen" HorizontalAlignment="Right" Margin="0,0,627,33" Width="163" Click="btnDelete_Click" Height="30" VerticalAlignment="Bottom"/>
 
 
     </Grid>

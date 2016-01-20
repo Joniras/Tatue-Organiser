@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BSD_Client"
         mc:Ignorable="d"
-        Title="Fehler" Height="148.421" Width="300">
+        Title="Fehler" Height="170.573" Width="304.43">
     <Grid>
-        <Button x:Name="btn_Reconnect" Content="Neu laden" Margin="66,44,70,0" VerticalAlignment="Top" Click="btn_Reconnect_Click"/>
-        <Label x:Name="label" Content="Verbindung fehlgeschlagen" HorizontalAlignment="Center" Margin="10,10,10,78" Width="272"/>
-        <Label x:Name="lbl_Text" Content="..." Background="#fff176" Margin="10,81,10,10"/>
+        <Button x:Name="btn_Reconnect" Content="Neu laden" Margin="68,53,68,0" VerticalAlignment="Top" Click="btn_Reconnect_Click"/>
+        <Label x:Name="label" Content="Verbindung fehlgeschlagen" HorizontalAlignment="Center" Margin="12,10,12,83" Width="272"/>
+        <Label x:Name="lbl_Text" Content="..." Background="#fff176" Margin="10,95,10,10"/>
 
     </Grid>
 </Window>
