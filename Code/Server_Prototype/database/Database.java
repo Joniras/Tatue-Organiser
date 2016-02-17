@@ -9,6 +9,7 @@ public class Database {
 	private Connection con;
 	private static String username = "d5bhifs01";
 	private static String password = "d5bhifs01";
+	//private static String connectionString = "jdbc:oracle:thin:@192.168.128.151:1521:ora11g";
 	private static String connectionString = "jdbc:oracle:thin:@212.152.179.117:1521:ora11g";
 	
 	public Database() throws SQLException	{
@@ -235,6 +236,12 @@ public class Database {
 	}
 	
 	public void deleteStand(int s_id) throws SQLException{
+		PreparedStatement schuelerStatement = con.prepareStatement ("UPDATE SCHUELER SET ST_ID = NULL WHERE ST_ID = ?");
+		schuelerStatement.setInt(1, s_id);
+		schuelerStatement.executeQuery();
+		PreparedStatement delRatingsStatement = con.prepareStatement ("DELETE FROM STANDRATING WHERE ST_ID = ?");
+		delRatingsStatement.setInt(1, s_id);
+		delRatingsStatement.executeQuery();
 		PreparedStatement delStatement = con.prepareStatement ("DELETE FROM STAND WHERE ST_ID = ?");
 		delStatement.setInt(1, s_id);
 		delStatement.executeQuery();
