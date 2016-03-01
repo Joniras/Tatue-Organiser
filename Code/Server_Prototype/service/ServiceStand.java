@@ -1,7 +1,6 @@
 package service;
 
 import java.sql.SQLException;
-import java.util.Vector;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -13,6 +12,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 
 import database.Database;
 import model.*;
@@ -21,76 +21,85 @@ import model.*;
 public class ServiceStand {  
 	
 	@DELETE
-	@Path("/{s_id}/ratings")
-	public Response deleteStandRatings(@PathParam("s_id") int s_id) throws SQLException{
+	@Path("/{st_id}/ratings")
+	public Response deleteStandRatings(@PathParam("st_id") int st_id) throws SQLException{
+		ResponseBuilder rb = null; 
 		try{
 			Database db = new Database();
-			db.deleteRatingsVonStand(s_id);
-			return Response.ok().build();
+			db.deleteRatingsVonStand(st_id);
+			rb = Response.ok();
 		}
 			catch(SQLException ex){
 			ex.printStackTrace();
+			rb = Response.status(500);
 		}
-		return Response.status(500).build();
+		return rb.build();
 	}
 	
 	@DELETE
-	@Path("/{s_id}")
-	public Response deleteStand(@PathParam("s_id") int s_id) throws SQLException{
+	@Path("/{st_id}")
+	public Response deleteStand(@PathParam("st_id") int st_id) throws SQLException{
+		ResponseBuilder rb = null; 
 		try{
 			Database db = new Database();
-			db.deleteStand(s_id);
-			return Response.ok().build();
+			db.deleteStand(st_id);
+			rb = Response.ok();
 		}
 			catch(SQLException ex){
 			ex.printStackTrace();
+			rb = Response.status(500);
 		}
-		return Response.status(500).build();
+		return rb.build();
 	}
 	
 	@PUT
-	@Path("/{s_id}")
+	@Path("/{st_id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateStandJSON(@PathParam("s_id") int s_id, Stand s) throws SQLException{
+	public Response updateStandJSON(@PathParam("st_id") int st_id, Stand s) throws SQLException{
+		ResponseBuilder rb = null; 
 		try{
 			Database db = new Database();
-			s.setSt_id(s_id);
 			db.updateStand(s);
-			return Response.ok().build();
+			rb = Response.ok();
 		}
 			catch(SQLException ex){
 			ex.printStackTrace();
+			rb = Response.status(500);
 		}
-		return Response.status(500).build();
+		return rb.build();
 	}
 	
 	@GET
     @Path("/{st_id}/ratings")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Vector<StandRating> getStandRatingsJSON(@PathParam("s_id") int s_id) throws SQLException{
+	public Response getStandRatingsJSON(@PathParam("st_id") int st_id) throws SQLException{
+		ResponseBuilder rb = null; 
 		try{
-			Database db = new Database();
-			return db.getAllRatingsVonStand(s_id);
-		}
-		catch(SQLException ex){
-			ex.printStackTrace();
-		}
+			  Database db = new Database();
+			  rb = Response.ok().entity(db.getAllRatingsVonStand(st_id));
+		  }
+		  catch(SQLException ex){
+			  ex.printStackTrace();
+			  rb = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(null);
+		  }
 		  
-		return null;
+		  return rb.build();
 	}
 	
 	@POST
-	@Path("/{s_id}/ratings")
+	@Path("/{st_id}/ratings")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addStandRatingsJSON(@PathParam("s_id") int s_id, StandRating sr) throws SQLException{
+	public Response addStandRatingsJSON(@PathParam("st_id") int st_id, StandRating sr) throws SQLException{
+		ResponseBuilder rb = null; 
 		try{
 			Database db = new Database();
-			db.addRatingZuStand(s_id, sr);
-			return Response.ok().build();
+			db.addRatingZuStand(st_id, sr);
+			rb = Response.ok();
 		}
 			catch(SQLException ex){
 			ex.printStackTrace();
+			rb = Response.status(500);
 		}
-		return Response.status(500).build();
+		return rb.build();
 	}
 }

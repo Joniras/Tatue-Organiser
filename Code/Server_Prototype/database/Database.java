@@ -283,11 +283,11 @@ public class Database {
 		return fields;
 	}
 
-	public void addRatingZuStand(int id, StandRating gr) throws SQLException{
+	public void addRatingZuStand(int id, StandRating sr) throws SQLException{
 		PreparedStatement insertion = con.prepareStatement ("INSERT INTO STANDRATING VALUES (seq_standrating_id.nextval, ?, ?, ?");
 		
-		insertion.setFloat(1, gr.getFreundlichkeit());
-		insertion.setFloat(2, gr.getKompetenz());
+		insertion.setFloat(1, sr.getFreundlichkeit());
+		insertion.setFloat(2, sr.getKompetenz());
 		insertion.setInt(3, id);
 		
 		insertion.executeQuery();
@@ -453,6 +453,8 @@ public class Database {
 	}
 	
 	public void deleteQuiz(int q_id) throws SQLException{
+		deleteFragenVonQuiz(q_id);
+		deleteGewinnspielDatenVonQuiz(q_id);
 		PreparedStatement del = con.prepareStatement ("DELETE FROM QUIZ WHERE Q_ID = ?");
 		del.setInt(1, q_id);
 		del.executeQuery();
@@ -516,7 +518,7 @@ public class Database {
 	
 	public Vector<GewinnspielDaten> getGewinnspielDatenVonQuiz(int q_id) throws SQLException{
 		Vector<GewinnspielDaten> fields = new Vector<GewinnspielDaten>();
-		PreparedStatement prep = con.prepareStatement ("SELECT GD_ID, SCORE, VORNAME, NACHNAME, EMAIL, TELEFON FROM GEWINNSPIELDATEN WHERE GD_ID = ?");
+		PreparedStatement prep = con.prepareStatement ("SELECT GD_ID, SCORE, VORNAME, NACHNAME, EMAIL, TELEFON FROM GEWINNSPIELDATEN WHERE Q_ID = ?");
 		
 		prep.setInt(1, q_id);
 		
@@ -550,6 +552,31 @@ public class Database {
 		insertion.executeQuery();
 	}
 	
+	public void deleteGewinnspielDatenVonQuiz (int id) throws SQLException{
+		PreparedStatement del = con.prepareStatement ("DELETE FROM GEWINNSPIELDATEN WHERE Q_ID = ?");
+		del.setInt(1, id);
+		del.executeQuery();
+	}
+	
+	public void deleteGewinnspielDaten (int id) throws SQLException{
+		PreparedStatement del = con.prepareStatement ("DELETE FROM GEWINNSPIELDATEN WHERE GD_ID = ?");
+		del.setInt(1, id);
+		del.executeQuery();
+	}
+	
+	public void updateGewinnspielDaten (GewinnspielDaten gd) throws SQLException{
+		PreparedStatement update = con.prepareStatement ("UPDATE GEWINNSPIELDATEN SET SCORE = ?, VORNAME = ?, "
+				+ "NACHNAME = ?, EMAIL = ?, TELEFON = ? WHERE GD_ID = ?");
+		
+		update.setFloat (1, gd.getScore());
+		update.setString (2, gd.getVorname());
+		update.setString (3, gd.getNachname());
+		update.setString (4, gd.getEmail());
+		update.setString (5, gd.getTelefon());
+		update.setInt (5, gd.getGd_id());
+		
+		update.executeQuery();
+	}
 	//#####QUIZ
 	//#####FRAGE
 	public void addFrageZuQuiz(int q_id, Frage f) throws SQLException{
@@ -562,8 +589,25 @@ public class Database {
 	}
 	
 	public void deleteFrage(int f_id) throws SQLException{
+		deleteAntwortenVonFrage(f_id);
 		PreparedStatement del = con.prepareStatement ("DELETE FROM FRAGE WHERE F_ID = ?");
 		del.setInt(1, f_id);
+		del.executeQuery();
+	}
+	public void deleteFragenVonQuiz(int q_id) throws SQLException{
+		PreparedStatement prep_fragen = con.prepareStatement ("SELECT F_ID FROM FRAGE WHERE Q_ID = ?");
+		prep_fragen.setInt(1, q_id);
+		
+		ResultSet rs_fragen = prep_fragen.executeQuery();
+		
+		while (rs_fragen.next())	{
+			int f_id = 0;
+			f_id = rs_fragen.getInt("F_ID");
+			deleteAntwortenVonFrage(f_id);
+		}
+		
+		PreparedStatement del = con.prepareStatement ("DELETE FROM FRAGE WHERE Q_ID = ?");
+		del.setInt(1, q_id);
 		del.executeQuery();
 	}
 	
@@ -590,6 +634,12 @@ public class Database {
 	public void deleteAntwort(int a_id) throws SQLException{
 		PreparedStatement del = con.prepareStatement ("DELETE FROM ANTWORT WHERE A_ID = ?");
 		del.setInt(1, a_id);
+		del.executeQuery();
+	}
+	
+	public void deleteAntwortenVonFrage(int f_id) throws SQLException{
+		PreparedStatement del = con.prepareStatement ("DELETE FROM ANTWORT WHERE F_ID = ?");
+		del.setInt(1, f_id);
 		del.executeQuery();
 	}
 	

@@ -13,6 +13,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.core.Response.ResponseBuilder;
 
 import database.Database;
 import model.*;
@@ -23,42 +24,48 @@ public class ServiceAntwort {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addAntwort(@QueryParam("f_id") int f_id, @Context UriInfo uriInfo, Antwort a) {
-	    try{
-	    	Database db = new Database();
-	    	db.addAntwortZuFrage(f_id, a);
-		 	return Response.ok().build();
+		ResponseBuilder rb = null; 
+		try{
+			Database db = new Database();
+			db.addAntwortZuFrage(f_id, a);
+			rb = Response.ok();
 		}
 			catch(SQLException ex){
 			ex.printStackTrace();
+			rb = Response.status(500);
 		}
-		return Response.status(500).build();
+		return rb.build();
 	}
 	
 	@DELETE
-	@Path("/{q_id}")
-	public Response deleteFrageJSON(@PathParam("f_id") int f_id) throws SQLException{
+	@Path("/{a_id}")
+	public Response deleteAntwortJSON(@PathParam("a_id") int a_id) throws SQLException{
+		ResponseBuilder rb = null; 
 		try{
 			Database db = new Database();
-			db.deleteFrage(f_id);
-			return Response.ok().build();
+			db.deleteAntwort(a_id);
+			rb = Response.ok();
 		}
 			catch(SQLException ex){
 			ex.printStackTrace();
+			rb = Response.status(500);
 		}
-		return Response.status(500).build();
+		return rb.build();
 	}
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateFrageJSON(Frage f) throws SQLException{
+	public Response updateAntwortJSON(Antwort a) throws SQLException{
+		ResponseBuilder rb = null; 
 		try{
 			Database db = new Database();
-			db.updateFrage(f);
-			return Response.ok().build();
+			db.updateAntwort(a);
+			rb = Response.ok();
 		}
 			catch(SQLException ex){
 			ex.printStackTrace();
+			rb = Response.status(500);
 		}
-		return Response.status(500).build();
+		return rb.build();
 	}
 }
