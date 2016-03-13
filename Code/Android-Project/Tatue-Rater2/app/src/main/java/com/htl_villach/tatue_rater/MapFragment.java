@@ -1,17 +1,24 @@
 package com.htl_villach.tatue_rater;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.app.Fragment;
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
-import com.htl_villach.tatue_rater.R;
+import java.util.Random;
 
 
-public class MapFragment extends Fragment {
+public class MapFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -22,9 +29,22 @@ public class MapFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private Canvas canvas;
+    private Bitmap bg;
+    private View rootView;
 
     public MapFragment() {
-        // Required empty public constructor
+
+    }
+
+    private void drawStand(boolean color) {
+        Paint paint = new Paint();
+
+        paint.setColor(Color.parseColor("#ef67e4"));
+
+        canvas.drawRect(50, 50, 200, 200, paint);
+        LinearLayout ll = (LinearLayout) rootView.findViewById(R.id.map_canvas);
+        ll.setBackground(new BitmapDrawable(getContext().getResources(), bg));
     }
 
     /**
@@ -52,13 +72,23 @@ public class MapFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_map, container, false);
+
+        rootView = inflater.inflate(R.layout.fragment_map, container, false);
+        ((Button)rootView.findViewById(R.id.button)).setOnClickListener(this);
+
+        bg = Bitmap.createBitmap(480, 800, Bitmap.Config.ARGB_8888);
+        canvas = new Canvas(bg);
+
+        drawStand(true);
+
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -73,6 +103,11 @@ public class MapFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        drawStand(false);
     }
 
     /**
