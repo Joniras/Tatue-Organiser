@@ -10,4 +10,7 @@
     <string name="nav_drawer_Map">Plan</string>
     <string name="nav_drawer_game">Quiz-Spiel</string>
     <string name="logo_htl_description">logo of thl-villach</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

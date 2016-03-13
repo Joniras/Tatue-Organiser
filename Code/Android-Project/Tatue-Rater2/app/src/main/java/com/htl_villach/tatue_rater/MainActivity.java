@@ -1,10 +1,8 @@
 package com.htl_villach.tatue_rater;
 
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -33,6 +31,16 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // get fragment manager
+        MapFragment firstFragment = new MapFragment();
+        firstFragment.setArguments(getIntent().getExtras());
+
+        // Add the fragment to the 'fragment_container' FrameLayout
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragment_container, firstFragment).commit();
+
+
     }
 
     @Override
@@ -73,17 +81,17 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_map) {
-            Log.i("asdf","map");
-
-        } else if (id == R.id.nav_ratings) {
-            Log.i("asdf","ratigs");
-
-        } else if (id == R.id.nav_game) {
-            Log.i("asdf","game");
-
+        if(id == R.id.nav_game || id == R.id.nav_map || id == R.id.nav_ratings) {
+            android.support.v4.app.Fragment firstFragment = new MapFragment();
+            if (id == R.id.nav_ratings) {
+                firstFragment = new RatingsFragment();
+            } else if (id == R.id.nav_game) {
+                firstFragment = new QuizFragment();
+            }
+            firstFragment.setArguments(getIntent().getExtras());
+            // Add the fragment to the 'fragment_container' FrameLayout
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, firstFragment).commit();
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
