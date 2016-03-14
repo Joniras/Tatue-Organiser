@@ -106,3 +106,6 @@ C:\Users\Henrik\Documents\GitHub\Tatue-Organiser\Code\Client_Prototype\Client_Pr
 C:\Users\Henrik\Documents\GitHub\Tatue-Organiser\Code\Client_Prototype\Client_Prototype\obj\Debug\BSD_Client.g.resources
 C:\Users\Henrik\Documents\GitHub\Tatue-Organiser\Code\Client_Prototype\Client_Prototype\obj\Debug\BSD_Client.Properties.Resources.resources
 C:\Users\Henrik\Documents\GitHub\Tatue-Organiser\Code\Client_Prototype\Client_Prototype\obj\Debug\Client.csproj.GenerateResource.Cache
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\bin\Debug\MaterialDesignColors.dll
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\App.baml

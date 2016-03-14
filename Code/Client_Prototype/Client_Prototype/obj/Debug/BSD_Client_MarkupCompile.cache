@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\Henrik\Documents\GitHub\Tatue-Organiser\Code\Client_Prototype\Client_Prototype\obj\Debug\
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\obj\Debug\
 BSD_Client
 none
 false
 DEBUG;TRACE
-C:\Users\Henrik\Documents\GitHub\Tatue-Organiser\Code\Client_Prototype\Client_Prototype\App.xaml
+C:\Users\simon\Documents\HTL\5BHIFS\BSD\Client_Prototype\Client_Prototype\App.xaml
 11-531235700
 11316090036
 26-40518104
-151316379150
+151026529430
 Childwindows\AddQuiz.xaml;Childwindows\AddSchueler.xaml;Childwindows\AddStandInAbteilung.xaml;Childwindows\EditAbteilung.xaml;Childwindows\EditSchueler.xaml;Childwindows\EditStand.xaml;Childwindows\FailedConnection.xaml;Childwindows\GuideRatingAdmin.xaml;Childwindows\LoadingWindow.xaml;MainWindow.xaml;Childwindows\StandRatingAdmin.xaml;
 
 False

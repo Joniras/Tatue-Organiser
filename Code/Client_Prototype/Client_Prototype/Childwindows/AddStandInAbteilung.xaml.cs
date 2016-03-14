@@ -40,16 +40,52 @@ namespace BSD_Client
             //Call draw Abteilung
             myParent = _parent;
             btnResetCanvas.IsEnabled = false;
+            Console.WriteLine("-------" + abteilung.ToString());
+            drawAbteilung();
+
+
         }
 
         private void drawAbteilung()
         {
-            throw new NotImplementedException();
-            //TODO
-            //GET Abteilung where AB_Name = abteilung.AB_Name
-            //GET Stands from Abteilung 
-            //Draw to canvasPlan
+            foreach (Stand item in abteilung.ab_stande)
+            {
+                Paint_Stand(item);
+            }
         }
+
+        private void Paint_Stand(Stand toPaint)
+        {
+
+            System.Windows.Shapes.Polygon shape = new System.Windows.Shapes.Polygon();
+
+            PointCollection points = new PointCollection();
+            points.Add(new Point(toPaint.shape.a.x, toPaint.shape.a.y)); //Left Top
+            points.Add(new Point(toPaint.shape.b.x, toPaint.shape.a.y)); //Right Top
+            points.Add(new Point(toPaint.shape.b.x, toPaint.shape.b.y)); //Right Bottom
+            points.Add(new Point(toPaint.shape.a.x, toPaint.shape.b.y)); //Left Bottom
+
+            
+
+
+
+
+            shape.Points = points;
+            shape.Stroke = Brushes.Black;
+            //shape.Fill = Brushes.Green;
+            shape.StrokeThickness = 1;
+            //shape.HorizontalAlignment = HorizontalAlignment.Left;
+            //shape.VerticalAlignment = VerticalAlignment.Center;
+
+
+
+            canvasDrawStand.Children.Add(shape);
+
+            Console.WriteLine("##Painted-------- " + toPaint.ToString());
+
+
+        }
+
 
         private void canvasDrawStand_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -80,6 +116,7 @@ namespace BSD_Client
             rect.Width = w;
             rect.Height = h;
             this.rechteck = new Rechteck(new Punkt((float)x,(float) y), new Punkt((float)(x + w),(float) (y + h)));
+            Console.WriteLine("new Rechteck(P1( " + x + " " + y + ") , P2( " + (x + w) + " " + (y + h) + " )");
             Canvas.SetLeft(rect, x);
             Canvas.SetTop(rect, y);
         }

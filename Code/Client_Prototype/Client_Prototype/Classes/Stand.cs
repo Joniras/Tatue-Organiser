@@ -37,7 +37,7 @@ namespace BSD_Client
 
         public override String ToString()
         {
-            return  this.stname; 
+            return  this.stname + " " + shape; 
         }
 
         public void resetRatings()

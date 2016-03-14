@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace BSD_Client.Classes
 {
@@ -20,6 +21,19 @@ namespace BSD_Client.Classes
         {
             this.a = a;
             this.b = b;
+        }
+
+        public List<Punkt> getPoints()
+        {
+            List<Punkt> retValue = new List<Punkt>();
+            retValue.Add(a);
+            retValue.Add(b);
+            return retValue;
+        }
+
+        public override String ToString()
+        {
+            return a + " " + b;
         }
     }
 }

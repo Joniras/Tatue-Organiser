@@ -27,7 +27,7 @@ namespace BSD_Client
     public partial class MainWindow : Window
     {
         public enum HTTPMETHODS { GET, PUT, POST, DELETE };
-        public static string URL = "http://10.0.0.4:8080/TatueOrganiser";
+        public static string URL = "http://192.168.195.188:8080/TatueOrganiser";
         private BackgroundWorker bw_Abteilungen = new BackgroundWorker();
         private BackgroundWorker bw_Schueler = new BackgroundWorker();
         private BackgroundWorker bw_deleteSchueler = new BackgroundWorker();

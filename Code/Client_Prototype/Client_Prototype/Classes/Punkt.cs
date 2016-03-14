@@ -21,5 +21,10 @@ namespace BSD_Client.Classes
             this.x = x;
             this.y = y;
         }
+
+        public override String ToString()
+        {
+            return x + " " + y;
+        }
     }
 }

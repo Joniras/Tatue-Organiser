@@ -75,12 +75,45 @@ namespace BSD_Client
             canvasStandplan.Children.Add(myLine);
         }
 
+
         private void drawAbteilung()
         {
-            throw new NotImplementedException();
-            //Draw Abteilung from current Abteilung
-            //select all Stands from Abteilung
-            //Draw to canvasPlan
+            foreach (Stand item in abteilung.ab_stande)
+            {
+                Paint_Stand(item);
+            }
+        }
+
+        private void Paint_Stand(Stand toPaint)
+        {
+
+            System.Windows.Shapes.Polygon shape = new System.Windows.Shapes.Polygon();
+
+            PointCollection points = new PointCollection();
+            points.Add(new Point(toPaint.shape.a.x, toPaint.shape.a.y)); //Left Top
+            points.Add(new Point(toPaint.shape.b.x, toPaint.shape.a.y)); //Right Top
+            points.Add(new Point(toPaint.shape.b.x, toPaint.shape.b.y)); //Right Bottom
+            points.Add(new Point(toPaint.shape.a.x, toPaint.shape.b.y)); //Left Bottom
+
+
+
+
+
+
+            shape.Points = points;
+            shape.Stroke = Brushes.Black;
+            //shape.Fill = Brushes.Green;
+            shape.StrokeThickness = 1;
+            //shape.HorizontalAlignment = HorizontalAlignment.Left;
+            //shape.VerticalAlignment = VerticalAlignment.Center;
+
+
+
+            canvasDrawStand.Children.Add(shape);
+
+            Console.WriteLine("##Painted-------- " + toPaint.ToString());
+
+
         }
 
         private void getStaende()
@@ -116,13 +149,14 @@ namespace BSD_Client
             Stand[] staende = (Stand[])json_serializer.Deserialize<Stand[]>((String)e.Result);
             
             List<Stand> content = new List<Stand>(staende);
-
-            Console.WriteLine(content.ToString());
+            abteilung.ab_stande = content;
+            Console.WriteLine("Staende: " + content.ToString());
 
             foreach (Stand s in staende)
             {
                 Console.WriteLine(s.ToString());
                 listViewStaende.Items.Add(s);
+                Paint_Stand(s);
             }
             
         }
