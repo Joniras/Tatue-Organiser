@@ -27,7 +27,7 @@ namespace BSD_Client
     public partial class MainWindow : Window
     {
         public enum HTTPMETHODS { GET, PUT, POST, DELETE };
-        public static string URL = "http://192.168.195.188:8080/TatueOrganiser";
+        public static string URL = "http://10.0.0.8:8080/TatueOrganiser";
         private BackgroundWorker bw_Abteilungen = new BackgroundWorker();
         private BackgroundWorker bw_Schueler = new BackgroundWorker();
         private BackgroundWorker bw_deleteSchueler = new BackgroundWorker();
@@ -204,7 +204,9 @@ namespace BSD_Client
             return retVal;
         }
 
-        private void Tatue_Mainwindow_onReady(object sender, EventArgs e)
+       
+
+        private void Tatue_Mainwindow_Activated(object sender, EventArgs e)
         {
             this.Cursor = Cursors.Wait;
             if (checkConnection())
@@ -221,8 +223,5 @@ namespace BSD_Client
 
             }
         }
-        
-
-
     }
 }

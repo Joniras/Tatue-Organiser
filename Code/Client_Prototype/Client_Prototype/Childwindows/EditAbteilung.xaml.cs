@@ -49,7 +49,7 @@ namespace BSD_Client
 
             //drawTestLine();
             //drawAbteilung();
-            getStaende();
+            //getStaende();
 
         }
 
@@ -95,11 +95,6 @@ namespace BSD_Client
             points.Add(new Point(toPaint.shape.b.x, toPaint.shape.b.y)); //Right Bottom
             points.Add(new Point(toPaint.shape.a.x, toPaint.shape.b.y)); //Left Bottom
 
-
-
-
-
-
             shape.Points = points;
             shape.Stroke = Brushes.Black;
             //shape.Fill = Brushes.Green;
@@ -109,7 +104,7 @@ namespace BSD_Client
 
 
 
-            canvasDrawStand.Children.Add(shape);
+            canvasStandplan.Children.Add(shape);
 
             Console.WriteLine("##Painted-------- " + toPaint.ToString());
 
@@ -152,12 +147,8 @@ namespace BSD_Client
             abteilung.ab_stande = content;
             Console.WriteLine("Staende: " + content.ToString());
 
-            foreach (Stand s in staende)
-            {
-                Console.WriteLine(s.ToString());
-                listViewStaende.Items.Add(s);
-                Paint_Stand(s);
-            }
+            drawAbteilung();
+            listViewStaende.ItemsSource = staende;
             
         }
 
@@ -224,6 +215,7 @@ namespace BSD_Client
                 StreamReader reader = new StreamReader(resp.GetResponseStream());
                 e.Result = resp.StatusCode;
             }
+
         }
 
         private void bw_RunWorkerCompletedDeleteStand(object sender, RunWorkerCompletedEventArgs e)
@@ -231,12 +223,22 @@ namespace BSD_Client
             if ((HttpStatusCode)e.Result == HttpStatusCode.OK)
             {
                 lblMessage.Content = "Stand gelöscht";
-                this.getStaende();
+                listViewStaende.ItemsSource = null;
+                canvasStandplan.Children.Clear();
+                getStaende();
             }
             else
             {
                 lblMessage.Content = "Stand nicht gelöscht (Status: " + (HttpStatusCode)e.Result+")";
             }
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            listViewStaende.ItemsSource = null;
+            
+            canvasStandplan.Children.Clear();
+            getStaende();
         }
     }
 }

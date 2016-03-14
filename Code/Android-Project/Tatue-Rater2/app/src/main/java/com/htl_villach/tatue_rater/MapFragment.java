@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.htl_villach.tatue_rater.Classes.Abteilung;
@@ -59,19 +60,28 @@ public class MapFragment extends Fragment implements View.OnClickListener {
                 Rechteck shape = stmp.getShape();
                 if(shape != null) {
                     Rect a = new Rect();
-                    canvas.drawRect(shape.a.x, shape.a.y, shape.b.x, shape.b.y, paint);
+                    float height = shape.b.y - shape.a.y;
+                    Log.i("height",height+"");
+                    float left = shape.a.x;
+                    float top = (float) (shape.a.y);
+
+                    float right = shape.b.x;
+                    float bottom = shape.b.y ;
+
+
+                    canvas.drawRect(left,top,right,bottom, paint);
                 }else{
                     Log.i(stmp.getStname(),"has no shape");
                 }
             }
-            offset+=100;
+            offset+=1000;
         }
 
 
 
 
-        LinearLayout ll = (LinearLayout) rootView.findViewById(R.id.map_canvas);
-        ll.setBackground(new BitmapDrawable(getContext().getResources(), bg));
+        RelativeLayout rl = (RelativeLayout) rootView.findViewById(R.id.map_canvas);
+        rl.setBackground(new BitmapDrawable(getContext().getResources(), bg));
     }
 
     /**

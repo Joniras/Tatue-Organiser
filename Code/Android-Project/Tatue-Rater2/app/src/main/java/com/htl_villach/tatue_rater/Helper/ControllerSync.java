@@ -12,7 +12,7 @@ import java.net.URLConnection;
  */
 public class ControllerSync extends AsyncTask<String, Void, String> {
 
-    private static final String URI_FIX = "http://192.168.195.188:8080/TatueOrganiser/";
+    private static final String URI_FIX = "http://10.0.0.8:8080/TatueOrganiser/";
 
     @Override
     protected String doInBackground(String... command) {
