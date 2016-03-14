@@ -9,8 +9,8 @@ public class Database {
 	private Connection con;
 	private static String username = "d5bhifs01";
 	private static String password = "d5bhifs01";
-	//private static String connectionString = "jdbc:oracle:thin:@192.168.128.151:1521:ora11g";
-	private static String connectionString = "jdbc:oracle:thin:@212.152.179.117:1521:ora11g";
+	private static String connectionString = "jdbc:oracle:thin:@192.168.128.151:1521:ora11g";
+	//private static String connectionString = "jdbc:oracle:thin:@212.152.179.117:1521:ora11g";
 	
 	public Database() throws SQLException	{
 		con = createConnection();
@@ -39,6 +39,22 @@ public class Database {
 		while (rs.next())	{
 			newAbteilung = new Abteilung (rs.getInt("AB_ID"), rs.getString ("ABNAME"), rs.getInt ("ABETAGE"));
 			newAbteilung.setAb_quiz(this.getQuizVonAbteilung(rs.getInt("AB_ID")));
+			//newAbteilung.setAb_staende(this.getStaendeVonAbteilungen(rs.getInt("AB_ID")));
+			abteilungen.add (newAbteilung);
+		}
+		
+		return abteilungen;
+	}
+	
+	public Vector<Abteilung> getAllAbteilungenMitStaende() throws SQLException	{
+		Vector<Abteilung> abteilungen = new Vector<Abteilung>();
+		ResultSet rs = con.createStatement (ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY).executeQuery ("SELECT A.AB_ID AS AB_ID, A.ABNAME AS ABNAME, A.ABETAGE AS ABETAGE FROM ABTEILUNG A");
+		Abteilung newAbteilung;
+		
+		while (rs.next())	{
+			newAbteilung = new Abteilung (rs.getInt("AB_ID"), rs.getString ("ABNAME"), rs.getInt ("ABETAGE"));
+			newAbteilung.setAb_quiz(this.getQuizVonAbteilung(rs.getInt("AB_ID")));
+			newAbteilung.setAb_staende(this.getStaendeVonAbteilungen(rs.getInt("AB_ID")));
 			abteilungen.add (newAbteilung);
 		}
 		
@@ -181,27 +197,25 @@ public class Database {
 		ResultSet rs = statement.executeQuery();
 		
 		Rechteck r = null;
+		Punkt[] punkte = new Punkt[2];
+		int i = 0;
+		System.out.println("Vor der schleife:");
 		
-		if(rs.next()){
-			r = new Rechteck();
-			Punkt a = new Punkt();
-			a.setX(rs.getFloat("X"));
-			a.setY(rs.getFloat("Y"));
+		while(rs.next() && i < 2){
+			punkte[i] = new Punkt();
+			punkte[i].setX(rs.getFloat("X"));
+			punkte[i].setY(rs.getFloat("Y"));
+			System.out.println(i + ". Durchgang: " + punkte[i].getX() + "/" + punkte[i].getY());
 			
-			r.setA(a);
-			
-			if(rs.next()){
-				Punkt b = new Punkt();
-				b.setX(rs.getFloat("X"));
-				b.setY(rs.getFloat("Y"));
-				
-				r.setA(b);
-			}
-			else{
-				r = null;
-			}
-			
+			i++;
 		}
+		
+		if(i > 0){
+			r = new Rechteck();
+			r.setA(punkte[0]);	
+			r.setB(punkte[1]);	
+		}
+		
 		return r;
 	}
 	
@@ -222,6 +236,7 @@ public class Database {
 		insertion.setFloat(5, s.getShape().getA().getY());
 		insertion.setFloat(6, s.getShape().getB().getX());
 		insertion.setFloat(7, s.getShape().getB().getY());
+		
 		
 		insertion.executeQuery();
 	}

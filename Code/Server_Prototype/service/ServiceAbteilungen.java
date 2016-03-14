@@ -54,6 +54,25 @@ public class ServiceAbteilungen {
 		  return rb.build();
 	  }
 	
+	@GET
+	@Path("/staende")
+	  @Produces(MediaType.APPLICATION_JSON)
+	  public Response getAbteilungenMitStaendeJSON() throws SQLException{
+		ResponseBuilder rb = null; 
+		try{
+			  Database db = new Database();
+			  rb = Response.ok().entity(db.getAllAbteilungenMitStaende()); 
+		  }
+		  catch(SQLException ex){
+			  ex.printStackTrace();
+			  rb = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(null);
+		  }
+		  
+		  return rb.build();
+	  }
+	
+	
+	
 	@POST
 	@Path("/{a_id}/staende")
 	@Consumes(MediaType.APPLICATION_JSON)
