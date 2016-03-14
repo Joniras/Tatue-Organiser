@@ -9,13 +9,21 @@ import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.htl_villach.tatue_rater.Classes.Abteilung;
+import com.htl_villach.tatue_rater.Classes.Rechteck;
+import com.htl_villach.tatue_rater.Classes.Stand;
+import com.htl_villach.tatue_rater.Helper.Database;
 
 import java.util.Random;
+import java.util.Vector;
 
 
 public class MapFragment extends Fragment implements View.OnClickListener {
@@ -37,12 +45,31 @@ public class MapFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    private void drawStand(boolean color) {
+    private void drawAbteilungen(Vector<Abteilung> tmp) {
         Paint paint = new Paint();
 
         paint.setColor(Color.parseColor("#ef67e4"));
+        int offset = 0;
+        for(Abteilung ttmp: tmp){
+            ((TextView)rootView.findViewById(R.id.txtName)).setText(ttmp.getAb_name());
+            Random rnd = new Random();
+            paint.setARGB(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+            for (Stand stmp: ttmp.getAb_stande()) {
+                Log.i("===",stmp.getStname());
+                Rechteck shape = stmp.getShape();
+                if(shape != null) {
+                    Rect a = new Rect();
+                    canvas.drawRect(shape.a.x, shape.a.y, shape.b.x, shape.b.y, paint);
+                }else{
+                    Log.i(stmp.getStname(),"has no shape");
+                }
+            }
+            offset+=100;
+        }
 
-        canvas.drawRect(50, 50, 200, 200, paint);
+
+
+
         LinearLayout ll = (LinearLayout) rootView.findViewById(R.id.map_canvas);
         ll.setBackground(new BitmapDrawable(getContext().getResources(), bg));
     }
@@ -81,12 +108,21 @@ public class MapFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
 
         rootView = inflater.inflate(R.layout.fragment_map, container, false);
-        ((Button)rootView.findViewById(R.id.button)).setOnClickListener(this);
 
         bg = Bitmap.createBitmap(480, 800, Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bg);
 
-        drawStand(true);
+        Database db = null;
+        try {
+            db = Database.newInstance();
+
+            Vector<Abteilung> staende = db.getAbteilungen();
+            Abteilung a = staende.firstElement();
+            drawAbteilungen(staende);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         return rootView;
     }
@@ -107,7 +143,12 @@ public class MapFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        drawStand(false);
+        try {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**

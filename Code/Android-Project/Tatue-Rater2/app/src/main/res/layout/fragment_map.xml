@@ -3,15 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MapFragment"
-    android:id="@+id/map_canvas"
     android:orientation="horizontal">
 
 
-    <Button
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="new stand"
-        android:id="@+id/button"
-        android:layout_gravity="bottom"
-        android:nestedScrollingEnabled="true" />
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/map_canvas">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="..."
+                android:id="@+id/txtName" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
 </LinearLayout>
