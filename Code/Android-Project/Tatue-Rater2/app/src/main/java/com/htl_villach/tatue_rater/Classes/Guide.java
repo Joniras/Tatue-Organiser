@@ -17,4 +17,9 @@ public class Guide extends Schueler{
         super(_SID, _Vorname, _Nachname, _Klasse, true);
         G_ID = _GID;
     }
+
+    @Override
+    public String toString() {
+        return super.getVorname() +" "+super.getNachname();
+    }
 }

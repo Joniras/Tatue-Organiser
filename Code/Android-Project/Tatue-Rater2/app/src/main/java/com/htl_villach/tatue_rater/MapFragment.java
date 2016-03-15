@@ -1,11 +1,16 @@
 package com.htl_villach.tatue_rater;
 
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,9 +18,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.htl_villach.tatue_rater.Classes.Abteilung;
@@ -23,11 +31,12 @@ import com.htl_villach.tatue_rater.Classes.Rechteck;
 import com.htl_villach.tatue_rater.Classes.Stand;
 import com.htl_villach.tatue_rater.Helper.Database;
 
+import java.lang.reflect.Array;
 import java.util.Random;
 import java.util.Vector;
 
 
-public class MapFragment extends Fragment implements View.OnClickListener {
+public class MapFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -41,47 +50,56 @@ public class MapFragment extends Fragment implements View.OnClickListener {
     private Canvas canvas;
     private Bitmap bg;
     private View rootView;
+    private Vector<Abteilung> staende;
 
     public MapFragment() {
 
     }
 
-    private void drawAbteilungen(Vector<Abteilung> tmp) {
+    private void drawAbteilung(Abteilung tmp) {
         Paint paint = new Paint();
-
+        canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
         paint.setColor(Color.parseColor("#ef67e4"));
-        int offset = 0;
-        for(Abteilung ttmp: tmp){
-            ((TextView)rootView.findViewById(R.id.txtName)).setText(ttmp.getAb_name());
-            Random rnd = new Random();
-            paint.setARGB(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-            for (Stand stmp: ttmp.getAb_stande()) {
-                Log.i("===",stmp.getStname());
-                Rechteck shape = stmp.getShape();
-                if(shape != null) {
-                    Rect a = new Rect();
-                    float height = shape.b.y - shape.a.y;
-                    Log.i("height",height+"");
-                    float left = shape.a.x;
-                    float top = (float) (shape.a.y);
-
-                    float right = shape.b.x;
-                    float bottom = shape.b.y ;
+        int offset = 50;
 
 
-                    canvas.drawRect(left,top,right,bottom, paint);
-                }else{
-                    Log.i(stmp.getStname(),"has no shape");
-                }
+        paint.setColor(this.getMatColor("600"));
+        for (Stand stmp : tmp.getAb_stande()) {
+            Rechteck shape = stmp.getShape();
+            if(shape != null) {
+                Rect a = new Rect();
+                float height = shape.b.y - shape.a.y;
+                Log.i("height",height+"");
+                float left = shape.a.x;
+                float top = (float) (shape.a.y);
+
+                float right = shape.b.x;
+                float bottom = shape.b.y;
+
+                canvas.drawRect(left,top+offset,right,bottom+offset, paint);
+            }else{
+                Log.i(stmp.getStname(),"has no shape");
             }
-            offset+=1000;
         }
-
-
-
 
         RelativeLayout rl = (RelativeLayout) rootView.findViewById(R.id.map_canvas);
         rl.setBackground(new BitmapDrawable(getContext().getResources(), bg));
+    }
+
+
+    private int getMatColor(String typeColor)
+    {
+        int returnColor = Color.BLACK;
+        int arrayId = getResources().getIdentifier("mdcolor_" + typeColor, "array", rootView.getContext().getPackageName());
+
+        if (arrayId != 0)
+        {
+            TypedArray colors = getResources().obtainTypedArray(arrayId);
+            int index = (int) (Math.random() * colors.length());
+            returnColor = colors.getColor(index, Color.BLACK);
+            colors.recycle();
+        }
+        return returnColor;
     }
 
     /**
@@ -119,16 +137,20 @@ public class MapFragment extends Fragment implements View.OnClickListener {
 
         rootView = inflater.inflate(R.layout.fragment_map, container, false);
 
-        bg = Bitmap.createBitmap(480, 800, Bitmap.Config.ARGB_8888);
+        bg = Bitmap.createBitmap(400, 400, Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bg);
 
         Database db = null;
         try {
             db = Database.newInstance();
 
-            Vector<Abteilung> staende = db.getAbteilungen();
-            Abteilung a = staende.firstElement();
-            drawAbteilungen(staende);
+            db.loadAll();
+            this.staende = db.abteilungen;
+            ArrayAdapter<Abteilung> adapter = new ArrayAdapter<Abteilung>(getContext(),android.R.layout.simple_spinner_item,staende);
+            adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+            ((Spinner)rootView.findViewById(R.id.abtSpinner)).setAdapter(adapter);
+            ((Spinner)rootView.findViewById(R.id.abtSpinner)).setOnItemSelectedListener(this);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -158,6 +180,18 @@ public class MapFragment extends Fragment implements View.OnClickListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        drawAbteilung(staende.get(position));
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 

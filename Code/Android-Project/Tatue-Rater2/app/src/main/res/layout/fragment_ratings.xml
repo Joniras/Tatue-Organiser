@@ -1,23 +1,86 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RatingsFragment">
+    tools:context=".RatingsFragment"
+    android:id="@+id/rating_content">
 
 
-    <TextView
+    <Spinner
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="RATINGS!!!!!"
-        android:textSize="40dp"
-        android:id="@+id/textView2" />
+        android:layout_height="wrap_content"
+        android:id="@+id/standSpinner"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginLeft="0dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentStart="true"
+        android:spinnerMode="dropdown" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideSpinner"
+        android:layout_gravity="center"
+        android:layout_marginLeft="0dp"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentEnd="true"
+        android:spinnerMode="dialog" />
 
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ratingBar"
-        android:layout_gravity="center"
+        android:id="@+id/standRating"
+        android:layout_gravity="center_horizontal|top"
         android:stepSize="1"
         android:rating="3"
-        android:progressTint="@color/colorAccent" />
-</FrameLayout>
+        android:progressTint="@color/colorAccent"
+        android:layout_below="@+id/standSpinner"
+        android:layout_alignParentStart="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Stand"
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Guide"
+        android:id="@+id/textView3"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bewerten"
+        android:id="@+id/btnStandRating"
+        android:layout_below="@+id/standRating"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideRating"
+        android:layout_gravity="center_horizontal|top"
+        android:stepSize="1"
+        android:rating="3"
+        android:progressTint="@color/colorAccent"
+        android:layout_below="@+id/guideSpinner"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bewerten"
+        android:id="@+id/btnGuideRating"
+        android:layout_below="@+id/guideRating"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>

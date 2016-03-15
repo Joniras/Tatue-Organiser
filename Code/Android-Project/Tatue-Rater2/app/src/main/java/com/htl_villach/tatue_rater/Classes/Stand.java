@@ -74,14 +74,7 @@ public class Stand {
 
     @Override
     public String toString() {
-        return "Stand{" +
-                "st_id=" + st_id +
-                ", stname='" + stname + '\'' +
-                ", info='" + info + '\'' +
-                ", standratings=" + standratings +
-                ", shape=" + shape +
-                ", standschueler=" + standschueler +
-                '}';
+        return stname;
     }
 
     public void addRatingToStand(StandRating _Rating)

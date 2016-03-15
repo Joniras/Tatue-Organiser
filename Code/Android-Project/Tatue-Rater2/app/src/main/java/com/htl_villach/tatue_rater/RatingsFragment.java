@@ -6,8 +6,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
+import com.htl_villach.tatue_rater.Classes.Abteilung;
+import com.htl_villach.tatue_rater.Classes.Guide;
+import com.htl_villach.tatue_rater.Classes.Stand;
+import com.htl_villach.tatue_rater.Helper.Database;
 import com.htl_villach.tatue_rater.R;
+
+import java.util.Vector;
 
 
 public class RatingsFragment extends Fragment {
@@ -21,6 +30,9 @@ public class RatingsFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private View rootView;
+    private Vector<Stand> staende;
+    private Vector<Guide> guides;
 
     public RatingsFragment() {
         // Required empty public constructor
@@ -57,7 +69,35 @@ public class RatingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ratings, container, false);
+        rootView = inflater.inflate(R.layout.fragment_ratings, container, false);
+        Database db = null;
+        try {
+            db = Database.newInstance();
+
+            db.loadAll();
+            Vector<Abteilung> abteilungen = db.abteilungen;
+            this.guides = db.guides;
+
+            Vector<Stand> staende = new Vector<Stand>();
+
+            for(Abteilung ttmp:abteilungen){
+                staende.addAll(ttmp.getAb_stande());
+            }
+
+            ArrayAdapter<Stand> adapter = new ArrayAdapter<Stand>(getContext(),android.R.layout.simple_spinner_item,staende);
+            adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+            ((Spinner)rootView.findViewById(R.id.standSpinner)).setAdapter(adapter);
+
+            ArrayAdapter<Guide> adapter2 = new ArrayAdapter<Guide>(getContext(),android.R.layout.simple_spinner_item,guides);
+            adapter2.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+            ((Spinner)rootView.findViewById(R.id.guideSpinner)).setAdapter(adapter2);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -73,6 +113,7 @@ public class RatingsFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
 
     /**
      * This interface must be implemented by activities that contain this
