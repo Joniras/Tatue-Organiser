@@ -5,9 +5,10 @@
         Title="Tatue-Organiser" Height="596.207" Width="976.379" Background="#FF3F51B5" Activated="Tatue_Mainwindow_Activated">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="647*"/>
+            <ColumnDefinition Width="321*"/>
         </Grid.ColumnDefinitions>
-        <TabControl Margin="0,0,0,69">
+        <TabControl Margin="0,0,0,69" Grid.ColumnSpan="2">
             <TabItem Header="Abteilung-Editor" Margin="-2,-2,-241,0">
                 <TabItem.Background>
                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
@@ -32,10 +33,11 @@
 
 
         </TabControl>
-        <Label x:Name="lblMessage" Content="Ladet Datensatz herunter..." Background="#FFFBFFB4" Height="28" VerticalAlignment="Bottom"/>
-        <Button x:Name="btnEdit" Background="Blue" Content="Bearbeiten" Margin="0,0,795,33" Click="btnEdit_Click" HorizontalAlignment="Right" Width="163" Height="30" VerticalAlignment="Bottom"/>
-        <Button x:Name="btnTemp" Content="Ladebildschirm testen" HorizontalAlignment="Right" Margin="0,0,432,33" Width="190" Height="30" Click="btnTemp_Click" VerticalAlignment="Bottom"/>
-        <Button x:Name="btnDelete" Background="Red" Content="Löschen" HorizontalAlignment="Right" Margin="0,0,627,33" Width="163" Click="btnDelete_Click" Height="30" VerticalAlignment="Bottom"/>
+        <Label x:Name="lblMessage" Content="Ladet Datensatz herunter..." Background="#FFFBFFB4" Height="28" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnEdit" Background="Blue" Content="Bearbeiten" Margin="0,0,473.567,33" Click="btnEdit_Click" HorizontalAlignment="Right" Width="163" Height="30" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnTemp" Content="Ladebildschirm testen" HorizontalAlignment="Right" Margin="0,0,110.567,33" Width="190" Height="30" Click="btnTemp_Click" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnDelete" Background="Red" Content="Löschen" HorizontalAlignment="Right" Margin="0,0,305.567,33" Width="163" Click="btnDelete_Click" Height="30" VerticalAlignment="Bottom"/>
+        <ProgressBar x:Name="progressLoading" HorizontalAlignment="Left" Height="32" Margin="10,464,0,0" VerticalAlignment="Top" Width="948" Grid.ColumnSpan="2"/>
 
 
     </Grid>

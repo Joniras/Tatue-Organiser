@@ -27,10 +27,11 @@ namespace BSD_Client
     public partial class MainWindow : Window
     {
         public enum HTTPMETHODS { GET, PUT, POST, DELETE };
-        public static string URL = "http://10.0.0.8:8080/TatueOrganiser";
+        public static string URL = "http://192.168.195.188:8080/TatueOrganiser";
         private BackgroundWorker bw_Abteilungen = new BackgroundWorker();
         private BackgroundWorker bw_Schueler = new BackgroundWorker();
         private BackgroundWorker bw_deleteSchueler = new BackgroundWorker();
+        
 
         public MainWindow()
         {
@@ -41,13 +42,26 @@ namespace BSD_Client
 
         private void addData()
         {
+            lblMessage.Content = "Lade Datensätze...";
+            addAbteilungen();
+            addSchueler();
+
+            
+
+
+        }
+
+        private void addAbteilungen()
+        {
             bw_Abteilungen.WorkerReportsProgress = false;
             bw_Abteilungen.WorkerSupportsCancellation = false;
             bw_Abteilungen.DoWork += new DoWorkEventHandler(bw_DoWorkAbteilung);
             bw_Abteilungen.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompletedAbteilung);
             bw_Abteilungen.RunWorkerAsync();
+        }
 
-            
+        private void addSchueler()
+        {
             bw_Schueler.WorkerReportsProgress = false;
             bw_Schueler.WorkerSupportsCancellation = false;
             bw_Schueler.DoWork += new DoWorkEventHandler(bw_DoWorkSchueler);
@@ -101,6 +115,7 @@ namespace BSD_Client
 
         private void bw_DoWorkAbteilung(object sender, DoWorkEventArgs e)
         {
+            
             BackgroundWorker worker = sender as BackgroundWorker;
 
             HttpWebRequest req = WebRequest.Create(new Uri(MainWindow.URL+"/api/abteilungen")) as HttpWebRequest;
@@ -123,8 +138,12 @@ namespace BSD_Client
             Console.WriteLine((String)e.Result);
             Console.WriteLine(content[0].ToString());
             gridAbteilung.ItemsSource = abteilungen;
+            lblMessage.Content = "Daten geladen";
+
 
         }
+
+
 
         private void bw_DoWorkSchueler(object sender, DoWorkEventArgs e)
         {
@@ -132,7 +151,6 @@ namespace BSD_Client
 
             HttpWebRequest req = WebRequest.Create(new Uri(MainWindow.URL + "/api/schueler")) as HttpWebRequest;
             req.Method = "GET";
-
             req.ContentType = "application/json";
             req.Accept = "application/json";
             using (HttpWebResponse resp = req.GetResponse() as HttpWebResponse)
@@ -140,6 +158,7 @@ namespace BSD_Client
                 StreamReader reader = new StreamReader(resp.GetResponseStream());
                 e.Result = reader.ReadToEnd();
             }
+            
         }
 
         private void bw_RunWorkerCompletedSchueler(object sender, RunWorkerCompletedEventArgs e)
@@ -151,6 +170,8 @@ namespace BSD_Client
 
             this.Cursor = Cursors.AppStarting;
             this.lblMessage.Content = "Datensätze geladen";
+            
+
 
         }
 
@@ -167,6 +188,7 @@ namespace BSD_Client
 
           private void bw_DoWorkDeleteSchueler(object sender, DoWorkEventArgs e)
         {
+
             BackgroundWorker worker = sender as BackgroundWorker;
 
             HttpWebRequest req = WebRequest.Create(new Uri(MainWindow.URL + "/api/schueler/" + (int)e.Argument)) as HttpWebRequest;
@@ -179,6 +201,7 @@ namespace BSD_Client
                 StreamReader reader =  new StreamReader(resp.GetResponseStream());
                 e.Result = reader.ReadToEnd();
             }
+            addSchueler();
         }
 
         private bool checkConnection()
@@ -223,5 +246,7 @@ namespace BSD_Client
 
             }
         }
+
+
     }
 }

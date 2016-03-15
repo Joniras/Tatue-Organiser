@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="LoadingWindow" Height="400.988" Width="422.689">
     <Grid Background="Black">
-        <MediaElement x:Name="myGif" MediaEnded="myGif_MediaEnded" UnloadedBehavior="Manual"     Source="./ressources/Loading.mp4" LoadedBehavior="Play" Margin="48,91,50,21"/>
+        <MediaElement x:Name="myGif" MediaEnded="myGif_MediaEnded" UnloadedBehavior="Manual" LoadedBehavior="Play" Margin="48,91,50,21"/>
         <Label x:Name="lblLoading" VerticalAlignment="Top" Background="Black" Height="83" Foreground="White" Content="Loading" FontSize="33.333" Margin="145,51,129,0"/>
 
     </Grid>

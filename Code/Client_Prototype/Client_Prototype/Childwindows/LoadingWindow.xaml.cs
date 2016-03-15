@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace BSD_Client
 {
     /// <summary>
@@ -24,6 +25,7 @@ namespace BSD_Client
             InitializeComponent();
 
             lblLoading.Foreground = new SolidColorBrush(Colors.White);
+            myGif.Source = new Uri(System.IO.Path.GetFullPath("Loading1.mp4"));
         }
 
         private void myGif_MediaEnded(object sender, RoutedEventArgs e)
