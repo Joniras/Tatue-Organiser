@@ -1,6 +1,7 @@
 package com.htl_villach.tatue_rater.Helper;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -10,18 +11,21 @@ import java.net.URLConnection;
 /**
  * Created by Jonas on 14.03.2016.
  */
-public class ControllerSync extends AsyncTask<String, Void, String> {
+public class ControllerSync extends AsyncTask<String, Void, AsyncResponseItem> {
 
-    private static final String URI_FIX = "http://192.168.195.188:8080/TatueOrganiser/";
+    private static final String URI_FIX = "http://10.0.0.4:8080/TatueOrganiser/";
+    public AsyncResponse delegate = null;
+
+
 
     @Override
-    protected String doInBackground(String... command) {
+    protected AsyncResponseItem doInBackground(String... input) {
         BufferedReader reader = null;
         String content = null;
         URL url = null;
-
+        Log.i("getting: " ,input[0]);
         try {
-            url = new URL(URI_FIX + command[0]);
+            url = new URL(URI_FIX + input[0]);
 
             // send data to server
             URLConnection conn = url.openConnection();
@@ -45,6 +49,17 @@ public class ControllerSync extends AsyncTask<String, Void, String> {
             } catch (Exception e) {
             }
         }
-        return content;
+
+        Log.i("finished: " ,input[0]);
+
+        return new AsyncResponseItem(content,AsyncResponseType.valueOf(input[1]));
+    }
+
+
+    @Override
+    protected void onPostExecute(AsyncResponseItem result) {
+
+        Log.i("finished: " ,result.getResponse());
+        delegate.processFinish(result);
     }
 }

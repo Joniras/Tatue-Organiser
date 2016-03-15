@@ -1,6 +1,7 @@
 package com.htl_villach.tatue_rater;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.support.design.widget.NavigationView;
@@ -12,15 +13,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.htl_villach.tatue_rater.Helper.AsyncResponse;
+import com.htl_villach.tatue_rater.Helper.AsyncResponseItem;
+import com.htl_villach.tatue_rater.Helper.Database;
+
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, AsyncResponse {
+
+    private ProgressDialog dialog;
+    private Fragment shownFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -32,13 +40,28 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+        dialog = new ProgressDialog(MainActivity.this);
+        dialog.setMessage("Daten werden geladen");
+        dialog.show();
+
+        Database db = null;
+        try {
+
+            db = Database.newInstance();
+            db.loadAll(this);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         // get fragment manager
-        MapFragment firstFragment = new MapFragment();
-        firstFragment.setArguments(getIntent().getExtras());
+        shownFragment = new MapFragment();
+        shownFragment.setArguments(getIntent().getExtras());
 
         // Add the fragment to the 'fragment_container' FrameLayout
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container, firstFragment).commit();
+                .add(R.id.fragment_container, shownFragment).commit();
 
 
     }
@@ -82,18 +105,24 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if(id == R.id.nav_game || id == R.id.nav_map || id == R.id.nav_ratings) {
-            android.support.v4.app.Fragment firstFragment = new MapFragment();
+            shownFragment = new MapFragment();
             if (id == R.id.nav_ratings) {
-                firstFragment = new RatingsFragment();
+                shownFragment = new RatingsFragment();
             } else if (id == R.id.nav_game) {
-                firstFragment = new QuizFragment();
+                shownFragment = new QuizFragment();
             }
-            firstFragment.setArguments(getIntent().getExtras());
+            shownFragment.setArguments(getIntent().getExtras());
             // Add the fragment to the 'fragment_container' FrameLayout
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, firstFragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, shownFragment).commit();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void processFinish(AsyncResponseItem output) {
+        ((MapFragment)shownFragment).initView();
+        dialog.hide();
     }
 }

@@ -74,7 +74,6 @@ public class RatingsFragment extends Fragment {
         try {
             db = Database.newInstance();
 
-            db.loadAll();
             Vector<Abteilung> abteilungen = db.abteilungen;
             this.guides = db.guides;
 
