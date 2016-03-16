@@ -199,13 +199,11 @@ public class Database {
 		Rechteck r = null;
 		Punkt[] punkte = new Punkt[2];
 		int i = 0;
-		System.out.println("Vor der schleife:");
 		
 		while(rs.next() && i < 2){
 			punkte[i] = new Punkt();
 			punkte[i].setX(rs.getFloat("X"));
 			punkte[i].setY(rs.getFloat("Y"));
-			System.out.println(i + ". Durchgang: " + punkte[i].getX() + "/" + punkte[i].getY());
 			
 			i++;
 		}
@@ -280,7 +278,7 @@ public class Database {
 	
 	public Vector<StandRating> getAllRatingsVonStand(int id) throws SQLException{
 		Vector<StandRating> fields = new Vector<StandRating>();
-		PreparedStatement prep = con.prepareStatement ("SELECT SR_ID, FREUNDLICHKEIT, KOMPETENZ FROM GUIDERATINGS WHERE ST_ID = ?");
+		PreparedStatement prep = con.prepareStatement ("SELECT SR_ID, AUFBAU, FREUNDLICHKEIT, KOMPETENZ FROM STANDRATING WHERE ST_ID = ?");
 		
 		prep.setInt(1, id);
 		
@@ -290,8 +288,13 @@ public class Database {
 		
 		while (rs.next())	{
 			newField = new StandRating();
+			newField.setSr_id(rs.getInt("SR_ID"));
+			newField.setAufbau(rs.getFloat("AUFBAU"));
+			System.out.println(newField.getAufbau());
 			newField.setFreundlichkeit(rs.getFloat("FREUNDLICHKEIT"));
+			System.out.println(newField.getFreundlichkeit());
 			newField.setKompetenz(rs.getFloat("KOMPETENZ"));
+			System.out.println(newField.getKompetenz());
 			fields.add (newField);
 		}
 		
@@ -299,8 +302,8 @@ public class Database {
 	}
 
 	public void addRatingZuStand(int id, StandRating sr) throws SQLException{
-		PreparedStatement insertion = con.prepareStatement ("INSERT INTO STANDRATING VALUES (seq_standrating_id.nextval, ?, ?, ?");
-		
+		PreparedStatement insertion = con.prepareStatement ("INSERT INTO STANDRATING VALUES (seq_standrating_id.nextval, ?, ?, ?)");
+		System.out.println(sr.toString());
 		insertion.setFloat(1, sr.getFreundlichkeit());
 		insertion.setFloat(2, sr.getKompetenz());
 		insertion.setInt(3, id);
@@ -349,7 +352,7 @@ public class Database {
 	
 	public Vector<GuideRating> getAllRatingsVonGuide(int id) throws SQLException{
 		Vector<GuideRating> fields = new Vector<GuideRating>();
-		PreparedStatement prep = con.prepareStatement ("SELECT GR_ID, FREUNDLICHKEIT, KOMPETENZ FROM GUIDERATINGS WHERE S_ID = ?");
+		PreparedStatement prep = con.prepareStatement ("SELECT GR_ID, FREUNDLICHKEIT, KOMPETENZ FROM GUIDERATING WHERE S_ID = ?");
 		
 		prep.setInt(1, id);
 		
@@ -359,6 +362,7 @@ public class Database {
 		
 		while (rs.next())	{
 			newField = new GuideRating();
+			newField.setGr_id(rs.getInt("GR_ID"));
 			newField.setFreundlichkeit(rs.getFloat("FREUNDLICHKEIT"));
 			newField.setKompetenz(rs.getFloat("KOMPETENZ"));
 			fields.add (newField);
@@ -368,7 +372,7 @@ public class Database {
 	}
 
 	public void addRatingZuGuide(int id, GuideRating gr) throws SQLException{
-		PreparedStatement insertion = con.prepareStatement ("INSERT INTO GUIDERATING VALUES (seq_guiderating_id.nextval, ?, ?, ?");
+		PreparedStatement insertion = con.prepareStatement ("INSERT INTO GUIDERATING VALUES (seq_guiderating_id.nextval, ?, ?, ?)");
 		
 		insertion.setFloat(1, gr.getFreundlichkeit());
 		insertion.setFloat(2, gr.getKompetenz());
@@ -476,12 +480,17 @@ public class Database {
 	}
 	
 	public void updateQuiz(Quiz q) throws SQLException	{
-		PreparedStatement update = con.prepareStatement ("UPDATE QUIZ SET TITLE = ? WHERE Q_ID = ?");
+		PreparedStatement prep_quiz = con.prepareStatement ("SELECT AB_ID FROM QUIZ WHERE Q_ID = ?");
+		prep_quiz.setInt(1, q.getQ_id());
+		ResultSet rs_quiz = prep_quiz.executeQuery();
 		
-		update.setString (1, q.getTitel());
-		update.setInt (2, q.getQ_id());
+		int ab_id = 0;
+		while (rs_quiz.next()){
+			ab_id = rs_quiz.getInt("AB_ID");
+		}
 		
-		update.executeQuery();
+		deleteQuiz(q.getQ_id());
+		addQuizZuAbteilung(ab_id, q);
 	}
 	
 	public Quiz getQuiz(int q_id) throws SQLException{
@@ -491,10 +500,11 @@ public class Database {
 		prep_quiz.setInt(1, q_id);
 		ResultSet rs_quiz = prep_quiz.executeQuery();
 		
-		
 		Quiz q = new Quiz();
-		q.setQ_id(rs_quiz.getInt("Q_ID"));
-		q.setTitel(rs_quiz.getString("TITEL"));
+		while (rs_quiz.next()){
+			q.setQ_id(rs_quiz.getInt("Q_ID"));
+			q.setTitel(rs_quiz.getString("TITEL"));
+		}
 		
 		//FRAGEN
 		Vector<Frage> fragen = new Vector<Frage>();

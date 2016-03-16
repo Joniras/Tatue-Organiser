@@ -32,4 +32,11 @@ public class StandRating {
 	public StandRating() {
 		super();
 	}
+	@Override
+	public String toString() {
+		return "StandRating [sr_id=" + sr_id + ", aufbau=" + aufbau
+				+ ", freundlichkeit=" + freundlichkeit + ", kompetenz="
+				+ kompetenz + "]";
+	}
+	
 }

@@ -39,24 +39,7 @@ public class ServiceQuiz {
 		  
 		  return rb.build();
 	  }
-	
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getQuizVonAbteilung(@QueryParam("ab_id") int ab_id, @Context UriInfo uriInfo) {
-		ResponseBuilder rb = null; 
-		try{
-			  Database db = new Database();
-			  rb = Response.ok().entity(db.getQuizVonAbteilung(ab_id)); 
-		  }
-		  catch(SQLException ex){
-			  ex.printStackTrace();
-			  rb = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(null);
-		  }
-		  
-		  return rb.build();
-	}
-	 
-	
+		
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addQuiz(@QueryParam("ab_id") int ab_id, @Context UriInfo uriInfo, Quiz q) {

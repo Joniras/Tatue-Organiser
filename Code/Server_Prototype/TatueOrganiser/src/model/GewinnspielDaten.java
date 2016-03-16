@@ -7,6 +7,7 @@ public class GewinnspielDaten {
 	private String nachname = null;
 	private String email = null;
 	private String telefon = null;
+	
 	public int getGd_id() {
 		return gd_id;
 	}
