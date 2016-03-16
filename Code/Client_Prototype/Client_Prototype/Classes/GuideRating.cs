@@ -3,14 +3,19 @@
     public class GuideRating
     {
         public int GR_ID { get; set; }
-        public int GR_Freundlichkeit { get; set; }
-        public int GR_Kompetenz { get; set; }
+        public float freundlichkeit { get; set; }
+        public float kompetenz { get; set; }
 
-        public GuideRating(int _ID, int _Freundlichkeit, int _Kompetenz)
+        public GuideRating()
+        {
+
+        }
+
+        public GuideRating(int _ID, float _Freundlichkeit, float _Kompetenz)
         {
             GR_ID = _ID;
-            GR_Freundlichkeit = _Freundlichkeit;
-            GR_Kompetenz = _Kompetenz;
+            freundlichkeit = _Freundlichkeit;
+            kompetenz = _Kompetenz;
         }
     }
 }

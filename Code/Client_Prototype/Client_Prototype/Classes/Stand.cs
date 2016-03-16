@@ -59,7 +59,7 @@ namespace BSD_Client
             {
                 foreach (StandRating st in standratings)
                 {
-                    avg_freundlichkeit += st.SR_Freundlichkeit;
+                    avg_freundlichkeit += st.freundlichkeit;
                     count++;
                 }
                 avg_freundlichkeit = avg_freundlichkeit / count;
@@ -81,7 +81,7 @@ namespace BSD_Client
             {
                 foreach (StandRating st in standratings)
                 {
-                    avg_kompetenz += st.SR_Kompetenz;
+                    avg_kompetenz += st.kompetenz;
                     count++;
                 }
                 avg_kompetenz = avg_kompetenz / count;
@@ -104,7 +104,7 @@ namespace BSD_Client
             {
                 foreach (StandRating st in standratings)
                 {
-                    avg_Aufbau += st.SR_Aufbau;
+                    avg_Aufbau += st.aufbau;
                     count++;
                 }
                 avg_Aufbau = avg_Aufbau / count;

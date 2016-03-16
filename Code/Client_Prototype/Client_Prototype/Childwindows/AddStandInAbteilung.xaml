@@ -1,7 +1,7 @@
 ﻿<Window x:Class="BSD_Client.AddStandInAbteilung"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Stand hinzufügen" Height="434" Width="641">
+        Title="Stand hinzufügen" Height="434" Width="641" Closed="Window_Closed">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="68*"/>

@@ -91,17 +91,14 @@ namespace BSD_Client
             this.txtRichtigeAntwort.Text = "";
             this.txtFrage.Text = "";
             toAdd.fragen.Add(tmp);
-            this.lvFragen.Items.Add(tmp);
+            this.lvFragen.ItemsSource = toAdd.fragen;
             Console.WriteLine("Fragen: " + this.toAdd.fragen.Count);
 
 
             
         }
 
-        private void btnDeleteQuiz_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
 
         private void btnDeleteFrage_Click(object sender, RoutedEventArgs e)
         {

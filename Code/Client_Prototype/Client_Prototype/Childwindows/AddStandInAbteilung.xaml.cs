@@ -36,6 +36,10 @@ namespace BSD_Client
         {
             InitializeComponent();
             abteilung = _abteilung;
+            this.MaxHeight = 434;
+            this.MaxWidth = 641;
+            this.MinHeight = 434;
+            this.MinWidth = 641;
             //TODO
             //Call draw Abteilung
             myParent = _parent;
@@ -174,6 +178,12 @@ namespace BSD_Client
         private void bw_RunWorkerCompletedStand(object sender, RunWorkerCompletedEventArgs e)
         {
             this.Close();
+            myParent.Show();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            this.Hide();
             myParent.Show();
         }
     }

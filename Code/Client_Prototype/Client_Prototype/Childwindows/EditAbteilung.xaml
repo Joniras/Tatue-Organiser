@@ -1,7 +1,7 @@
 ﻿<Window x:Class="BSD_Client.EditAbteilung"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Abteilung bearbeiten" Height="796.983" Width="905.99" Closed="Window_Closed" Activated="Window_Activated">
+        Title="Abteilung bearbeiten" Height="698.116" Width="908.008" Closed="Window_Closed" Activated="Window_Activated">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="57*"/>
@@ -9,21 +9,21 @@
             <ColumnDefinition Width="110*"/>
         </Grid.ColumnDefinitions>
         <Label x:Name="lblTitle" Content="[Name der Abteilung]" Margin="10,3,12,0" VerticalAlignment="Top" Height="37" FontSize="20" FontWeight="Bold" FontStyle="Italic" Grid.ColumnSpan="3"/>
-        <Canvas x:Name="canvasStandplan" Grid.Column="1" Margin="10,81,12,132" Background="#FFC3C3C3" Grid.ColumnSpan="2"/>
-        <Button x:Name="btnAddStand" Content="Stand hinzufügen" Background ="Green" Margin="10,0,10,190" VerticalAlignment="Bottom" Click="btnAddStand_Click" Height="27"/>
-        <ListView x:Name="listViewStaende" Margin="10,81,10,222">
+        <Canvas x:Name="canvasStandplan" Grid.Column="1" Margin="72,108,85,168" Background="#FFC3C3C3" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnAddStand" Content="Stand hinzufügen" Background ="Green" Margin="10,0,10,264" VerticalAlignment="Bottom" Click="btnAddStand_Click" Height="27"/>
+        <ListView x:Name="listViewStaende" Margin="10,81,10,306">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="btnEditStand" Content="Stand bearbeiten" Margin="10,0,10,158" VerticalAlignment="Bottom" Click="btnEditStand_Click" Height="27"/>
+        <Button x:Name="btnEditStand" Content="Stand bearbeiten" Margin="10,0,10,232" VerticalAlignment="Bottom" Click="btnEditStand_Click" Height="27"/>
         <Label x:Name="lblMessage" Content="..." Margin="10,0,10,12" Background="#fff176" Grid.ColumnSpan="3" Height="28" VerticalAlignment="Bottom"/>
-        <Button x:Name="btnAddQuiz" Content="Quiz auswählen" HorizontalAlignment="Left" Margin="10,0,0,49" Width="146" Click="btnAddQuiz_Click" Height="27" VerticalAlignment="Bottom"/>
         <Label Content="Stände" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="75" Foreground="#FF575757" Height="30"/>
         <Label Content="Abbild der Abteilung" Grid.Column="1" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="144" Foreground="#FF646464" Height="26" Grid.ColumnSpan="2"/>
-        <Button x:Name="btnDeleteStand" Content="Stand löschen" Background="Red" Margin="10,0,10,126" VerticalAlignment="Bottom" Click="btnDeleteStand_Click" Height="27"/>
+        <Button x:Name="btnDeleteStand" Content="Stand löschen" Background="Red" Margin="10,0,10,200" VerticalAlignment="Bottom" Click="btnDeleteStand_Click" Height="27"/>
+        <Button x:Name="btnStatsStand" Content="Stand Statistik" Background="Black" Margin="10,0,10,168" VerticalAlignment="Bottom" Height="27" Click="btnStatsStand_Click"/>
         <Border BorderBrush="Black" BorderThickness="1" Margin="10,0,10,112" Grid.ColumnSpan="3" Height="1" VerticalAlignment="Bottom"/>
         <Label Content="Quiz:" HorizontalAlignment="Left" Margin="17,0,0,81" Width="75" Foreground="#FF575757" Height="26" VerticalAlignment="Bottom"/>
         <Button x:Name="btnRemoveQuiz" Content="Quiz entfernen" Background="Red" Margin="0,0,12,49" Height="27" VerticalAlignment="Bottom" Click="btnRemoveQuiz_Click" Grid.Column="2" HorizontalAlignment="Right" Width="139"/>

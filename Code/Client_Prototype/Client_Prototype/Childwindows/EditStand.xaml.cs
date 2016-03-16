@@ -54,13 +54,6 @@ namespace BSD_Client
             myParent.Show();
         }
 
-        private void btnRatings_Click(object sender, RoutedEventArgs e)
-        {
-            StandRatingAdmin gra = new StandRatingAdmin(stand, this);
-            gra.Show();
-            this.Hide();
-        }
-
 
         private void bw_DoWorkEditStand(object sender, DoWorkEventArgs e)
         {

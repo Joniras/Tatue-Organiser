@@ -23,8 +23,7 @@
         <TextBox x:Name="txtFalscheAntwort1" Height="23" Margin="161,141,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBox x:Name="txtFalscheAntwort2" Height="23" Margin="161,172,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBox x:Name="txtFalscheAntwort3" Height="23" Margin="161,203,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <Button x:Name="btnAddQuiz" Content="Speichern" Background="Green" Margin="10,0,117,44" Click="btnAddQuiz_Click" Grid.Column="1" Height="32" VerticalAlignment="Bottom"/>
-        <Button x:Name="btnDeleteQuiz" Content="Abbrechen" Background="Red" Margin="0,0,10,44" Click="btnDeleteQuiz_Click" HorizontalAlignment="Right" Width="102" Grid.Column="1" Height="32" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnAddQuiz" Content="Speichern" Background="Green" Margin="10,0,10,44" Click="btnAddQuiz_Click" Grid.Column="1" Height="32" VerticalAlignment="Bottom"/>
         <Button x:Name="btnAddFrage" Content="Frage hinzufügen" Margin="161,0,214,44" VerticalAlignment="Bottom" Click="btnAddFrage_Click"/>
         <Button x:Name="btnDeleteFrage" Content="Frage löschen" Margin="0,0,10,44" VerticalAlignment="Bottom" Click="btnDeleteFrage_Click" HorizontalAlignment="Right" Width="199" Height="32"/>
         <Label x:Name="lblMessage" Content="..." Margin="10,0,10,10" Background="#fff176" Grid.ColumnSpan="2" Height="22" VerticalAlignment="Bottom"/>

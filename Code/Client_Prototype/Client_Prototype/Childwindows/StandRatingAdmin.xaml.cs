@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -25,6 +26,7 @@ namespace BSD_Client
         Stand currentStand;
         Window myParent;
         private BackgroundWorker bw_resetRating = new BackgroundWorker();
+        private BackgroundWorker bw_getRatings = new BackgroundWorker();
 
         public StandRatingAdmin(Stand _currentS, Window _parent)
         {
@@ -95,6 +97,55 @@ namespace BSD_Client
             {
                 MessageBox.Show("Ratings konnten nicht gelöscht werden\nStatus:" + ((HttpStatusCode)e.Result).ToString());
             }
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            getRatings();
+            
+        }
+
+        private void getRatings()
+        {
+            bw_getRatings.WorkerReportsProgress = false;
+            bw_getRatings.WorkerSupportsCancellation = false;
+            bw_getRatings.DoWork += new DoWorkEventHandler(bw_DoWorkRatings);
+            bw_getRatings.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompletedRatings);
+            bw_getRatings.RunWorkerAsync();
+        }
+
+        private void bw_DoWorkRatings(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+
+            HttpWebRequest req = WebRequest.Create(new Uri(MainWindow.URL + "/api/staende/" + currentStand.st_id + "/ratings")) as HttpWebRequest;
+            req.Method = "GET";
+
+            req.ContentType = "application/json";
+            req.Accept = "application/json";
+            using (HttpWebResponse resp = req.GetResponse() as HttpWebResponse)
+            {
+                StreamReader reader = new StreamReader(resp.GetResponseStream());
+                e.Result = reader.ReadToEnd();
+            }
+        }
+
+        private void bw_RunWorkerCompletedRatings(object sender, RunWorkerCompletedEventArgs e)
+        {
+            JavaScriptSerializer json_serializer = new JavaScriptSerializer();
+            StandRating[] staendeR = (StandRating[])json_serializer.Deserialize<StandRating[]>((String)e.Result); 
+            List<StandRating> content = new List<StandRating>(staendeR);
+            currentStand.standratings = content;
+            Console.WriteLine("Staende: " + content.ToString());
+
+            gridRatings.ItemsSource = content;
+            lblMessage.Content = content.Count + " Ratings Loaded";
+
+        }
+
+        private void btnCalc_Click(object sender, RoutedEventArgs e)
+        {
+            calcAvgRatings();
         }
     }
 }

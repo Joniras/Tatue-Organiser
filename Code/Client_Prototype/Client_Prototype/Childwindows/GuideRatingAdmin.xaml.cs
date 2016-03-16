@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -21,21 +25,21 @@ namespace BSD_Client
     {
         Window myParent;
         Schueler currentSchueler;
+        private BackgroundWorker bw_getRatings = new BackgroundWorker();
         public GuideRatingAdmin(Schueler _currentS, Window _parent)
         {
             InitializeComponent();
             currentSchueler = _currentS;
             myParent = _parent;
-            fillGridRatings();
-            calcAvgRatings();
+            
             gridRatings.IsReadOnly = true;
 
         }
 
         private void calcAvgRatings()
         {
-            lblFreundlichkeit.Content = "Freundlichkeit: " + currentSchueler.getFreundlichkeit();
-            lblKompetenz.Content = "Kompetenz: " + currentSchueler.getKompetenz();
+            lblavgFreundlichkeit.Content = currentSchueler.getFreundlichkeit();
+            lblavgKompetenz.Content = currentSchueler.getKompetenz();
         }
 
         private void fillGridRatings()
@@ -58,6 +62,54 @@ namespace BSD_Client
         {
             this.Close();
             myParent.Show();
+        }
+
+        private void bw_DoWorkRatings(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+
+            HttpWebRequest req = WebRequest.Create(new Uri(MainWindow.URL + "/api/guides/" + currentSchueler.s_id + "/ratings")) as HttpWebRequest;
+            req.Method = "GET";
+
+            req.ContentType = "application/json";
+            req.Accept = "application/json";
+            using (HttpWebResponse resp = req.GetResponse() as HttpWebResponse)
+            {
+                StreamReader reader = new StreamReader(resp.GetResponseStream());
+                e.Result = reader.ReadToEnd();
+            }
+        }
+
+        private void bw_RunWorkerCompletedRatings(object sender, RunWorkerCompletedEventArgs e)
+        {
+            JavaScriptSerializer json_serializer = new JavaScriptSerializer();
+            GuideRating[] guideR = (GuideRating[])json_serializer.Deserialize<GuideRating[]>((String)e.Result);
+            List<GuideRating> content = new List<GuideRating>(guideR);
+            currentSchueler.guiderating = content;
+            Console.WriteLine("Staende: " + content.ToString());
+
+            gridRatings.ItemsSource = content;
+            lblMessage.Content = content.Count + " Ratings Loaded";
+
+        }
+
+        private void btnCalc_Click(object sender, RoutedEventArgs e)
+        {
+            calcAvgRatings();
+        }
+
+        private void getRatings()
+        {
+            bw_getRatings.WorkerReportsProgress = false;
+            bw_getRatings.WorkerSupportsCancellation = false;
+            bw_getRatings.DoWork += new DoWorkEventHandler(bw_DoWorkRatings);
+            bw_getRatings.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompletedRatings);
+            bw_getRatings.RunWorkerAsync();
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            getRatings();
         }
     }
 }

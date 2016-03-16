@@ -16,6 +16,7 @@ using System.ComponentModel;
 using System.Net;
 using System.IO;
 using System.Web.Script.Serialization;
+using BSD_Client.Classes;
 
 namespace BSD_Client
 {
@@ -30,22 +31,26 @@ namespace BSD_Client
 
         private BackgroundWorker bw_Staende = new BackgroundWorker();
         private BackgroundWorker bw_DeleteStand = new BackgroundWorker();
+        public BackgroundWorker bw_getQuiz = new BackgroundWorker();
+        public BackgroundWorker bw_deleteQuiz = new BackgroundWorker();
 
         public EditAbteilung(Abteilung _ab, Window _parent)
         {
             InitializeComponent();
+            this.MinHeight = 698;
+            this.MinWidth = 908;
             abteilung = _ab;
             myParent = _parent;
             lblTitle.Content = abteilung.ab_name + " bearbeiten";
-            if (_ab.ab_quiz != null && _ab.ab_quiz.titel != "" && _ab.ab_quiz.titel != null)
-            {
-                lblQuiz.Content = _ab.ab_quiz.titel;
-                btnAddQuiz.Visibility = System.Windows.Visibility.Hidden;
-            }
-            else
-            {
-                btnEditQuiz.Visibility = System.Windows.Visibility.Visible;
-            }
+            //if (_ab.ab_quiz != null && _ab.ab_quiz.titel != "" && _ab.ab_quiz.titel != null)
+            //{
+            //    lblQuiz.Content = _ab.ab_quiz.titel;
+            //    btnAddQuiz.Visibility = System.Windows.Visibility.Hidden;
+            //}
+            //else
+            //{
+            //    btnEditQuiz.Visibility = System.Windows.Visibility.Visible;
+            //}
 
             //drawTestLine();
             //drawAbteilung();
@@ -189,7 +194,12 @@ namespace BSD_Client
 
         private void btnRemoveQuiz_Click(object sender, RoutedEventArgs e)
         {
-
+            bw_deleteQuiz.DoWork += new DoWorkEventHandler(bw_DoWorkDeleteQuiz);
+            bw_deleteQuiz.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompletedDeleteQuiz);
+            bw_deleteQuiz.RunWorkerAsync();
+            activateQuiz();
+            btnEditQuiz.Visibility = System.Windows.Visibility.Visible;
+            btnRemoveQuiz.Visibility = System.Windows.Visibility.Hidden;
         }
 
         private void btnEditQuiz_Click(object sender, RoutedEventArgs e)
@@ -223,22 +233,120 @@ namespace BSD_Client
             if ((HttpStatusCode)e.Result == HttpStatusCode.OK)
             {
                 lblMessage.Content = "Stand gelöscht";
-                listViewStaende.ItemsSource = null;
-                canvasStandplan.Children.Clear();
-                getStaende();
+                activate();
             }
             else
             {
-                lblMessage.Content = "Stand nicht gelöscht (Status: " + (HttpStatusCode)e.Result+")";
+                lblMessage.Content = "Stand nicht gelöscht (Status: " + (HttpStatusCode)e.Result + ")";
+            }
+        }
+
+        private void bw_DoWorkDeleteQuiz(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+
+            HttpWebRequest req = WebRequest.Create(new Uri(MainWindow.URL + "/api/quizzes/" + abteilung.ab_quiz.q_id)) as HttpWebRequest;
+            req.Method = "DELETE";
+
+            req.ContentType = "application/json";
+            req.Accept = "application/json";
+            using (HttpWebResponse resp = req.GetResponse() as HttpWebResponse)
+            {
+                StreamReader reader = new StreamReader(resp.GetResponseStream());
+                e.Result = resp.StatusCode;
+            }
+
+        }
+
+        private void bw_RunWorkerCompletedDeleteQuiz(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if ((HttpStatusCode)e.Result == HttpStatusCode.OK)
+            {
+                lblMessage.Content = "Quiz gelöscht";
+                lblQuiz.Content = "...";
+                activateQuiz();
+            }
+            else
+            {
+                lblMessage.Content = "Quiz nicht gelöscht (Status: " + (HttpStatusCode)e.Result + ")";
             }
         }
 
         private void Window_Activated(object sender, EventArgs e)
         {
+            activate();
+            activateQuiz();
+        }
+
+        private void btnStatsStand_Click(object sender, RoutedEventArgs e)
+        {
+            if(((Stand)listViewStaende.SelectedItem) != null)
+            {
+                StandRatingAdmin gra = new StandRatingAdmin(((Stand)listViewStaende.SelectedItem), this);
+                gra.Show();
+                this.Hide();
+            }
+            else
+            {
+                lblMessage.Content = "Bitte Stand Auswählen";
+            }
+
+        }
+
+        private void activate()
+        {
             listViewStaende.ItemsSource = null;
-            
+
             canvasStandplan.Children.Clear();
             getStaende();
+           
+        }
+
+        private void activateQuiz()
+        {
+            bw_getQuiz.DoWork += new DoWorkEventHandler(bw_DoWorkQuiz);
+            bw_getQuiz.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompletedQuiz);
+            bw_getQuiz.RunWorkerAsync();
+          
+        }
+
+        private void bw_DoWorkQuiz(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+
+            HttpWebRequest req = WebRequest.Create(new Uri(MainWindow.URL + "/api/abteilungen/" + abteilung.ab_id + "/quiz")) as HttpWebRequest;
+            req.Method = "GET";
+
+            req.ContentType = "application/json";
+            req.Accept = "application/json";
+            using (HttpWebResponse resp = req.GetResponse() as HttpWebResponse)
+            {
+                StreamReader reader = new StreamReader(resp.GetResponseStream());
+                e.Result = reader.ReadToEnd();
+            }
+        }
+
+        private void bw_RunWorkerCompletedQuiz(object sender, RunWorkerCompletedEventArgs e)
+        {
+            JavaScriptSerializer json_serializer = new JavaScriptSerializer();
+            Quiz quiz = (Quiz)json_serializer.Deserialize<Quiz>((String)e.Result);
+            Console.WriteLine("CHECK FOR QUIZFU");
+            if (quiz != null)
+            {
+                abteilung.ab_quiz = quiz;
+                Console.WriteLine("Quiz: " + abteilung.ab_quiz.ToString());
+                btnEditQuiz.Visibility = System.Windows.Visibility.Hidden;
+                btnRemoveQuiz.Visibility = System.Windows.Visibility.Visible;
+
+                lblQuiz.Content = abteilung.ab_quiz.titel;
+            }
+            else
+            {
+                lblQuiz.Content = "...";
+                btnEditQuiz.Visibility = System.Windows.Visibility.Visible;
+                btnRemoveQuiz.Visibility = System.Windows.Visibility.Hidden;
+            }
+
         }
     }
 }

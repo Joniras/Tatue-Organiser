@@ -55,7 +55,7 @@ namespace BSD_Client
             {
                 foreach (GuideRating gr in guiderating)
                 {
-                    avg_freundlichkeit += gr.GR_Freundlichkeit;
+                    avg_freundlichkeit += gr.freundlichkeit;
                     count++;
                 }
                 avg_freundlichkeit = avg_freundlichkeit / count;
@@ -77,7 +77,7 @@ namespace BSD_Client
             {
                 foreach (GuideRating gr in guiderating)
                 {
-                    avg_kompetenz += gr.GR_Kompetenz;
+                    avg_kompetenz += gr.kompetenz;
                     count++;
                 }
                 avg_kompetenz = avg_kompetenz / count;

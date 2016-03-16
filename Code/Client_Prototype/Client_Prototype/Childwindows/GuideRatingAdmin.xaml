@@ -5,12 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BSD_Client"
         mc:Ignorable="d"
-        Title="Guide Ratings" Height="317.176" Width="340.336" Closed="Window_Closed">
+        Title="Guide Ratings"  Height="668.207" Width="968.379" Closed="Window_Closed" Activated="Window_Activated">
     <Grid>
-        <DataGrid x:Name="gridRatings" Margin="10,10,10,143"/>
-        <Label x:Name="lblFreundlichkeit" Content="Freundlichkeit" Margin="10,0,10,112" VerticalAlignment="Bottom"/>
-        <Label x:Name="lblKompetenz" Content="Kompetenz" Margin="10,0,10,81" VerticalAlignment="Bottom"/>
-        <Button x:Name="btnResetRatings" Content="Zurücksetzen" Margin="10,0,10,44" VerticalAlignment="Bottom" Background="Red" Click="btnResetRatings_Click"/>
-        <Label x:Name="lblMessage" Content="..." Margin="10,0,10,11" Background="#fff176" Height="28" VerticalAlignment="Bottom"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="763*"/>
+            <ColumnDefinition Width="198*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="gridRatings" Margin="10,10,10,251" Grid.ColumnSpan="2" Background="White"/>
+        <Label x:Name="lblFreundlichkeit" Content="Freundlichkeit" Margin="10,0,10,209" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblKompetenz" Content="Kompetenz" Margin="10,0,10,178" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnResetRatings" Content="Zurücksetzen" Margin="10,0,10,115" VerticalAlignment="Bottom" Background="Red" Click="btnResetRatings_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnCalc" Content="Berechnen" Margin="10,0,10,63" VerticalAlignment="Bottom" Background="Green" Click="btnCalc_Click" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblMessage" Content="..." Margin="10,0,10,11" Background="#fff176" Height="28" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblavgFreundlichkeit" Content="0" Margin="158,0,24,207" VerticalAlignment="Bottom" BorderThickness="1" BorderBrush="#FFD6D6D6" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblavgKompetenz" Content="0" Margin="158,0,23,177" VerticalAlignment="Bottom" BorderBrush="#FFC9C9C9" BorderThickness="1" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>
