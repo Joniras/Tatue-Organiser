@@ -17,6 +17,15 @@ namespace BSD_Client
         public List<Schueler> standschueler = new List<Schueler>();
 
 
+        public Stand(int _ID, String _Name, String _Info, Rechteck _Shape, List<Schueler> _standschueler)
+        {
+            st_id = _ID;
+            stname = _Name;
+            info = _Info;
+            shape = _Shape;
+            standschueler = _standschueler;
+        }
+
         public Stand(int _ID, String _Name, String _Info, Rechteck _Shape)
         {
             st_id = _ID;
@@ -37,7 +46,7 @@ namespace BSD_Client
 
         public override String ToString()
         {
-            return  this.stname + " " + shape; 
+            return  this.stname; 
         }
 
         public void resetRatings()

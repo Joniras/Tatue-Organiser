@@ -31,14 +31,14 @@ namespace BSD_Client
         private BackgroundWorker bw_Abteilungen = new BackgroundWorker();
         private BackgroundWorker bw_Schueler = new BackgroundWorker();
         private BackgroundWorker bw_deleteSchueler = new BackgroundWorker();
-        private LoadingWindow loadingWindow;
+        //private LoadingWindow loadingWindow;
 
 
         public MainWindow()
         {
             
             InitializeComponent();
-            loadingWindow = new LoadingWindow();
+           // loadingWindow = new LoadingWindow();
 
         }
 
@@ -76,6 +76,7 @@ namespace BSD_Client
             if ((Abteilung)gridAbteilung.SelectedItem != null)
             {
                 Abteilung ab = (Abteilung)gridAbteilung.SelectedItem;
+                Console.WriteLine("-----------------------------------------------------------------" + ab.ToString());
                 EditAbteilung ea = new EditAbteilung(ab, this);
                 lblMessage.Content = "Edit Abteilung";
                 ea.Show();
@@ -149,7 +150,7 @@ namespace BSD_Client
 
         private void bw_DoWorkSchueler(object sender, DoWorkEventArgs e)
         {
-            loadingWindow.Show();
+            //loadingWindow.Show();
             BackgroundWorker worker = sender as BackgroundWorker;
 
             HttpWebRequest req = WebRequest.Create(new Uri(MainWindow.URL + "/api/schueler")) as HttpWebRequest;
@@ -173,7 +174,7 @@ namespace BSD_Client
 
             this.Cursor = Cursors.AppStarting;
             this.lblMessage.Content = "Datensätze geladen";
-            loadingWindow.Hide();
+            //loadingWindow.Hide();
             
 
 

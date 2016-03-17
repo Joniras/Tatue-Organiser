@@ -27,7 +27,7 @@
                 <StackPanel>
                     <DataGrid x:Name="gridGuide" IsReadOnly="True"/>
                     <Button x:Name="btnAddGuide" Content="Schueler hinzufügen" Click="btnAddSchueler_Click"/>
-                    <Button x:Name="btnGettGuideStats" Content="Statistik anzeigen" Click="btnGettGuideStats_Click" Background="Black"/>
+                    <Button x:Name="btnGettGuideStats" Content="Statistik anzeigen" Click="btnGettGuideStats_Click" Background="Black" Margin="0,10,0,0"/>
                 </StackPanel>
             </TabItem>
 

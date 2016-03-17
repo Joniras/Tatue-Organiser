@@ -36,12 +36,6 @@ namespace BSD_Client
             txtNachname.Text = schueler.nachname;
             txtKlasse.Text = schueler.klasse;
             checkBoxIsGuide.IsChecked = schueler.guide;
-
-
-            if (!schueler.guide)
-            {
-                btnRatings.IsEnabled = false;
-            }
         }
 
     
@@ -69,14 +63,6 @@ namespace BSD_Client
         {
             this.Close();
             myParent.Show();
-        }
-
-        private void btnRatings_Click(object sender, RoutedEventArgs e)
-        {
-            //new Gui for Ratings
-            GuideRatingAdmin gra = new GuideRatingAdmin(schueler, this);
-            gra.Show();
-            this.Hide();
         }
 
         private void bw_DoWorkAddSchueler(object sender, DoWorkEventArgs e)

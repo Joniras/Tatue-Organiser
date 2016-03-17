@@ -26,26 +26,29 @@ namespace BSD_Client
     {
         private Point startPoint;
         private BackgroundWorker bw_addStand = new BackgroundWorker();
+        private BackgroundWorker bw_addSchueler = new BackgroundWorker();
         private Rectangle rect;
         Abteilung abteilung;
         private int rect_index = -1;
         Window myParent;
         private Rechteck rechteck;
+        private List<Schueler> listSchueler = new List<Schueler>();
 
         public AddStandInAbteilung(Window _parent, Abteilung _abteilung)
         {
             InitializeComponent();
             abteilung = _abteilung;
-            this.MaxHeight = 434;
-            this.MaxWidth = 641;
-            this.MinHeight = 434;
-            this.MinWidth = 641;
+            //this.MaxHeight = 434;
+            //this.MaxWidth = 641;
+            //this.MinHeight = 434;
+            //this.MinWidth = 641;
             //TODO
             //Call draw Abteilung
             myParent = _parent;
             btnResetCanvas.IsEnabled = false;
             Console.WriteLine("-------" + abteilung.ToString());
             drawAbteilung();
+            addSchueler();
 
 
         }
@@ -56,6 +59,44 @@ namespace BSD_Client
             {
                 Paint_Stand(item);
             }
+        }
+
+        private void addSchueler()
+        {
+            bw_addSchueler.DoWork += new DoWorkEventHandler(bw_DoWorkSchueler);
+            bw_addSchueler.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompletedSchueler);
+            bw_addSchueler.RunWorkerAsync();
+        }
+
+        private void bw_DoWorkSchueler(object sender, DoWorkEventArgs e)
+        {
+            //loadingWindow.Show();
+            BackgroundWorker worker = sender as BackgroundWorker;
+
+            HttpWebRequest req = WebRequest.Create(new Uri(MainWindow.URL + "/api/schueler/ohnestand")) as HttpWebRequest;
+            req.Method = "GET";
+            req.ContentType = "application/json";
+            req.Accept = "application/json";
+            using (HttpWebResponse resp = req.GetResponse() as HttpWebResponse)
+            {
+                StreamReader reader = new StreamReader(resp.GetResponseStream());
+                e.Result = reader.ReadToEnd();
+            }
+
+        }
+
+        private void bw_RunWorkerCompletedSchueler(object sender, RunWorkerCompletedEventArgs e)
+        {
+            JavaScriptSerializer json_serializer = new JavaScriptSerializer();
+            Schueler[] schueler = (Schueler[])json_serializer.Deserialize<Schueler[]>((String)e.Result);
+            List<Schueler> content = new List<Schueler>(schueler);
+            cmbSchueler.ItemsSource = schueler;
+
+            this.Cursor = Cursors.AppStarting;
+            //loadingWindow.Hide();
+
+
+
         }
 
         private void Paint_Stand(Stand toPaint)
@@ -135,7 +176,7 @@ namespace BSD_Client
         private void btnAddStand_Click(object sender, RoutedEventArgs e)
         {
 
-            Stand toAdd = new Stand(1, txtName.Text, txtInfo.Text, rechteck);
+            Stand toAdd = new Stand(1, txtName.Text, txtInfo.Text, rechteck, listSchueler);
             bw_addStand.DoWork += new DoWorkEventHandler(bw_DoWorkAddSStand);
             bw_addStand.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompletedStand);
             bw_addStand.RunWorkerAsync(toAdd);
@@ -185,6 +226,17 @@ namespace BSD_Client
         {
             this.Hide();
             myParent.Show();
+        }
+
+        private void btnAddSchueler_Click(object sender, RoutedEventArgs e)
+        {
+            if(cmbSchueler.SelectedItem != null)
+            {
+                lvSchueler.ItemsSource = null;
+                listSchueler.Add((Schueler)cmbSchueler.SelectedItem);
+                lvSchueler.ItemsSource = listSchueler;
+                
+            }
         }
     }
 }

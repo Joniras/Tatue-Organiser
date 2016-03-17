@@ -73,6 +73,11 @@ namespace BSD_Client
             {
                 MessageBox.Show("Quiz konnte nicht gespeichert werden\nStatus:" + ((HttpStatusCode)e.Result).ToString());
             }
+            else
+            {
+                this.Close();
+                myParent.Show();
+            }
         }
 
 

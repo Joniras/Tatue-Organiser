@@ -40,6 +40,8 @@ namespace BSD_Client
             this.MinHeight = 698;
             this.MinWidth = 908;
             abteilung = _ab;
+            Console.WriteLine(abteilung.ToString());
+            Console.WriteLine(_ab.ToString());
             myParent = _parent;
             lblTitle.Content = abteilung.ab_name + " bearbeiten";
             //if (_ab.ab_quiz != null && _ab.ab_quiz.titel != "" && _ab.ab_quiz.titel != null)
@@ -130,7 +132,6 @@ namespace BSD_Client
         private void bw_DoWorkStaende(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
-
             HttpWebRequest req = WebRequest.Create(new Uri(MainWindow.URL + "/api/abteilungen/" + abteilung.ab_id + "/staende")) as HttpWebRequest;
             req.Method = "GET";
 
@@ -154,7 +155,7 @@ namespace BSD_Client
 
             drawAbteilung();
             listViewStaende.ItemsSource = staende;
-            
+            bw_Staende.Dispose();
         }
 
         private void btnEditStand_Click(object sender, RoutedEventArgs e)
@@ -198,8 +199,7 @@ namespace BSD_Client
             bw_deleteQuiz.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompletedDeleteQuiz);
             bw_deleteQuiz.RunWorkerAsync();
             activateQuiz();
-            btnEditQuiz.Visibility = System.Windows.Visibility.Visible;
-            btnRemoveQuiz.Visibility = System.Windows.Visibility.Hidden;
+
         }
 
         private void btnEditQuiz_Click(object sender, RoutedEventArgs e)
@@ -239,6 +239,7 @@ namespace BSD_Client
             {
                 lblMessage.Content = "Stand nicht gelöscht (Status: " + (HttpStatusCode)e.Result + ")";
             }
+            bw_DeleteStand.Dispose();
         }
 
         private void bw_DoWorkDeleteQuiz(object sender, DoWorkEventArgs e)
@@ -264,16 +265,19 @@ namespace BSD_Client
             {
                 lblMessage.Content = "Quiz gelöscht";
                 lblQuiz.Content = "...";
-                activateQuiz();
+                
             }
             else
             {
                 lblMessage.Content = "Quiz nicht gelöscht (Status: " + (HttpStatusCode)e.Result + ")";
             }
+            bw_deleteQuiz.Dispose();
         }
 
         private void Window_Activated(object sender, EventArgs e)
         {
+            btnEditQuiz.Visibility = System.Windows.Visibility.Hidden;
+            btnRemoveQuiz.Visibility = System.Windows.Visibility.Hidden;
             activate();
             activateQuiz();
         }
@@ -304,6 +308,8 @@ namespace BSD_Client
 
         private void activateQuiz()
         {
+            bw_Staende.WorkerReportsProgress = false;
+            bw_Staende.WorkerSupportsCancellation = false;
             bw_getQuiz.DoWork += new DoWorkEventHandler(bw_DoWorkQuiz);
             bw_getQuiz.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompletedQuiz);
             bw_getQuiz.RunWorkerAsync();
@@ -313,7 +319,7 @@ namespace BSD_Client
         private void bw_DoWorkQuiz(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
-
+            Console.WriteLine("-----------------------------------" + abteilung.ab_id);
             HttpWebRequest req = WebRequest.Create(new Uri(MainWindow.URL + "/api/abteilungen/" + abteilung.ab_id + "/quiz")) as HttpWebRequest;
             req.Method = "GET";
 
@@ -338,6 +344,7 @@ namespace BSD_Client
                 btnEditQuiz.Visibility = System.Windows.Visibility.Hidden;
                 btnRemoveQuiz.Visibility = System.Windows.Visibility.Visible;
 
+
                 lblQuiz.Content = abteilung.ab_quiz.titel;
             }
             else
@@ -345,7 +352,9 @@ namespace BSD_Client
                 lblQuiz.Content = "...";
                 btnEditQuiz.Visibility = System.Windows.Visibility.Visible;
                 btnRemoveQuiz.Visibility = System.Windows.Visibility.Hidden;
+
             }
+            bw_getQuiz.Dispose();
 
         }
     }

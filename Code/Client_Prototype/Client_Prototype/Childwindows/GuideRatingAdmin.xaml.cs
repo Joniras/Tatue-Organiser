@@ -90,12 +90,16 @@ namespace BSD_Client
 
             gridRatings.ItemsSource = content;
             lblMessage.Content = content.Count + " Ratings Loaded";
+            if (gridRatings.Items.Count == 0)
+            {
+                lblMessage.Content = "Dieser Guide hat keine Ratings";
+                btnResetRatings.IsEnabled = false;
+            }
+            else
+            {
+                calcAvgRatings();
+            }
 
-        }
-
-        private void btnCalc_Click(object sender, RoutedEventArgs e)
-        {
-            calcAvgRatings();
         }
 
         private void getRatings()
@@ -110,6 +114,7 @@ namespace BSD_Client
         private void Window_Activated(object sender, EventArgs e)
         {
             getRatings();
+  
         }
     }
 }

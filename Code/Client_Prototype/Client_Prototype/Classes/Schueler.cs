@@ -38,7 +38,7 @@ namespace BSD_Client
 
         public override String ToString()
         {
-            return this.nachname + " " + this.vorname + ", " + this.klasse+", isGuide: "+this.guide;
+            return this.nachname + " " + this.vorname;
         }
 
         public void resetRatings()

@@ -35,6 +35,7 @@ namespace BSD_Client
             myParent = _parent;
             txtName.Text = stand.stname;
             txtInfo.Text = stand.info;
+            listViewSchueler.ItemsSource = stand.standschueler;
             getSchuler();
         }
 
@@ -111,7 +112,7 @@ namespace BSD_Client
         {
             BackgroundWorker worker = sender as BackgroundWorker;
 
-            HttpWebRequest req = WebRequest.Create(new Uri(MainWindow.URL + "/api/schueler/")) as HttpWebRequest;
+            HttpWebRequest req = WebRequest.Create(new Uri(MainWindow.URL + "/api/schueler/ohnestand")) as HttpWebRequest;
             req.Method = "GET";
 
             req.ContentType = "application/json";
@@ -132,13 +133,19 @@ namespace BSD_Client
 
             Console.WriteLine(content.ToString());
 
-            foreach (Schueler s in schueler)
-            {
-                Console.WriteLine(s.ToString());
-                cmbSchueler.Items.Add(s);
-            }
+            cmbSchueler.ItemsSource = content;
+            
 
         }
 
+        private void btnAddSchueler_Click(object sender, RoutedEventArgs e)
+        {
+            if(cmbSchueler.SelectedItem != null)
+            {
+                listViewSchueler.ItemsSource = null;
+                stand.standschueler.Add((Schueler)cmbSchueler.SelectedItem);
+                listViewSchueler.ItemsSource = stand.standschueler;
+            }
+        }
     }
 }
