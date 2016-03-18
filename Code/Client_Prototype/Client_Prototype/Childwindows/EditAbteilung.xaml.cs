@@ -156,6 +156,18 @@ namespace BSD_Client
             drawAbteilung();
             listViewStaende.ItemsSource = staende;
             bw_Staende.Dispose();
+            if(listViewStaende.Items.Count == 0)
+            {
+                btnEditStand.IsEnabled = false;
+                btnDeleteStand.IsEnabled = false;
+                btnStatsStand.IsEnabled = false;
+            }
+            else
+            {
+                btnEditStand.IsEnabled = true;
+                btnDeleteStand.IsEnabled = true;
+                btnStatsStand.IsEnabled = true;
+            }
         }
 
         private void btnEditStand_Click(object sender, RoutedEventArgs e)
@@ -188,9 +200,17 @@ namespace BSD_Client
 
         private void btnDeleteStand_Click(object sender, RoutedEventArgs e)
         {
-            bw_DeleteStand.DoWork += new DoWorkEventHandler(bw_DoWorkDeleteStand);
-            bw_DeleteStand.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompletedDeleteStand);
-            bw_DeleteStand.RunWorkerAsync(((Stand)listViewStaende.SelectedItem).st_id);
+            if (listViewStaende.SelectedItem != null)
+            {
+                bw_DeleteStand.DoWork += new DoWorkEventHandler(bw_DoWorkDeleteStand);
+                bw_DeleteStand.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompletedDeleteStand);
+                bw_DeleteStand.RunWorkerAsync(((Stand)listViewStaende.SelectedItem).st_id);
+            }
+            else
+            {
+                lblMessage.Content = "Stand auswählen";
+            }
+
         }
 
         private void btnRemoveQuiz_Click(object sender, RoutedEventArgs e)

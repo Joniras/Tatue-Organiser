@@ -146,6 +146,24 @@ namespace BSD_Client
                 stand.standschueler.Add((Schueler)cmbSchueler.SelectedItem);
                 listViewSchueler.ItemsSource = stand.standschueler;
             }
+            else
+            {
+                lblMessage.Content = "Bitte Schüler auswählen";
+            }
+        }
+
+        private void btnDeleteSchueler_Click(object sender, RoutedEventArgs e)
+        {
+            if (listViewSchueler.SelectedItem != null)
+            {
+                listViewSchueler.ItemsSource = null;
+                stand.standschueler.Remove((Schueler)listViewSchueler.SelectedItem);
+                listViewSchueler.ItemsSource = stand.standschueler;
+            }
+            else
+            {
+                lblMessage.Content = "Bitte Schüler auswählen";
+            }
         }
     }
 }

@@ -18,7 +18,7 @@
         <Button x:Name="btnSave" Content="Speichern" Background="Green" Margin="10,0,149,41" Click="btnSave_Click" Height="28" RenderTransformOrigin="4.413,1.65" Grid.Column="1" VerticalAlignment="Bottom"/>
         <Label x:Name="lblMessage" Content="..." Margin="10,0,10,10" Background="#fff176" Grid.ColumnSpan="2" Height="26" VerticalAlignment="Bottom"/>
         <ComboBox x:Name="cmbSchueler" Margin="10,11,10,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <ListView x:Name="listViewSchueler" Margin="10,98,10,78" Grid.Column="1">
+        <ListView x:Name="listViewSchueler" Margin="10,122,10,78" Grid.Column="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
@@ -26,6 +26,7 @@
             </ListView.View>
         </ListView>
         <Button x:Name="btnAddSchueler" Content="Schüler Hinzufügen" Grid.Column="1" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" Width="173" Click="btnAddSchueler_Click"/>
+        <Button x:Name="btnDeleteSchueler" Content="Schüler entfernen" Grid.Column="1" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top" Width="173" RenderTransformOrigin="0.187,-0.094" Click="btnDeleteSchueler_Click"/>
 
     </Grid>
 </Window>

@@ -140,6 +140,16 @@ namespace BSD_Client
 
             gridRatings.ItemsSource = content;
             lblMessage.Content = content.Count + " Ratings Loaded";
+            if(gridRatings.Items.Count != 0)
+            {
+                calcAvgRatings();
+            }
+            else
+            {
+                btnResetRatings.IsEnabled = false;
+                lblMessage.Content = "Dieser Stand hat keine Ratings";
+            }
+            
 
         }
 

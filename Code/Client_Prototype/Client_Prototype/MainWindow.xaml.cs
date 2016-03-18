@@ -31,14 +31,12 @@ namespace BSD_Client
         private BackgroundWorker bw_Abteilungen = new BackgroundWorker();
         private BackgroundWorker bw_Schueler = new BackgroundWorker();
         private BackgroundWorker bw_deleteSchueler = new BackgroundWorker();
-        //private LoadingWindow loadingWindow;
 
 
         public MainWindow()
         {
             
             InitializeComponent();
-           // loadingWindow = new LoadingWindow();
 
         }
 
@@ -150,7 +148,6 @@ namespace BSD_Client
 
         private void bw_DoWorkSchueler(object sender, DoWorkEventArgs e)
         {
-            //loadingWindow.Show();
             BackgroundWorker worker = sender as BackgroundWorker;
 
             HttpWebRequest req = WebRequest.Create(new Uri(MainWindow.URL + "/api/schueler")) as HttpWebRequest;
@@ -174,7 +171,6 @@ namespace BSD_Client
 
             this.Cursor = Cursors.AppStarting;
             this.lblMessage.Content = "Datensätze geladen";
-            //loadingWindow.Hide();
             
 
 

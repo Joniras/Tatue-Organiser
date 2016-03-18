@@ -28,7 +28,6 @@ namespace BSD_Client
         Abteilung abteilung;
         public BackgroundWorker bw_addQuiz = new BackgroundWorker();
         Quiz toAdd;
-        private string Method;
 
         public AddQuiz(Window _parent, Abteilung _abteilung, Quiz _quiz)
         {
@@ -40,12 +39,11 @@ namespace BSD_Client
                 toAdd = _quiz;
                 this.lvFragen.ItemsSource = _quiz.fragen;
                 this.txtTitel.Text = _quiz.titel;
-                this.Method = "PUT";
+
             }
             else
             {
                 toAdd = new Quiz();
-                this.Method = "POST";
             }
         }
 
@@ -119,7 +117,7 @@ namespace BSD_Client
             BackgroundWorker worker = sender as BackgroundWorker;
 
             HttpWebRequest req = WebRequest.Create(new Uri(MainWindow.URL + "/api/abteilungen/" + abteilung.ab_id+"/quiz")) as HttpWebRequest;
-            req.Method = this.Method;
+            req.Method = "POST";
 
             req.ContentType = "application/json";
             req.Accept = "application/json";

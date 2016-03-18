@@ -11,7 +11,6 @@
         <Label x:Name="lblFreundlichkeit" Content="Freundlichkeit" Margin="10,0,226,198" Height="26" VerticalAlignment="Bottom"/>
         <Label x:Name="lblKompetenz" Content="Kompetenz" Margin="10,0,226,165" VerticalAlignment="Bottom"/>
         <Button x:Name="btnResetRatings" Content="Zurücksetzen" Margin="10,0,10,95" VerticalAlignment="Bottom" Background="Red" Click="btnResetRatings_Click"/>
-        <Button x:Name="btnCalc" Content="Berechnen" Margin="10,0,10,56" VerticalAlignment="Bottom" Background="Green" Click="btnCalc_Click"/>
         <Label x:Name="lblAufbau" Content="Aufbau" Margin="10,0,226,133" VerticalAlignment="Bottom"/>
         <Label Content="Durchschnittswerte:" Margin="10,0,0,229" Height="26" VerticalAlignment="Bottom" Foreground="#FF9E9E9E" HorizontalAlignment="Left" Width="139"/>
         <Label x:Name="lblavgFreundlichkeit" Content="0" Margin="171,0,10,198" VerticalAlignment="Bottom" BorderThickness="1" BorderBrush="#FFD6D6D6"/>

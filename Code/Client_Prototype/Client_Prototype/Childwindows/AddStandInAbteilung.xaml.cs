@@ -48,6 +48,7 @@ namespace BSD_Client
             btnResetCanvas.IsEnabled = false;
             Console.WriteLine("-------" + abteilung.ToString());
             drawAbteilung();
+            btnAddStand.IsEnabled = false;
             addSchueler();
 
 
@@ -164,6 +165,7 @@ namespace BSD_Client
             Console.WriteLine("new Rechteck(P1( " + x + " " + y + ") , P2( " + (x + w) + " " + (y + h) + " )");
             Canvas.SetLeft(rect, x);
             Canvas.SetTop(rect, y);
+            btnAddStand.IsEnabled = true;
         }
 
         private void canvasDrawStand_MouseUp(object sender, MouseButtonEventArgs e)
@@ -230,7 +232,7 @@ namespace BSD_Client
 
         private void btnAddSchueler_Click(object sender, RoutedEventArgs e)
         {
-            if(cmbSchueler.SelectedItem != null)
+            if(cmbSchueler.SelectedItem != null && rechteck != null)
             {
                 lvSchueler.ItemsSource = null;
                 listSchueler.Add((Schueler)cmbSchueler.SelectedItem);
