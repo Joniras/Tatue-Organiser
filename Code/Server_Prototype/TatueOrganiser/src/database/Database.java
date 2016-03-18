@@ -597,7 +597,7 @@ public class Database {
 	}
 	
 	public void addGewinnspielDatenZuQuiz(int id, GewinnspielDaten gd) throws SQLException{
-		PreparedStatement insertion = con.prepareStatement ("INSERT INTO GEWINNSPIELDATEN VALUES (seq_gewinnspieldaten_id.nextval, ?, ?, ?, ?, ?, ?");
+		PreparedStatement insertion = con.prepareStatement ("INSERT INTO GEWINNSPIELDATEN VALUES (seq_gewinnspieldaten_id.nextval, ?, ?, ?, ?, ?, ?)");
 		
 		insertion.setInt(1, id);
 		insertion.setFloat(2, gd.getScore());
