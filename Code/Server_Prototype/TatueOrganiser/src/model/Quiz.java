@@ -38,4 +38,9 @@ public class Quiz {
 	public void setGewinnspieldaten(Vector<GewinnspielDaten> gd) {
 		this.gewinnspieldaten = gd;
 	}
+	@Override
+	public String toString() {
+		return "Quiz [q_id=" + q_id + ", titel=" + titel + ", fragen=" + fragen
+				+ ", gewinnspieldaten=" + gewinnspieldaten + "]";
+	}
 }

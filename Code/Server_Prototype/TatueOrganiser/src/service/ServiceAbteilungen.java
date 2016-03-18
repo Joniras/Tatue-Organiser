@@ -10,7 +10,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -56,9 +55,6 @@ public class ServiceAbteilungen {
 		  
 		  return rb.build();
 	  }
-	
-
-	
 	
 	@GET
 	@Path("/staende")
@@ -113,21 +109,21 @@ public class ServiceAbteilungen {
 		}
 	  
 	  @GET
-		@Path("/{a_id}/quiz")
-		@Produces(MediaType.APPLICATION_JSON)
-		public Response getQuizVonAbteilung(@QueryParam("a_id") int a_id, @Context UriInfo uriInfo) {
-			ResponseBuilder rb = null; 
-			try{
-				  Database db = new Database();
-				  rb = Response.ok().entity(db.getQuizVonAbteilung(a_id)); 
-			  }
-			  catch(SQLException ex){
-				  ex.printStackTrace();
-				  rb = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(null);
-			  }
-			  
-			  return rb.build();
-		}
+	@Path("/{a_id}/quiz")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getQuizVonAbteilung(@PathParam("a_id") int a_id, @Context UriInfo uriInfo) {
+		ResponseBuilder rb = null; 
+		try{
+			  Database db = new Database();
+			  rb = Response.ok().entity(db.getQuizVonAbteilung(a_id)); 
+		  }
+		  catch(SQLException ex){
+			  ex.printStackTrace();
+			  rb = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(null);
+		  }
+		  
+		  return rb.build();
+	}
 	  
 		@POST
 		@Path("/{a_id}/quiz")

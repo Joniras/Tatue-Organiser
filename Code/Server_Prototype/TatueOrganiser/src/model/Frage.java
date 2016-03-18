@@ -28,5 +28,10 @@ public class Frage {
 	public void setText(String text) {
 		this.text = text;
 	}
+	@Override
+	public String toString() {
+		return "Frage [f_id=" + f_id + ", antworten=" + antworten + ", text="
+				+ text + "]";
+	}
 	
 }

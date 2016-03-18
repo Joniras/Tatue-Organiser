@@ -32,4 +32,9 @@ public class Antwort {
 	public void setIsright(boolean isright) {
 		this.isright = isright;
 	}
+	@Override
+	public String toString() {
+		return "Antwort [a_id=" + a_id + ", text=" + text + ", isright="
+				+ isright + "]";
+	}
 }

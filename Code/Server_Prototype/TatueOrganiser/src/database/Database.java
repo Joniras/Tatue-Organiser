@@ -105,6 +105,24 @@ public class Database {
 		return schueler;
 	}
 	
+	public Vector<Schueler> getSchuelerOhneStand() throws SQLException	{
+		Vector<Schueler> schueler = new Vector<Schueler>();
+		ResultSet rs = con.createStatement (ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY).executeQuery ("SELECT S_ID, VORNAME, NACHNAME, KLASSE, ISGUIDE FROM SCHUELER WHERE ST_ID IS NULL");
+		Schueler newSchueler;
+		
+		while (rs.next())	{
+			newSchueler = new Schueler ();
+			newSchueler.setS_id(rs.getInt("S_ID"));
+			newSchueler.setVorname(rs.getString ("VORNAME"));
+			newSchueler.setNachname(rs.getString ("NACHNAME"));
+			newSchueler.setKlasse(rs.getString ("KLASSE"));
+			newSchueler.setGuide(rs.getInt("ISGUIDE")==0 ? false : true);
+			schueler.add (newSchueler);
+		}
+		
+		return schueler;
+	}
+	
 	public void addSchueler (Schueler s) throws SQLException {
 		PreparedStatement insertion = con.prepareStatement ("INSERT INTO SCHUELER VALUES (seq_schueler_id.nextval, ?, ?, ?, ?, null)");
 		
@@ -235,8 +253,17 @@ public class Database {
 		insertion.setFloat(6, s.getShape().getB().getX());
 		insertion.setFloat(7, s.getShape().getB().getY());
 		
-		
 		insertion.executeQuery();
+		
+		ResultSet rs_stand_id = con.createStatement().executeQuery("SELECT MAX(ST_ID) AS ST_ID FROM STAND");
+		
+		rs_stand_id.next();
+		
+		int standId = rs_stand_id.getInt("ST_ID");
+		
+		for(Schueler schueler : s.getStandschueler()){
+			addSchuelerZuStand(standId, schueler);
+		}
 	}
 	
 	public void addSchuelerZuStand(int st_id, Schueler s) throws SQLException {
@@ -267,13 +294,17 @@ public class Database {
 	}
 	
 	public void updateStand(Stand s) throws SQLException	{
-		PreparedStatement update = con.prepareStatement ("UPDATE STAND SET STNAME = ?, INFO = ? WHERE ST_ID = ?");
-	
-		update.setString (1, s.getStname());
-		update.setString (2, s.getInfo());
-		update.setInt (3, s.getSt_id());
+		PreparedStatement abteilungs_id = con.prepareStatement ("SELECT AB_ID FROM STAND WHERE ST_ID = ?");
+		int ab_id = 0;
 		
-		update.executeQuery();
+		abteilungs_id.setInt (1, s.getSt_id());
+		
+		ResultSet rs = abteilungs_id.executeQuery();
+		rs.next();
+		ab_id = rs.getInt("AB_ID");
+		
+		deleteStand(s.getSt_id());
+		addStandZuAbteilung(ab_id, s);
 	}
 	
 	public Vector<StandRating> getAllRatingsVonStand(int id) throws SQLException{
@@ -302,11 +333,12 @@ public class Database {
 	}
 
 	public void addRatingZuStand(int id, StandRating sr) throws SQLException{
-		PreparedStatement insertion = con.prepareStatement ("INSERT INTO STANDRATING VALUES (seq_standrating_id.nextval, ?, ?, ?)");
-		System.out.println(sr.toString());
-		insertion.setFloat(1, sr.getFreundlichkeit());
-		insertion.setFloat(2, sr.getKompetenz());
-		insertion.setInt(3, id);
+		PreparedStatement insertion = con.prepareStatement ("INSERT INTO STANDRATING VALUES (seq_standrating_id.nextval, ?, ?, ?, ?)");
+		
+		insertion.setFloat(1, sr.getAufbau());
+		insertion.setFloat(2, sr.getFreundlichkeit());
+		insertion.setFloat(3, sr.getKompetenz());
+		insertion.setInt(4, id);
 		
 		insertion.executeQuery();
 	}

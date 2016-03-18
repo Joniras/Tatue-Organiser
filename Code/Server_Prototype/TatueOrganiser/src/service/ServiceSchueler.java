@@ -35,6 +35,23 @@ public class ServiceSchueler {
 		  return rb.build();
 	  }
 	
+	@GET
+	@Path("/ohnestand")
+	  @Produces(MediaType.APPLICATION_JSON)
+	  public Response getSchuelerOhneStand() throws SQLException{
+		ResponseBuilder rb = null; 
+		try{
+			  Database db = new Database();
+			  rb = Response.ok().entity(db.getSchuelerOhneStand()); 
+		  }
+		  catch(SQLException ex){
+			  ex.printStackTrace();
+			  rb = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(null);
+		  }
+		  
+		  return rb.build();
+	  }
+	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addSchuelerJSON(Schueler s) throws SQLException{
