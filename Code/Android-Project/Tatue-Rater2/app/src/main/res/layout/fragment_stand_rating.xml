@@ -1,0 +1,102 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.StandRatingFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/standSpinner"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_marginLeft="0dp"
+            android:spinnerMode="dropdown"
+            android:paddingTop="16dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Aufbau"
+            android:id="@+id/textView7"
+            android:layout_below="@+id/standSpinner"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="10dp" />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/stand_aRating"
+            android:layout_gravity="center_horizontal|top"
+            android:stepSize="1"
+            android:rating="0"
+            android:progressTint="@color/colorAccent"
+            android:numStars="5"
+            android:layout_below="@+id/textView7"
+            android:layout_centerHorizontal="true" />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/stand_fRating"
+            android:layout_gravity="center_horizontal|top"
+            android:stepSize="1"
+            android:rating="0"
+            android:progressTint="@color/colorAccent"
+            android:numStars="5"
+            android:layout_below="@+id/textView8"
+            android:layout_alignStart="@+id/stand_aRating" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Freundlichkeit"
+            android:id="@+id/textView8"
+            android:paddingTop="10dp"
+            android:layout_below="@+id/stand_aRating"
+            android:layout_centerHorizontal="true" />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/stand_kRating"
+            android:layout_gravity="center_horizontal|top"
+            android:stepSize="1"
+            android:rating="0"
+            android:progressTint="@color/colorAccent"
+            android:numStars="5"
+            android:layout_below="@+id/textView9"
+            android:layout_alignStart="@+id/stand_fRating" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Kompetenz"
+            android:id="@+id/textView9"
+            android:paddingTop="10dp"
+            android:layout_below="@+id/stand_fRating"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bewerten"
+            android:id="@+id/btnStandRating"
+            android:layout_below="@+id/stand_kRating"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20dp" />
+
+    </RelativeLayout>
+
+</FrameLayout>

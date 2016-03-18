@@ -1,0 +1,79 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.GuideRatingFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideSpinner"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_marginLeft="0dp"
+            android:layout_alignParentStart="true"
+            android:spinnerMode="dropdown"
+            android:paddingTop="16dp"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Kompetenz"
+            android:id="@+id/textView4"
+            android:layout_below="@+id/guide_fRating"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="10dp" />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guide_fRating"
+            android:layout_gravity="center_horizontal|top"
+            android:stepSize="1"
+            android:rating="0"
+            android:progressTint="@color/colorAccent"
+            android:numStars="5"
+            android:layout_below="@+id/textView6"
+            android:layout_centerHorizontal="true" />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guide_kRating"
+            android:layout_gravity="center_horizontal|top"
+            android:stepSize="1"
+            android:rating="0"
+            android:progressTint="@color/colorAccent"
+            android:numStars="5"
+            android:layout_below="@+id/textView4"
+            android:layout_alignStart="@+id/guide_fRating" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Freundlichkeit"
+            android:id="@+id/textView6"
+            android:paddingTop="10dp"
+            android:layout_below="@+id/guideSpinner"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bewerten"
+            android:id="@+id/btnGuideRating"
+            android:layout_below="@+id/guide_kRating"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20dp" />
+
+    </RelativeLayout>
+</FrameLayout>

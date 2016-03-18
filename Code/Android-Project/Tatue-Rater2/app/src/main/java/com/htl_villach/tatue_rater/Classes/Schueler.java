@@ -86,7 +86,7 @@ public class Schueler {
         {
             for (GuideRating gr : guiderating)
             {
-                avg_freundlichkeit += gr.getGR_Freundlichkeit();
+                avg_freundlichkeit += gr.getFreundlichkeit();
                 count++;
             }
             avg_freundlichkeit = avg_freundlichkeit / count;
@@ -108,7 +108,7 @@ public class Schueler {
         {
             for (GuideRating gr : guiderating)
             {
-                avg_kompetenz += gr.getGR_Kompetenz();
+                avg_kompetenz += gr.getKompetenz();
                 count++;
             }
             avg_kompetenz = avg_kompetenz / count;

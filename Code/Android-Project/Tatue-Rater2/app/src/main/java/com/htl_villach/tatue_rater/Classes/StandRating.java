@@ -1,63 +1,50 @@
 package com.htl_villach.tatue_rater.Classes;
 
-/**
- * Created by simon on 10.03.2016.
- */
 public class StandRating {
-    public int SR_ID;
-    public int SR_Aufbau;
-    public int SR_Freundlichkeit;
-    public int SR_Kompetenz;
+    private int sr_id = 0;
+    private float aufbau = 0;
+    private float freundlichkeit = 0;
+    private float kompetenz = 0;
 
+    public StandRating(int sr_id, float aufbau, float freundlichkeit, float kompetenz) {
+        this.sr_id = sr_id;
+        this.aufbau = aufbau;
+        this.freundlichkeit = freundlichkeit;
+        this.kompetenz = kompetenz;
+    }
+
+    public int getSr_id() {
+        return sr_id;
+    }
+    public void setSr_id(int sr_id) {
+        this.sr_id = sr_id;
+    }
+    public float getAufbau() {
+        return aufbau;
+    }
+    public void setAufbau(float aufbau) {
+        this.aufbau = aufbau;
+    }
+    public float getFreundlichkeit() {
+        return freundlichkeit;
+    }
+    public void setFreundlichkeit(float freundlichkeit) {
+        this.freundlichkeit = freundlichkeit;
+    }
+    public float getKompetenz() {
+        return kompetenz;
+    }
+    public void setKompetenz(float kompetenz) {
+        this.kompetenz = kompetenz;
+    }
     public StandRating() {
+        super();
     }
-
-    public StandRating(int SR_ID, int SR_Aufbau, int SR_Freundlichkeit, int SR_Kompetenz) {
-        this.SR_ID = SR_ID;
-        this.SR_Aufbau = SR_Aufbau;
-        this.SR_Freundlichkeit = SR_Freundlichkeit;
-        this.SR_Kompetenz = SR_Kompetenz;
-    }
-
-    public int getSR_ID() {
-        return SR_ID;
-    }
-
-    public void setSR_ID(int SR_ID) {
-        this.SR_ID = SR_ID;
-    }
-
-    public int getSR_Aufbau() {
-        return SR_Aufbau;
-    }
-
-    public void setSR_Aufbau(int SR_Aufbau) {
-        this.SR_Aufbau = SR_Aufbau;
-    }
-
-    public int getSR_Freundlichkeit() {
-        return SR_Freundlichkeit;
-    }
-
-    public void setSR_Freundlichkeit(int SR_Freundlichkeit) {
-        this.SR_Freundlichkeit = SR_Freundlichkeit;
-    }
-
-    public int getSR_Kompetenz() {
-        return SR_Kompetenz;
-    }
-
-    public void setSR_Kompetenz(int SR_Kompetenz) {
-        this.SR_Kompetenz = SR_Kompetenz;
-    }
-
     @Override
     public String toString() {
-        return "StandRating{" +
-                "SR_ID=" + SR_ID +
-                ", SR_Aufbau=" + SR_Aufbau +
-                ", SR_Freundlichkeit=" + SR_Freundlichkeit +
-                ", SR_Kompetenz=" + SR_Kompetenz +
-                '}';
+        return "StandRating [sr_id=" + sr_id + ", aufbau=" + aufbau
+                + ", freundlichkeit=" + freundlichkeit + ", kompetenz="
+                + kompetenz + "]";
     }
+
 }

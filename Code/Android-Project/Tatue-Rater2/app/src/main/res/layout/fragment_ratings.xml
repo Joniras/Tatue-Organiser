@@ -1,86 +1,30 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RatingsFragment"
-    android:id="@+id/rating_content">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.RatingsFragment"
+    android:id="@+id/rating_content"
+    app:tabMode="fixed"
+    app:tabGravity="fill"
+    android:orientation="vertical">
 
-
-    <Spinner
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        android:background="@color/colorPrimary"
+        app:tabIndicatorColor="@color/colorAccent"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/tabTextColor"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/standSpinner"
-        android:layout_gravity="center_horizontal|top"
-        android:layout_marginLeft="0dp"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentStart="true"
-        android:spinnerMode="dropdown" />
+        android:layout_height="wrap_content" >
+    </android.support.design.widget.TabLayout>
 
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/guideSpinner"
-        android:layout_gravity="center"
-        android:layout_marginLeft="0dp"
-        android:layout_below="@+id/textView3"
-        android:layout_alignParentEnd="true"
-        android:spinnerMode="dialog" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
 
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/standRating"
-        android:layout_gravity="center_horizontal|top"
-        android:stepSize="1"
-        android:rating="3"
-        android:progressTint="@color/colorAccent"
-        android:layout_below="@+id/standSpinner"
-        android:layout_alignParentStart="false" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Stand"
-        android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Guide"
-        android:id="@+id/textView3"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bewerten"
-        android:id="@+id/btnStandRating"
-        android:layout_below="@+id/standRating"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
-
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/guideRating"
-        android:layout_gravity="center_horizontal|top"
-        android:stepSize="1"
-        android:rating="3"
-        android:progressTint="@color/colorAccent"
-        android:layout_below="@+id/guideSpinner"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bewerten"
-        android:id="@+id/btnGuideRating"
-        android:layout_below="@+id/guideRating"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
-</RelativeLayout>
+</LinearLayout>

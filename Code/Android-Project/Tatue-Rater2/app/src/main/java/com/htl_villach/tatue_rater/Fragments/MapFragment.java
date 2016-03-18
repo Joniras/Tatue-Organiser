@@ -1,4 +1,4 @@
-package com.htl_villach.tatue_rater;
+package com.htl_villach.tatue_rater.Fragments;
 
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -24,6 +24,7 @@ import com.htl_villach.tatue_rater.Classes.Abteilung;
 import com.htl_villach.tatue_rater.Classes.Rechteck;
 import com.htl_villach.tatue_rater.Classes.Stand;
 import com.htl_villach.tatue_rater.Helper.Database;
+import com.htl_villach.tatue_rater.R;
 
 import java.util.Vector;
 
@@ -34,6 +35,7 @@ public class MapFragment extends Fragment implements  AdapterView.OnItemSelected
     private Bitmap bg;
     private View rootView;
     private Vector<Abteilung> abteilungen;
+    private Database db;
 
     public MapFragment() {
 
@@ -43,7 +45,7 @@ public class MapFragment extends Fragment implements  AdapterView.OnItemSelected
         Paint standPaint = new Paint();
         Paint textPaint = new Paint();
         canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
-        int offset = 100;
+        int offset = 120;
 
         TypedValue typedValue = new TypedValue();
         TypedArray ta = getContext().obtainStyledAttributes(typedValue.data, new int[]{R.attr.colorAccent});
@@ -112,12 +114,23 @@ public class MapFragment extends Fragment implements  AdapterView.OnItemSelected
 
         bg = Bitmap.createBitmap(400, 450, Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bg);
+        Log.i("asdf","-------");
+        try {
+            this.db = Database.newInstance();
+            if(this.db.abteilungen != null){
+                this.abteilungen = this.db.abteilungen;
+                initSpinner();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return rootView;
     }
 
     public void initView(){
         try {
-            Database db = Database.newInstance();
+            db = Database.newInstance();
 
             this.abteilungen = db.abteilungen;
             this.initSpinner();

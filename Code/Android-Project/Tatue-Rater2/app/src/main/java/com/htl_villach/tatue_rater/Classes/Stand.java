@@ -96,7 +96,7 @@ public class Stand {
         {
             for (StandRating st : standratings)
             {
-                avg_freundlichkeit += st.getSR_Freundlichkeit();
+                avg_freundlichkeit += st.getFreundlichkeit();
                 count++;
             }
             avg_freundlichkeit = avg_freundlichkeit / count;
@@ -118,7 +118,7 @@ public class Stand {
         {
             for (StandRating st : standratings)
             {
-                avg_kompetenz += st.getSR_Kompetenz();
+                avg_kompetenz += st.getKompetenz();
                 count++;
             }
             avg_kompetenz = avg_kompetenz / count;
@@ -141,7 +141,7 @@ public class Stand {
         {
             for (StandRating st : standratings)
             {
-                avg_Aufbau += st.getSR_Aufbau();
+                avg_Aufbau += st.getAufbau();
                 count++;
             }
             avg_Aufbau = avg_Aufbau / count;
