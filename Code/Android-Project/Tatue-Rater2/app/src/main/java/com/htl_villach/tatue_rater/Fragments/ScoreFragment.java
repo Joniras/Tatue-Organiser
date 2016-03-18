@@ -90,6 +90,12 @@ public class ScoreFragment extends Fragment implements View.OnClickListener {
 
         if(v.getId() == R.id.btnMakewith){
             try {
+                this.gewinnspieldaten.setEmail(((TextView) rootView.findViewById(R.id.txtMail)).getText().toString());
+                this.gewinnspieldaten.setTelefon(((TextView) rootView.findViewById(R.id.txtTelefon)).getText().toString());
+                if(((TextView) rootView.findViewById(R.id.txtMail)).getText().toString().split(" ").length > 1) {
+                    this.gewinnspieldaten.setVorname(((TextView) rootView.findViewById(R.id.txtMail)).getText().toString().split(" ")[0]);
+                    this.gewinnspieldaten.setNachname(((TextView) rootView.findViewById(R.id.txtMail)).getText().toString().split(" ")[1]);
+                }
                 Database.newInstance().addGewinnspielDaten(this.gewinnspieldaten,quizid);
             } catch (Exception e) {
                 e.printStackTrace();
